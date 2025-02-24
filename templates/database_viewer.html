@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Database Viewer - Wallets, Positions & System Vars</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- (Optional) AdminLTEZ CSS if needed -->
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='AdminLTEZ/dist/css/adminlte.css') }}"> -->
+
+  <!-- Custom CSS overrides loaded after other CSS -->
+  <style>
+    /* Ensure the background image is fixed, covers entirely, and the cards are opaque */
+    body {
+      background: url("{{ url_for('static', filename='images/database_wall.jpg') }}") no-repeat center center fixed !important;
+      background-size: cover !important;
+    }
+    .card {
+      background-color: #fff !important;
+      border: 1px solid #dee2e6 !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
+      margin-bottom: 1rem !important;
+    }
+    .card-header {
+      background-color: #e7f0fd !important;
+      color: #003366 !important;
+      padding: 0.5rem 1rem !important;
+      cursor: pointer !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+    .card-header button.btn-light {
+      font-weight: bold !important;
+    }
+    /* Modal form styling */
+    #editFormContainer .form-label {
+      font-weight: 600 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Database Viewer</h1>
+
+    {# Wallets Section #}
+    {% set wallet_data = db_data.wallets | default({ "columns": [], "rows": [] }) %}
+    <div class="card" data-table="wallets" data-columns='{{ wallet_data.columns | tojson | safe }}'>
+      <div class="card-header" data-target="#collapse-wallets">
+        <button class="btn btn-light" type="button">
+          <strong>Wallets</strong>
+        </button>
+        <button class="btn btn-sm btn-outline-danger deleteTableBtn" title="Delete Table">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      <div id="collapse-wallets" class="collapse show">
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                {% for col in wallet_data.columns %}
+                  <th>{{ col }}</th>
+                {% endfor %}
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in wallet_data.rows %}
+                <tr data-row-json='{{ row | tojson | safe }}'>
+                  {% for col in wallet_data.columns %}
+                    <td>{{ row[col] }}</td>
+                  {% endfor %}
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-secondary editBtn" title="Edit">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteBtn" title="Delete Row">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="{{ wallet_data.columns|length + 1 }}" class="text-center">No wallets found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# Positions Section #}
+    {% set positions_data = db_data.positions | default({ "columns": [], "rows": [] }) %}
+    <div class="card" data-table="positions" data-columns='{{ positions_data.columns | tojson | safe }}'>
+      <div class="card-header" data-target="#collapse-positions">
+        <button class="btn btn-light" type="button">
+          <strong>Positions</strong>
+        </button>
+        <button class="btn btn-sm btn-outline-danger deleteTableBtn" title="Delete Table">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      <div id="collapse-positions" class="collapse show">
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                {% for col in positions_data.columns %}
+                  <th>{{ col }}</th>
+                {% endfor %}
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in positions_data.rows %}
+                <tr data-row-json='{{ row | tojson | safe }}'>
+                  {% for col in positions_data.columns %}
+                    <td>{{ row[col] }}</td>
+                  {% endfor %}
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-secondary editBtn" title="Edit">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteBtn" title="Delete Row">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="{{ positions_data.columns|length + 1 }}" class="text-center">No positions found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# System Vars Section #}
+    {% set sysvars_data = db_data.system_vars | default({ "columns": [], "rows": [] }) %}
+    <div class="card" data-table="system_vars" data-columns='{{ sysvars_data.columns | tojson | safe }}'>
+      <div class="card-header" data-target="#collapse-sysvars">
+        <button class="btn btn-light" type="button">
+          <strong>System Vars</strong>
+        </button>
+        <button class="btn btn-sm btn-outline-danger deleteTableBtn" title="Delete Table">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      <div id="collapse-sysvars" class="collapse show">
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                {% for col in sysvars_data.columns %}
+                  <th>{{ col }}</th>
+                {% endfor %}
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in sysvars_data.rows %}
+                <tr data-row-json='{{ row | tojson | safe }}'>
+                  {% for col in sysvars_data.columns %}
+                    <td>{{ row[col] }}</td>
+                  {% endfor %}
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-secondary editBtn" title="Edit">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteBtn" title="Delete Row">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="{{ sysvars_data.columns|length + 1 }}" class="text-center">No system vars found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# Positions Totals History Section - New #}
+    {% set pos_totals_data = db_data.positions_totals_history | default({ "columns": [], "rows": [] }) %}
+    <div class="card" data-table="positions_totals_history" data-columns='{{ pos_totals_data.columns | tojson | safe }}'>
+      <div class="card-header" data-target="#collapse-pos-totals">
+        <button class="btn btn-light" type="button">
+          <strong>Positions Totals History</strong>
+        </button>
+        <button class="btn btn-sm btn-outline-danger deleteTableBtn" title="Delete Table">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      <div id="collapse-pos-totals" class="collapse show">
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                {% for col in pos_totals_data.columns %}
+                  <th>{{ col }}</th>
+                {% endfor %}
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in pos_totals_data.rows %}
+                <tr data-row-json='{{ row | tojson | safe }}'>
+                  {% for col in pos_totals_data.columns %}
+                    <td>{{ row[col] }}</td>
+                  {% endfor %}
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-secondary editBtn" title="Edit">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteBtn" title="Delete Row">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="{{ pos_totals_data.columns|length + 1 }}" class="text-center">No positions totals history found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# Prices Section #}
+    {% set prices_data = db_data.prices | default({ "columns": [], "rows": [] }) %}
+    <div class="card" data-table="prices" data-columns='{{ prices_data.columns | tojson | safe }}'>
+      <div class="card-header" data-target="#collapse-prices">
+        <button class="btn btn-light" type="button">
+          <strong>Prices</strong>
+        </button>
+        <button class="btn btn-sm btn-outline-danger deleteTableBtn" title="Delete Table">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      <div id="collapse-prices" class="collapse show">
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                {% for col in prices_data.columns %}
+                  <th>{{ col }}</th>
+                {% endfor %}
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in prices_data.rows %}
+                <tr data-row-json='{{ row | tojson | safe }}'>
+                  {% for col in prices_data.columns %}
+                    <td>{{ row[col] }}</td>
+                  {% endfor %}
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-secondary editBtn" title="Edit">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteBtn" title="Delete Row">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="{{ prices_data.columns|length + 1 }}" class="text-center">No prices found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Shared Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="editForm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Row</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="editFormContainer">
+              <!-- Dynamic form fields will be injected here -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // For this file, we'll assume all tables are fully editable.
+    const fullyEditableTables = ['wallets', 'positions', 'system_vars', 'prices', 'positions_totals_history'];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Toggle collapse functionality for each card header.
+      document.querySelectorAll('.card-header').forEach(function(header) {
+        header.addEventListener('click', function(e) {
+          if (e.target.closest('button') && !e.target.closest('.btn-light')) return;
+          const targetSelector = header.getAttribute('data-target');
+          const targetElem = document.querySelector(targetSelector);
+          if (targetElem) {
+            targetElem.classList.toggle('show');
+          }
+        });
+      });
+
+      let currentRow, currentCard, currentColumns;
+      const editModal = new bootstrap.Modal(document.getElementById('editModal'), { backdrop: 'static', keyboard: false });
+      const editFormContainer = document.getElementById('editFormContainer');
+
+      // Simple form generator that creates inputs for each column.
+      function generateEditForm(rowData, fields) {
+        editFormContainer.innerHTML = '';
+        fields.forEach(function(field) {
+          const formGroup = document.createElement('div');
+          formGroup.className = 'mb-3';
+          const label = document.createElement('label');
+          label.className = 'form-label';
+          label.innerText = field.replace('_', ' ').toUpperCase();
+          label.setAttribute('for', 'edit-' + field);
+          formGroup.appendChild(label);
+          const input = document.createElement('input');
+          input.className = 'form-control';
+          input.id = 'edit-' + field;
+          input.name = field;
+          input.value = rowData[field] !== null ? rowData[field] : '';
+          formGroup.appendChild(input);
+          editFormContainer.appendChild(formGroup);
+        });
+      }
+
+      // Edit button click handler.
+      document.addEventListener('click', function(e) {
+        const editBtn = e.target.closest('.editBtn');
+        if (editBtn) {
+          currentRow = editBtn.closest('tr');
+          const rowData = JSON.parse(currentRow.getAttribute('data-row-json'));
+          currentCard = editBtn.closest('.card');
+          currentColumns = JSON.parse(currentCard.getAttribute('data-columns'));
+          // For all tables, use the currentColumns if available, otherwise use keys of rowData.
+          const fields = currentColumns.length ? currentColumns : Object.keys(rowData);
+          generateEditForm(rowData, fields);
+          document.getElementById('editModalLabel').innerText = "Edit " + currentCard.getAttribute('data-table');
+          editModal.show();
+          e.stopPropagation();
+        }
+      });
+
+      // Handle edit form submission.
+      document.getElementById('editForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const tableName = currentCard.getAttribute('data-table');
+        let updatedData = {};
+        const fields = currentColumns.length ? currentColumns : Object.keys(JSON.parse(currentRow.getAttribute('data-row-json')));
+        fields.forEach(function(field) {
+          const input = document.getElementById('edit-' + field);
+          if (input) {
+            updatedData[field] = input.value;
+          }
+        });
+        const cells = currentRow.getElementsByTagName('td');
+        fields.forEach(function(field, index) {
+          if (cells[index]) {
+            cells[index].innerText = updatedData[field];
+          }
+        });
+        currentRow.setAttribute('data-row-json', JSON.stringify(updatedData));
+        editModal.hide();
+
+        // Send AJAX update.
+        if (fullyEditableTables.includes(tableName)) {
+          const pkField = (tableName === 'wallets' || tableName === 'positions') ? 'name' : 'id';
+          const pkValue = updatedData[pkField];
+          fetch('/api/update_row', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              table: tableName,
+              pk_field: pkField,
+              pk_value: pkValue,
+              row: updatedData
+            })
+          })
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to update row.');
+            return response.json();
+          })
+          .then(data => console.log('Row updated successfully:', data))
+          .catch(error => {
+            alert('Error updating row: ' + error.message);
+            console.error(error);
+          });
+        }
+      });
+
+      // Delete row handler.
+      document.addEventListener('click', function(e) {
+        const deleteBtn = e.target.closest('.deleteBtn');
+        if (deleteBtn) {
+          const row = deleteBtn.closest('tr');
+          const card = deleteBtn.closest('.card');
+          const tableName = card.getAttribute('data-table');
+          if (confirm('Are you sure you want to delete this row?')) {
+            const rowData = JSON.parse(row.getAttribute('data-row-json'));
+            const pkField = (tableName === 'wallets' || tableName === 'positions') ? 'name' : 'id';
+            const pkValue = rowData[pkField];
+            if (fullyEditableTables.includes(tableName)) {
+              fetch('/api/delete_row', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  table: tableName,
+                  pk_field: pkField,
+                  pk_value: pkValue
+                })
+              })
+              .then(response => {
+                if (!response.ok) throw new Error('Failed to delete row.');
+                return response.json();
+              })
+              .then(data => {
+                console.log('Row deleted successfully:', data);
+                row.remove();
+              })
+              .catch(error => {
+                alert('Error deleting row: ' + error.message);
+                console.error(error);
+              });
+            } else {
+              row.remove();
+            }
+          }
+        }
+      });
+
+      // Delete table handler.
+      document.addEventListener('click', function(e) {
+        const deleteTableBtn = e.target.closest('.deleteTableBtn');
+        if (deleteTableBtn) {
+          const card = deleteTableBtn.closest('.card');
+          if (confirm('Are you sure you want to delete this entire table?')) {
+            card.remove();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

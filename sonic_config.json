@@ -1,0 +1,358 @@
+{
+  "price_config": {
+    "assets": [
+      "BTC",
+      "ETH",
+      "SOL"
+    ],
+    "currency": "USD",
+    "cmc_api_key": "c51c0c22-1bf3-4674-86bf-36f39a912d1a"
+  },
+  "system_config": {
+    "logging_enabled": true,
+    "log_level": "DEBUG",
+    "console_output": true,
+    "log_file": "C:/space_ship/price_monitor.log",
+    "db_path": "C:/space_ship/mother_brain.db",
+    "price_monitor_enabled": true,
+    "alert_monitor_enabled": true,
+    "sonic_monitor_loop_time": 300,
+    "last_price_update_time": null
+  },
+  "api_config": {
+    "coingecko_api_enabled": "ENABLE",
+    "kucoin_api_enabled": "ENABLE",
+    "coinmarketcap_api_enabled": "ENABLE",
+    "coinpaprika_api_enabled": "ENABLE",
+    "binance_api_enabled": "ENABLE",
+    "coinmarketcap_api_key": "c51c0c22-1bf3-4674-86bf-36f39a912d1a"
+  },
+  "alert_ranges": {
+    "heat_index_ranges": {
+      "enabled": false,
+      "low": 444.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium": 444.0,
+      "high": 777.0,
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "collateral_ranges": {
+      "enabled": false,
+      "low": 1111.0,
+      "medium": 1111.0,
+      "high": 11111.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "value_ranges": {
+      "enabled": false,
+      "low": 1111.0,
+      "medium": 1111.0,
+      "high": 1111.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "size_ranges": {
+      "enabled": false,
+      "low": 11111.0,
+      "medium": 111111.0,
+      "high": 11111.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "leverage_ranges": {
+      "enabled": false,
+      "low": 11111.0,
+      "medium": 111111.0,
+      "high": 11111.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "liquidation_distance_ranges": {
+      "enabled": false,
+      "low": 1111111.0,
+      "medium": 111111.0,
+      "high": 11111.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "travel_percent_liquid_ranges": {
+      "enabled": false,
+      "low": -10.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium": -60.0,
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high": -75.0,
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "travel_percent_profit_ranges": {
+      "enabled": true,
+      "low": -50.0,
+      "medium": -75.0,
+      "high": -85.0,
+      "low_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "medium_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      },
+      "high_notifications": {
+        "call": false,
+        "sms": false,
+        "email": false
+      }
+    },
+    "profit_ranges": {
+      "enabled": true,
+      "low": 46.0,
+      "low_notifications": {
+        "call": true,
+        "sms": true,
+        "email": true
+      },
+      "medium": 101.3,
+      "medium_notifications": {
+        "call": true,
+        "sms": true,
+        "email": true
+      },
+      "high": 202.0,
+      "high_notifications": {
+        "call": true,
+        "sms": true,
+        "email": true
+      }
+    },
+    "average_daily_swing": {
+      "BTC": 6.1,
+      "ETH": 8.0,
+      "SOL": 13.0
+    },
+    "one_day_blast_radius": {
+      "BTC": 17.6,
+      "ETH": 18.0,
+      "SOL": 23.0
+    }
+  },
+  "notification_config": {
+    "email": {
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "smtp_user": "bubba.diego@gmail.com",
+      "smtp_password": "pzix taan afbe igxb",
+      "recipient_email": "bubba.diego@gmail.com"
+    },
+    "sms": {
+      "carrier_gateway": "txt.att.net",
+      "recipient_number": "6199804758"
+    }
+  },
+  "alert_cooldown_seconds": 6000,
+  "call_refractory_period": 1,
+  "theme_config": {
+    "selected_profile": "profile3",
+    "profiles": {
+      "profile1": {
+        "title_bar": {
+          "color": "#FF5733",
+          "image": "static/images/alert_wall.jpg"
+        },
+        "side_bar": {
+          "color": "#C70039",
+          "image": null
+        },
+        "wallpaper": {
+          "color": "#900C3F",
+          "image": "static/images/alert_wall.jpg"
+        },
+        "primary": {
+          "color": "#581845",
+          "image": null
+        },
+        "secondary": {
+          "color": "#FFC300",
+          "image": null
+        },
+        "text": {
+          "color": "#FFFFFF"
+        }
+      },
+      "profile2": {
+        "title_bar": {
+          "color": "#007BFF",
+          "image": null
+        },
+        "side_bar": {
+          "color": "#6C757D",
+          "image": null
+        },
+        "wallpaper": {
+          "color": "#F8F9FA",
+          "image": "static/images/alert_wall.jpg"
+        },
+        "primary": {
+          "color": "#28A745",
+          "image": null
+        },
+        "secondary": {
+          "color": "#17A2B8",
+          "image": null
+        },
+        "text": {
+          "color": "#212529"
+        }
+      },
+      "profile3": {
+        "title_bar": {
+          "color": "#343A40",
+          "image": null
+        },
+        "side_bar": {
+          "color": "#495057",
+          "image": null
+        },
+        "wallpaper": {
+          "color": "#E9ECEF",
+          "image": null
+        },
+        "primary": {
+          "color": "#007BFF",
+          "image": null
+        },
+        "secondary": {
+          "color": "#6C757D",
+          "image": null
+        },
+        "text": {
+          "color": "#FFFFFF"
+        }
+      },
+      "profile4": {
+        "title_bar": {
+          "color": "#28A745",
+          "image": null
+        },
+        "side_bar": {
+          "color": "#17A2B8",
+          "image": null
+        },
+        "wallpaper": {
+          "color": "#F8F9FA",
+          "image": null
+        },
+        "primary": {
+          "color": "#FFC107",
+          "image": null
+        },
+        "secondary": {
+          "color": "#DC3545",
+          "image": null
+        },
+        "text": {
+          "color": "#212529"
+        }
+      }
+    }
+  },
+  "twilio_config": {
+    "account_sid": "ACb606788ada5dccbfeeebed0f440099b3",
+    "auth_token": "ae4c7cc652d48caab2f2752699a6c4bd",
+    "flow_sid": "FW5b3bf49ee04af4d23a118b613bbc0df2",
+    "to_phone": "+16199804758",
+    "from_phone": "+18336913467"
+  }
+}

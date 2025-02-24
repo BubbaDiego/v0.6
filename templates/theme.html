@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+  {{ super() }}
+  <style>
+    /* You can add any additional theme-specific styles here if needed */
+  </style>
+{% endblock %}
+
+{% block page_title %}Theme Customize{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Theme Customize</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Sidebar Theme Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Sidebar Theme</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+              <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+              <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <select id="sidebar-color-modes" class="form-select form-select-lg" aria-label="Sidebar Color Mode Select">
+                <option value="">---Select---</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="sidebar-color" class="form-select form-select-lg" aria-label="Sidebar Color Select">
+                <option value="">---Select---</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <div id="sidebar-color-code" class="w-100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          Check more colors in
+          <a href="https://getbootstrap.com/docs/5.3/utilities/background/" target="_blank" class="link-primary">Bootstrap Background Colors</a>.
+        </div>
+      </div>
+      <!-- Navbar Theme Card -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Navbar Theme</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+              <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+              <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <select id="navbar-color-modes" class="form-select form-select-lg" aria-label="Navbar Color Mode Select">
+                <option value="">---Select---</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="navbar-color" class="form-select form-select-lg" aria-label="Navbar Color Select">
+                <option value="">---Select---</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <div id="navbar-color-code" class="w-100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          Check more colors in
+          <a href="https://getbootstrap.com/docs/5.3/utilities/background/" target="_blank" class="link-primary">Bootstrap Background Colors</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Save Theme Section -->
+  <div class="row mt-4">
+    <div class="col-12 text-center">
+      <button id="save-theme" class="btn btn-success btn-lg">Save Theme</button>
+      <span id="save-status" class="ms-3"></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+  {{ super() }}
+  <script>
+    // Sidebar theme customization
+    document.addEventListener('DOMContentLoaded', () => {
+      const appSidebar = document.querySelector('.app-sidebar');
+      const sidebarColorModes = document.querySelector('#sidebar-color-modes');
+      const sidebarColor = document.querySelector('#sidebar-color');
+      const sidebarColorCode = document.querySelector('#sidebar-color-code');
+
+      const themeBg = [
+        'bg-primary', 'bg-primary-subtle', 'bg-secondary', 'bg-secondary-subtle',
+        'bg-success', 'bg-success-subtle', 'bg-danger', 'bg-danger-subtle',
+        'bg-warning', 'bg-warning-subtle', 'bg-info', 'bg-info-subtle',
+        'bg-light', 'bg-light-subtle', 'bg-dark', 'bg-dark-subtle',
+        'bg-body-secondary', 'bg-body-tertiary', 'bg-body', 'bg-black',
+        'bg-white', 'bg-transparent'
+      ];
+
+      if (sidebarColor) {
+        sidebarColor.innerHTML = themeBg.map((bg) => {
+          return `<option value="${bg}" class="text-${bg}">${bg}</option>`;
+        }).join('');
+      }
+
+      let sidebarColorMode = '';
+      let sidebarBg = '';
+
+      function updateSidebar() {
+        if (appSidebar) {
+          appSidebar.setAttribute('data-bs-theme', sidebarColorMode);
+        }
+        if (sidebarColorCode) {
+          sidebarColorCode.innerHTML = `<pre><code class="language-html">&lt;aside class="app-sidebar ${sidebarBg}" data-bs-theme="${sidebarColorMode}"&gt;...&lt;/aside&gt;</code></pre>`;
+        }
+        window.currentTheme = window.currentTheme || {};
+        window.currentTheme.sidebar = { color_mode: sidebarColorMode, bg: sidebarBg };
+      }
+
+      if (sidebarColorModes) {
+        sidebarColorModes.addEventListener('input', (event) => {
+          sidebarColorMode = event.target.value;
+          updateSidebar();
+        });
+      }
+
+      if (sidebarColor) {
+        sidebarColor.addEventListener('input', (event) => {
+          sidebarBg = event.target.value;
+          themeBg.forEach((className) => {
+            if (appSidebar) appSidebar.classList.remove(className);
+          });
+          if (themeBg.includes(sidebarBg)) {
+            if (appSidebar) appSidebar.classList.add(sidebarBg);
+          }
+          updateSidebar();
+        });
+      }
+    });
+
+    // Navbar theme customization
+    document.addEventListener('DOMContentLoaded', () => {
+      const appNavbar = document.querySelector('.app-header');
+      const navbarColorModes = document.querySelector('#navbar-color-modes');
+      const navbarColor = document.querySelector('#navbar-color');
+      const navbarColorCode = document.querySelector('#navbar-color-code');
+
+      const themeBg = [
+        'bg-primary', 'bg-primary-subtle', 'bg-secondary', 'bg-secondary-subtle',
+        'bg-success', 'bg-success-subtle', 'bg-danger', 'bg-danger-subtle',
+        'bg-warning', 'bg-warning-subtle', 'bg-info', 'bg-info-subtle',
+        'bg-light', 'bg-light-subtle', 'bg-dark', 'bg-dark-subtle',
+        'bg-body-secondary', 'bg-body-tertiary', 'bg-body', 'bg-black',
+        'bg-white', 'bg-transparent'
+      ];
+
+      if (navbarColor) {
+        navbarColor.innerHTML = themeBg.map((bg) => {
+          return `<option value="${bg}" class="text-${bg}">${bg}</option>`;
+        }).join('');
+      }
+
+      let navbarColorMode = '';
+      let navbarBg = '';
+
+      function updateNavbar() {
+        if (appNavbar) {
+          appNavbar.setAttribute('data-bs-theme', navbarColorMode);
+        }
+        if (navbarColorCode) {
+          navbarColorCode.innerHTML = `<pre><code class="language-html">&lt;nav class="app-header navbar navbar-expand ${navbarBg}" data-bs-theme="${navbarColorMode}"&gt;...&lt;/nav&gt;</code></pre>`;
+        }
+        window.currentTheme = window.currentTheme || {};
+        window.currentTheme.navbar = { color_mode: navbarColorMode, bg: navbarBg };
+      }
+
+      if (navbarColorModes) {
+        navbarColorModes.addEventListener('input', (event) => {
+          navbarColorMode = event.target.value;
+          updateNavbar();
+        });
+      }
+
+      if (navbarColor) {
+        navbarColor.addEventListener('input', (event) => {
+          navbarBg = event.target.value;
+          themeBg.forEach((className) => {
+            if (appNavbar) appNavbar.classList.remove(className);
+          });
+          if (themeBg.includes(navbarBg)) {
+            if (appNavbar) appNavbar.classList.add(navbarBg);
+          }
+          updateNavbar();
+        });
+      }
+    });
+
+    // Save theme configuration to JSON (persistence)
+    document.addEventListener('DOMContentLoaded', () => {
+      const saveButton = document.getElementById('save-theme');
+      const saveStatus = document.getElementById('save-status');
+
+      saveButton.addEventListener('click', () => {
+        const themeData = window.currentTheme || {};
+        fetch('{{ url_for("save_theme") }}', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(themeData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            saveStatus.textContent = 'Theme saved successfully!';
+            saveStatus.classList.remove('text-danger');
+            saveStatus.classList.add('text-success');
+          } else {
+            saveStatus.textContent = 'Error saving theme.';
+            saveStatus.classList.remove('text-success');
+            saveStatus.classList.add('text-danger');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          saveStatus.textContent = 'Error saving theme.';
+          saveStatus.classList.remove('text-success');
+          saveStatus.classList.add('text-danger');
+        });
+      });
+    });
+  </script>
+{% endblock %}

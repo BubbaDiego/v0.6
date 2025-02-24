@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tight Triangular Bullseye + ApexCharts</title>
+  <!-- Load ApexCharts for the radial bars -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* Container for the combined bullseye layout */
+    #combined-bullseye-container {
+      position: relative;
+      width: 600px;   /* Outer container width */
+      height: 550px;  /* Outer container height */
+      margin: 0 auto 40px; /* Centered + spacing below */
+      border: 1px solid #ccc; /* optional: visualize container bounds */
+      background: #f9f9f9;     /* optional: container background */
+    }
+    /* Each bullseye canvas has the same size in CSS */
+    .bullseye {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      /* No border => no clipping */
+    }
+
+    /* ApexCharts container + icons */
+    .apex-relative {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 10px;
+    }
+    .icon-bomb,
+    .icon-lightning {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .icon-bomb { top: 20px; }
+    .icon-lightning { top: 40px; }
+
+    /* Simple row layout for apex charts */
+    .apex-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Super Tight Triangular Bullseye + ApexCharts</h1>
+
+  <!-- COMBINED BULLSEYE LAYOUT -->
+  <div id="combined-bullseye-container">
+    <!-- Top-left bullseye -->
+    <canvas id="bullseyeBTC" class="bullseye"
+      style="left: 0; top: 0;"></canvas>
+    <!-- Top-right bullseye (10px gap horizontally) -->
+    <canvas id="bullseyeETH" class="bullseye"
+      style="left: 290px; top: 0;"></canvas>
+    <!-- Bottom bullseye (centered horizontally, 10px gap vertically from top circles) -->
+    <canvas id="bullseyeSOL" class="bullseye"
+      style="left: 145px; top: 290px;"></canvas>
+  </div>
+
+  <!-- APEXCHARTS RADIAL BARS -->
+  <h2>ApexCharts Radial Bars</h2>
+  <div class="apex-row">
+    <div class="apex-relative">
+      <div class="icon-bomb">💣</div>
+      <div class="icon-lightning">⚡</div>
+      <div id="apexBTC"></div>
+    </div>
+    <div class="apex-relative">
+      <div class="icon-bomb">💣</div>
+      <div class="icon-lightning">⚡</div>
+      <div id="apexETH"></div>
+    </div>
+    <div class="apex-relative">
+      <div class="icon-bomb">💣</div>
+      <div class="icon-lightning">⚡</div>
+      <div id="apexSOL"></div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Draws a single bullseye with three outlined rings and multiple position dots.
+     * The asset label is in the center.
+     *
+     * @param {HTMLCanvasElement} canvas - The canvas element.
+     * @param {string} centerLabel - e.g. "BTC"
+     * @param {number} innerPercent - daily average
+     * @param {number} outerPercent - blast radius
+     * @param {number} extendedPercent - extended range
+     * @param {Array} positions - { liquidDistance, label, color }
+     * @param {number} scaleFactor - px per 1%
+     */
+    function drawBullseye(canvas, centerLabel, innerPercent, outerPercent, extendedPercent, positions, scaleFactor) {
+      // Internally set a high-res dimension
+      canvas.width = 600;
+      canvas.height = 600;
+      const ctx = canvas.getContext('2d');
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      const innerRadius = innerPercent * scaleFactor;
+      const middleRadius = outerPercent * scaleFactor;
+      const outerRadius = extendedPercent * scaleFactor;
+
+      // Clear
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Outer ring
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, outerRadius, 0, 2 * Math.PI);
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = 'rgba(75, 192, 192, 1)';
+      ctx.stroke();
+
+      // Middle ring
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, middleRadius, 0, 2 * Math.PI);
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = 'rgba(54, 162, 235, 1)';
+      ctx.stroke();
+
+      // Inner ring
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, innerRadius, 0, 2 * Math.PI);
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = 'rgba(255, 99, 132, 1)';
+      ctx.stroke();
+
+      // Center label
+      ctx.fillStyle = '#000';
+      ctx.font = '50px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(centerLabel, centerX, centerY + 15);
+
+      // Dots
+      positions.forEach((pos, i) => {
+        const angle = (2 * Math.PI / positions.length) * i - Math.PI / 2;
+        const r = pos.liquidDistance * scaleFactor;
+        const dotX = centerX + r * Math.cos(angle);
+        const dotY = centerY + r * Math.sin(angle);
+        ctx.beginPath();
+        ctx.arc(dotX, dotY, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = pos.color || '#FF0000';
+        ctx.fill();
+        if (pos.label) {
+          ctx.fillStyle = '#000';
+          ctx.font = '20px Arial';
+          ctx.fillText(pos.label, dotX, dotY - 12);
+        }
+      });
+    }
+
+    // Example data
+    const btcPositions = [
+      { liquidDistance: 10, label: "P1", color: '#FF4500' },
+      { liquidDistance: 14, label: "P2", color: '#FF8C00' },
+      { liquidDistance: 20, label: "P3", color: '#FFA500' }
+    ];
+    const ethPositions = [
+      { liquidDistance: 11, label: "P1", color: '#1E90FF' },
+      { liquidDistance: 16, label: "P2", color: '#00BFFF' }
+    ];
+    const solPositions = [
+      { liquidDistance: 15, label: "P1", color: '#32CD32' },
+      { liquidDistance: 18, label: "P2", color: '#3CB371' },
+      { liquidDistance: 25, label: "P3", color: '#2E8B57' }
+    ];
+
+    // Draw them super close
+    // Each canvas is 280×280 in CSS, but 600×600 internally.
+    // Let's pick scaleFactor = 8 => e.g. outer=27 => 27×8=216px radius => ~432px diameter
+    drawBullseye(
+      document.getElementById("bullseyeBTC"),
+      "BTC", 6, 17, 27, btcPositions, 8
+    );
+    drawBullseye(
+      document.getElementById("bullseyeETH"),
+      "ETH", 8, 18, 28, ethPositions, 8
+    );
+    drawBullseye(
+      document.getElementById("bullseyeSOL"),
+      "SOL", 13, 23, 33, solPositions, 8
+    );
+
+    // APEXCHARTS
+    function createApexRadialChart(divId, avgSwing, blastRadius, labelText) {
+      const options = {
+        series: [avgSwing, blastRadius],
+        chart: {
+          type: 'radialBar',
+          height: 200
+        },
+        plotOptions: {
+          radialBar: {
+            hollow: { size: '30%' },
+            dataLabels: {
+              name: { show: false },
+              value: { show: true, fontSize: '12px' },
+              total: {
+                show: true,
+                label: labelText,
+                formatter: function () {
+                  return 'Thresholds';
+                }
+              }
+            }
+          }
+        },
+        labels: ['Avg Daily Swing', 'Blast Radius'],
+        yaxis: { max: 25 }
+      };
+      const chart = new ApexCharts(document.querySelector(divId), options);
+      chart.render();
+    }
+
+    // 3 apex radial charts side by side
+    createApexRadialChart("#apexBTC", 6, 17, "BTC");
+    createApexRadialChart("#apexETH", 8, 18, "ETH");
+    createApexRadialChart("#apexSOL", 13, 23, "SOL");
+  </script>
+</body>
+</html>

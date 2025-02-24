@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Simulation Comparison{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <h2>Simulation Comparison: Baseline vs. Tweaked Parameters</h2>
+  <p>
+    Baseline collateral: {{ baseline_params.collateral }}<br>
+    Tweaked collateral: {{ tweaked_params.collateral }}
+  </p>
+  <!-- Canvas for Chart -->
+  <canvas id="comparisonChart" width="800" height="400"></canvas>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Parse simulation logs passed from Flask
+  const baselineData = {{ baseline_chart_data|tojson }};
+  const tweakedData = {{ tweaked_chart_data|tojson }};
+
+  // Extract x-axis (simulation steps) and y-axis (cumulative profit) data
+  const stepsBaseline = baselineData.map(entry => entry.step);
+  const cumulativeProfitBaseline = baselineData.map(entry => entry.cumulative_profit);
+
+  const stepsTweaked = tweakedData.map(entry => entry.step);
+  const cumulativeProfitTweaked = tweakedData.map(entry => entry.cumulative_profit);
+
+  const ctx = document.getElementById('comparisonChart').getContext('2d');
+  const comparisonChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: stepsBaseline,
+      datasets: [
+        {
+          label: 'Baseline Cumulative Profit',
+          data: cumulativeProfitBaseline,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: false,
+          tension: 0.1
+        },
+        {
+          label: 'Tweaked (Collateral +10%) Cumulative Profit',
+          data: cumulativeProfitTweaked,
+          borderColor: 'rgb(255, 99, 132)',
+          fill: false,
+          tension: 0.1
+        }
+      ]
+    },
+    options: {
+      scales: {
+        x: {
+          title: { display: true, text: 'Simulation Step (Minute)' }
+        },
+        y: {
+          title: { display: true, text: 'Cumulative Profit' },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}

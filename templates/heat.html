@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+  /* Remove gutters so the two cards/tables meet flush in the middle */
+  .row.g-0 {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  /* Cards: remove default border-radius, stretch to 100% so center edges meet seamlessly */
+  .card-no-gap {
+    border-radius: 0 !important;
+    height: 100%;
+  }
+
+  /* Make icons & text align inline when needed */
+  .icon-inline {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  /* Both card headers are centered and dark blue + bold */
+  .card-header.text-center h3.card-title {
+    color: #003366;  /* Dark blue */
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  /* Subtle background colors for each card */
+  .card-short {
+    background: #edf4ff;  /* Light bluish for SHORT */
+  }
+  .card-long {
+    background: #fffaed;  /* Light yellowish for LONG */
+  }
+
+  /* Force the entire table (header/body) to share the card's background color */
+  .table th,
+  .table td {
+    background-color: inherit !important;
+  }
+</style>
+{% endblock extra_styles %}
+
+{% block page_title %}
+<span class="icon-inline">
+  <span>🔥</span><span>Hedge Report</span>
+</span>
+{% endblock page_title %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">Hedge Report</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+{% set hd = heat_data|default({}) %}
+
+<!-- Debug Dump: Remove or comment out in production -->
+<div style="background:#eee; padding: 10px; margin-bottom:20px;">
+  <h4>Debug Dump of Aggregated Data (hd)</h4>
+  <pre>{{ hd|tojson(indent=2) }}</pre>
+</div>
+
+<div class="container-fluid px-4">
+  <div class="row g-0">
+    <!-- SHORT side -->
+    <div class="col-md-6 pe-0">
+      <div class="card card-no-gap card-short" style="border-right: 1px solid #dee2e6;">
+        <div class="card-header text-center">
+          <h3 class="card-title icon-inline">
+            <span>📉</span><span>SHORT</span>
+          </h3>
+        </div>
+        <div class="card-body p-0">
+          <table id="short-table" class="table table-sm table-bordered mb-0">
+            <thead>
+              <tr class="fw-bold">
+                <th style="width: 110px;"><span class="icon-inline">📊 Asset</span></th>
+                <th style="width: 110px;"><span class="icon-inline">💰 Collateral</span></th>
+                <th style="width: 110px;"><span class="icon-inline">📈 Value</span></th>
+                <th style="width: 90px;"><span class="icon-inline">⚙️ Leverage</span></th>
+                <th style="width: 90px;"><span class="icon-inline">📉 Travel %</span></th>
+                <th style="width: 110px;"><span class="icon-inline">📏 Size</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for asset in ["BTC", "ETH", "SOL"] %}
+                {% set asset_data = hd.get(asset, {}) %}
+                {% set pos = asset_data.get('short') %}
+                {% if pos == {} %}
+                  <tr>
+                    <td colspan="6" class="text-center text-muted">No data for {{ asset }}</td>
+                  </tr>
+                {% else %}
+                  <tr>
+                    <td>
+                      <span class="icon-inline">
+                        {% if pos.asset == "BTC" %}
+                          <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC" style="width:20px;">
+                        {% elif pos.asset == "ETH" %}
+                          <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH" style="width:20px;">
+                        {% elif pos.asset == "SOL" %}
+                          <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL" style="width:20px;">
+                        {% endif %}
+                        {{ pos.asset }}
+                      </span>
+                    </td>
+                    <td>{{ "{:,}".format(pos.collateral|float|round(2)) }}</td>
+                    <td>{{ "{:,}".format(pos.value|float|round(2)) }}</td>
+                    <td>{{ pos.leverage|float|round(2) }}</td>
+                    <td>{{ pos.travel_percent|float|round(2) }}%</td>
+                    <td>{{ "{:,}".format(pos.size|float|round(2)) }}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- LONG side -->
+    <div class="col-md-6 ps-0">
+      <div class="card card-no-gap card-long" style="border-left: 1px solid #dee2e6;">
+        <div class="card-header text-center">
+          <h3 class="card-title icon-inline">
+            <span>📈</span><span>LONG</span>
+          </h3>
+        </div>
+        <div class="card-body p-0">
+          <table id="long-table" class="table table-sm table-bordered mb-0">
+            <thead>
+              <tr class="fw-bold">
+                <th style="width: 110px;"><span class="icon-inline">📏 Size</span></th>
+                <th style="width: 90px;"><span class="icon-inline">📉 Travel %</span></th>
+                <th style="width: 90px;"><span class="icon-inline">⚙️ Leverage</span></th>
+                <th style="width: 110px;"><span class="icon-inline">📈 Value</span></th>
+                <th style="width: 110px;"><span class="icon-inline">💰 Collateral</span></th>
+                <th style="width: 110px;"><span class="icon-inline">📊 Asset</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for asset in ["BTC", "ETH", "SOL"] %}
+                {% set asset_data = hd.get(asset, {}) %}
+                {% set pos = asset_data.get('long') %}
+                {% if pos == {} %}
+                  <tr>
+                    <td colspan="6" class="text-center text-muted">No data for {{ asset }}</td>
+                  </tr>
+                {% else %}
+                  <tr>
+                    <td>{{ "{:,}".format(pos.size|float|round(2)) }}</td>
+                    <td>{{ pos.travel_percent|float|round(2) }}%</td>
+                    <td>{{ pos.leverage|float|round(2) }}</td>
+                    <td>{{ "{:,}".format(pos.value|float|round(2)) }}</td>
+                    <td>{{ "{:,}".format(pos.collateral|float|round(2)) }}</td>
+                    <td>
+                      <span class="icon-inline">
+                        {% if pos.asset == "BTC" %}
+                          <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC" style="width:20px;">
+                        {% elif pos.asset == "ETH" %}
+                          <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH" style="width:20px;">
+                        {% elif pos.asset == "SOL" %}
+                          <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL" style="width:20px;">
+                        {% endif %}
+                        {{ pos.asset }}
+                      </span>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overall Totals Section -->
+  {% set totals = hd.get('totals', {}) %}
+  <div class="mt-4">
+    <h3>Overall Totals</h3>
+    <table class="table table-bordered">
+      <tr class="fw-bold text-center">
+        <td>Total Collateral</td>
+        <td>Total Value</td>
+        <td>Avg Leverage</td>
+        <td>Avg Travel %</td>
+        <td>Total Size</td>
+      </tr>
+      <tr class="text-center">
+        <td>{{ totals.total_collateral|float|round(2) }}</td>
+        <td>{{ totals.total_value|float|round(2) }}</td>
+        <td>{{ totals.avg_leverage|float|round(2) }}</td>
+        <td>{{ totals.avg_travel_percent|float|round(2) }}%</td>
+        <td>{{ totals.total_size|float|round(2) }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Log aggregated heat data to console for debugging.
+  console.log("Aggregated heat_data (hd):", {{ hd|tojson }});
+</script>
+{% endblock %}

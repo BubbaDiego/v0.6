@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid" style="background: url('{{ url_for('static', filename='images/alert_wall.jpg') }}') no-repeat center center; background-size: cover; min-height: 100vh; padding-top: 20px;">
+  <form id="alert-config-form" method="POST" action="{{ url_for('alerts_bp.update_alert_config') }}">
+    <!-- New Section: Daily Swing Alert Thresholds -->
+    <div class="card" style="margin: 20px auto; max-width: 1200px; background: rgba(255,255,255,0.9);">
+      <div class="card-header" style="background-color: #004085; color: white;">
+        <h3 class="card-title mb-0">Daily Swing Alert Thresholds</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered text-center" style="border: 2px solid #004085;">
+          <thead style="background-color: #004085; color: white;">
+            <tr>
+              <th>Asset</th>
+              <th>Average Daily Swing (%)</th>
+              <th>One Day Blast Radius (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>BTC</strong></td>
+              <td>
+                <input type="number" step="any" name="alert_ranges[average_daily_swing][BTC]" class="form-control" value="{{ alert_ranges.average_daily_swing.BTC }}">
+              </td>
+              <td>
+                <input type="number" step="any" name="alert_ranges[one_day_blast_radius][BTC]" class="form-control" value="{{ alert_ranges.one_day_blast_radius.BTC }}">
+              </td>
+            </tr>
+            <tr>
+              <td><strong>ETH</strong></td>
+              <td>
+                <input type="number" step="any" name="alert_ranges[average_daily_swing][ETH]" class="form-control" value="{{ alert_ranges.average_daily_swing.ETH }}">
+              </td>
+              <td>
+                <input type="number" step="any" name="alert_ranges[one_day_blast_radius][ETH]" class="form-control" value="{{ alert_ranges.one_day_blast_radius.ETH }}">
+              </td>
+            </tr>
+            <tr>
+              <td><strong>SOL</strong></td>
+              <td>
+                <input type="number" step="any" name="alert_ranges[average_daily_swing][SOL]" class="form-control" value="{{ alert_ranges.average_daily_swing.SOL }}">
+              </td>
+              <td>
+                <input type="number" step="any" name="alert_ranges[one_day_blast_radius][SOL]" class="form-control" value="{{ alert_ranges.one_day_blast_radius.SOL }}">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Existing Alert Manager Configuration Section -->
+    <div class="card" style="margin: 20px auto; max-width: 1200px; background: rgba(255,255,255,0.9);">
+      <div class="card-header" style="background-color: #004085; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="card-title mb-0">Alert Manager Configuration</h3>
+        <button type="submit" class="btn btn-light">Save Alert Ranges</button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered text-center" style="border: 2px solid #004085;">
+            <thead style="background-color: #004085; color: white; border-bottom: 2px solid #004085;">
+              <tr>
+                <th>Metric</th>
+                <th>Enabled</th>
+                <th>Low Threshold</th>
+                <th>Low Notifications<br>(Call/SMS/Email)</th>
+                <th>Medium Threshold</th>
+                <th>Medium Notifications<br>(Call/SMS/Email)</th>
+                <th>High Threshold</th>
+                <th>High Notifications<br>(Call/SMS/Email)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% set metrics = [
+                {'name': 'Heat Index', 'field': 'heat_index_ranges'},
+                {'name': 'Collateral', 'field': 'collateral_ranges'},
+                {'name': 'Value', 'field': 'value_ranges'},
+                {'name': 'Size', 'field': 'size_ranges'},
+                {'name': 'Leverage', 'field': 'leverage_ranges'},
+                {'name': 'Liquidation Distance', 'field': 'liquidation_distance_ranges'},
+                {'name': 'Travel Percent Liquid', 'field': 'travel_percent_liquid_ranges'},
+                {'name': 'Travel Percent Profit', 'field': 'travel_percent_profit_ranges'},
+                {'name': 'Profit', 'field': 'profit_ranges'}
+              ] %}
+              {% for metric in metrics|reverse %}
+                {% set m = alert_ranges[metric.field] if alert_ranges is defined and alert_ranges[metric.field] is defined else {} %}
+              <tr>
+                <td><strong>{{ metric.name }}</strong></td>
+                <td>
+                  <input type="hidden" name="alert_ranges[{{ metric.field }}][enabled]" value="false">
+                  <input type="checkbox" id="{{ metric.field }}_enabled" name="alert_ranges[{{ metric.field }}][enabled]" value="true" class="form-check-input" {% if m.enabled %}checked{% endif %}>
+                </td>
+                <td>
+                  <input type="number" step="any" id="{{ metric.field }}_low" name="alert_ranges[{{ metric.field }}][low]" class="form-control" value="{{ m.low if m.low is defined }}">
+                </td>
+                <td>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][low_notifications][call]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_low_call" name="alert_ranges[{{ metric.field }}][low_notifications][call]" value="true" class="form-check-input" {% if m.low_notifications and m.low_notifications.call %}checked{% endif %}>
+                    <label class="form-check-label">Call</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][low_notifications][sms]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_low_sms" name="alert_ranges[{{ metric.field }}][low_notifications][sms]" value="true" class="form-check-input" {% if m.low_notifications and m.low_notifications.sms %}checked{% endif %}>
+                    <label class="form-check-label">SMS</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][low_notifications][email]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_low_email" name="alert_ranges[{{ metric.field }}][low_notifications][email]" value="true" class="form-check-input" {% if m.low_notifications and m.low_notifications.email %}checked{% endif %}>
+                    <label class="form-check-label">Email</label>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" step="any" id="{{ metric.field }}_medium" name="alert_ranges[{{ metric.field }}][medium]" class="form-control" value="{{ m.medium if m.medium is defined }}">
+                </td>
+                <td>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][medium_notifications][call]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_medium_call" name="alert_ranges[{{ metric.field }}][medium_notifications][call]" value="true" class="form-check-input" {% if m.medium_notifications and m.medium_notifications.call %}checked{% endif %}>
+                    <label class="form-check-label">Call</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][medium_notifications][sms]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_medium_sms" name="alert_ranges[{{ metric.field }}][medium_notifications][sms]" value="true" class="form-check-input" {% if m.medium_notifications and m.medium_notifications.sms %}checked{% endif %}>
+                    <label class="form-check-label">SMS</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][medium_notifications][email]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_medium_email" name="alert_ranges[{{ metric.field }}][medium_notifications][email]" value="true" class="form-check-input" {% if m.medium_notifications and m.medium_notifications.email %}checked{% endif %}>
+                    <label class="form-check-label">Email</label>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" step="any" id="{{ metric.field }}_high" name="alert_ranges[{{ metric.field }}][high]" class="form-control" value="{{ m.high if m.high is defined }}">
+                </td>
+                <td>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][high_notifications][call]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_high_call" name="alert_ranges[{{ metric.field }}][high_notifications][call]" value="true" class="form-check-input" {% if m.high_notifications and m.high_notifications.call %}checked{% endif %}>
+                    <label class="form-check-label">Call</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][high_notifications][sms]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_high_sms" name="alert_ranges[{{ metric.field }}][high_notifications][sms]" value="true" class="form-check-input" {% if m.high_notifications and m.high_notifications.sms %}checked{% endif %}>
+                    <label class="form-check-label">SMS</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="hidden" name="alert_ranges[{{ metric.field }}][high_notifications][email]" value="false">
+                    <input type="checkbox" id="{{ metric.field }}_high_email" name="alert_ranges[{{ metric.field }}][high_notifications][email]" value="true" class="form-check-input" {% if m.high_notifications and m.high_notifications.email %}checked{% endif %}>
+                    <label class="form-check-label">Email</label>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- Confirmation readback area -->
+        <div id="save-confirmation" style="margin-top: 15px; background: #f8f9fa; padding: 10px; border: 1px solid #ddd;">
+          <strong>Save Confirmation:</strong>
+          <pre id="confirmation-output" style="margin: 0;"></pre>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/js/OverlayScrollbars.min.js"></script>
+<script src="{{ url_for('static', filename='AdminLTE/dist/js/adminlte.js') }}"></script>
+<script>
+$(document).ready(function(){
+  $("#alert-config-form").on("submit", function(e){
+    e.preventDefault();
+    var formData = $(this).serialize();
+    console.log("Submitting alert config form:", formData);
+    $.post("{{ url_for('alerts_bp.update_alert_config') }}", formData)
+      .done(function(data){
+        console.log("Alert config update response:", data);
+        if(data.success){
+          $("#confirmation-output").html(data.formatted_table);
+        } else {
+          alert("Error: " + data.error);
+        }
+      })
+      .fail(function(jqXHR, textStatus, errorThrown){
+        console.error("Failed to update alert config:", textStatus, errorThrown);
+        alert("Failed to update alert configuration.");
+      });
+  });
+});
+</script>
+{% endblock extra_scripts %}

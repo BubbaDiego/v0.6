@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dashboard with Charts Debug</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard with Charts Debug" />
+    <meta name="keywords" content="charts, apexcharts, debug" />
+    <meta name="author" content="Your Name" />
+
+    <!-- Include ApexCharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- (Optional) Include any CSS or other dependencies here -->
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      .card { border: 1px solid #ccc; border-radius: 5px; margin-bottom: 20px; }
+      .card-header { background-color: #f5f5f5; padding: 10px; border-bottom: 1px solid #ccc; }
+      .card-body { padding: 10px; }
+      .card-tools { float: right; }
+      .btn { cursor: pointer; }
+      .dark { background-color: #333; color: #fff; }
+    </style>
+  </head>
+  <body>
+    <!-- A simple log to verify that the script file is loaded -->
+    <script>
+      console.log("Script loaded!");
+    </script>
+
+    <!-- Size Composition Module -->
+    <div class="card card-lightblue">
+      <div class="card-header">
+        <h3 class="card-title">Size Composition</h3>
+        <div class="card-tools">
+          <button type="button" class="btn" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- Chart container with unique ID -->
+        <div id="size-chart-box">
+          <div id="positions-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Value Composition Module -->
+    <div class="card card-lightblue">
+      <div class="card-header">
+        <h3 class="card-title">Value Composition</h3>
+        <div class="card-tools">
+          <button type="button" class="btn" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- Chart container with unique ID -->
+        <div id="value-chart-box">
+          <div id="value-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM content loaded - starting chart initialization");
+
+        // ------------------------------
+        // Size Composition Chart Module
+        // ------------------------------
+        (function() {
+          console.log("Initializing Size Composition Chart");
+          let currentTheme = 'light'; // 'light' or 'dark'
+          let isDonut = false;        // false: pie, true: donut
+
+          // Setup initial chart options with fallback series data (zeros)
+          let sizeChartOptions = {
+            series: [0, 0],
+            chart: {
+              type: 'pie',
+              height: 350,
+              background: 'transparent'
+            },
+            labels: ['Long Positions', 'Short Positions'],
+            theme: { mode: currentTheme },
+            dataLabels: { enabled: true, style: { fontSize: '1.4rem' } },
+            stroke: { width: 2, colors: ['#ffffff'] },
+            colors: currentTheme === 'light' ? ['#0d6efd', '#dc3545'] : ['#66b0ff', '#ff6b81'],
+            legend: { position: 'bottom' }
+          };
+
+          console.log("Size Composition Chart options:", sizeChartOptions);
+          let sizeChartElement = document.querySelector("#positions-chart");
+          if (!sizeChartElement) {
+            console.error("Size Composition Chart container (#positions-chart) not found");
+            return;
+          }
+          let sizeChart = new ApexCharts(sizeChartElement, sizeChartOptions);
+          sizeChart.render().then(() => {
+            console.log("Size Composition Chart rendered successfully");
+
+            // Fetch dynamic data from the API endpoint for size composition
+            fetch('/api/size_composition')
+              .then(response => {
+                console.log("Size Composition API response status:", response.status);
+                return response.json();
+              })
+              .then(data => {
+                console.log("Size Composition API raw data:", data);
+                if (data && Array.isArray(data.series)) {
+                  sizeChart.updateOptions({ series: data.series });
+                  console.log("Updated Size Composition Chart data:", data.series);
+                } else {
+                  console.warn("Size Composition API returned unexpected format", data);
+                }
+              })
+              .catch(error => {
+                console.error("Error fetching Size Composition data from API:", error);
+              });
+          }).catch(error => {
+            console.error("Error rendering Size Composition Chart:", error);
+          });
+
+          // Toggle donut/pie mode by clicking on the chart
+          sizeChartElement.addEventListener("click", function(event) {
+            isDonut = !isDonut;
+            sizeChart.updateOptions({ chart: { type: isDonut ? 'donut' : 'pie' } });
+            console.log("Toggled Size Composition Chart type to:", isDonut ? 'donut' : 'pie');
+            event.stopPropagation();
+          });
+
+          // Toggle light/dark theme by clicking on the chart container
+          let sizeChartBox = document.querySelector("#size-chart-box");
+          if (!sizeChartBox) {
+            console.error("Size Chart Box (#size-chart-box) not found");
+            return;
+          }
+          sizeChartBox.addEventListener("click", function() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            if (currentTheme === 'dark') {
+              this.classList.add('dark');
+            } else {
+              this.classList.remove('dark');
+            }
+            sizeChart.updateOptions({
+              theme: { mode: currentTheme },
+              colors: currentTheme === 'light' ? ['#0d6efd', '#dc3545'] : ['#66b0ff', '#ff6b81']
+            });
+            console.log("Size Composition Chart theme toggled to:", currentTheme);
+          });
+        })();
+
+        // -------------------------------
+        // Value Composition Chart Module
+        // -------------------------------
+        (function() {
+          console.log("Initializing Value Composition Chart");
+          let currentTheme = 'light';  // 'light' or 'dark'
+          let isDonut = false;         // false: pie, true: donut
+
+          // Setup initial chart options with fallback series data (zeros)
+          let valueChartOptions = {
+            series: [0, 0],
+            chart: {
+              type: 'pie',
+              height: 350,
+              background: 'transparent'
+            },
+            labels: ['Total Value', 'Total Capital'],
+            theme: { mode: currentTheme },
+            dataLabels: { enabled: true, style: { fontSize: '1.4rem' } },
+            stroke: { width: 2, colors: ['#ffffff'] },
+            colors: currentTheme === 'light' ? ['#6f42c1', '#20c997'] : ['#9b59b6', '#1abc9c'],
+            legend: { position: 'bottom' }
+          };
+
+          console.log("Value Composition Chart options:", valueChartOptions);
+          let valueChartElement = document.querySelector("#value-chart");
+          if (!valueChartElement) {
+            console.error("Value Composition Chart container (#value-chart) not found");
+            return;
+          }
+          let valueChart = new ApexCharts(valueChartElement, valueChartOptions);
+          valueChart.render().then(() => {
+            console.log("Value Composition Chart rendered successfully");
+
+            // Fetch dynamic data from the API endpoint for value composition
+            fetch('/api/value_composition')
+              .then(response => {
+                console.log("Value Composition API response status:", response.status);
+                return response.json();
+              })
+              .then(data => {
+                console.log("Value Composition API raw data:", data);
+                if (data && Array.isArray(data.series)) {
+                  valueChart.updateOptions({ series: data.series });
+                  console.log("Updated Value Composition Chart data:", data.series);
+                } else {
+                  console.warn("Value Composition API returned unexpected format", data);
+                }
+              })
+              .catch(error => {
+                console.error("Error fetching Value Composition data from API:", error);
+              });
+          }).catch(error => {
+            console.error("Error rendering Value Composition Chart:", error);
+          });
+
+          // Toggle donut/pie mode by clicking on the chart
+          valueChartElement.addEventListener("click", function(event) {
+            isDonut = !isDonut;
+            valueChart.updateOptions({ chart: { type: isDonut ? 'donut' : 'pie' } });
+            console.log("Toggled Value Composition Chart type to:", isDonut ? 'donut' : 'pie');
+            event.stopPropagation();
+          });
+
+          // Toggle light/dark theme by clicking on the chart container
+          let valueChartBox = document.querySelector("#value-chart-box");
+          if (!valueChartBox) {
+            console.error("Value Chart Box (#value-chart-box) not found");
+            return;
+          }
+          valueChartBox.addEventListener("click", function() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            if (currentTheme === 'dark') {
+              this.classList.add('dark');
+            } else {
+              this.classList.remove('dark');
+            }
+            valueChart.updateOptions({
+              theme: { mode: currentTheme },
+              colors: currentTheme === 'light' ? ['#6f42c1', '#20c997'] : ['#9b59b6', '#1abc9c']
+            });
+            console.log("Value Composition Chart theme toggled to:", currentTheme);
+          });
+        })();
+      });
+    </script>
+  </body>
+</html>

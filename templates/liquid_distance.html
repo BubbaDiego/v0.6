@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Liquidation Distance{% endblock %}
+
+{% block extra_styles %}
+<style>
+  /* Card styling similar to our dashboard cards */
+  .card {
+    margin: 1rem auto;
+    border: 1px solid #e7e7e7;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .card-header {
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e7e7e7;
+  }
+  .card-title {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  /* Progress group styles */
+  .progress-group {
+    margin-bottom: 1rem;
+  }
+  .progress-group span.float-end {
+    font-weight: bold;
+  }
+  .progress {
+    height: 1.5rem;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    line-height: 1.5rem;
+    background-color: #dc3545; /* Red for danger/alert */
+    text-align: center;
+    color: #fff;
+  }
+  /* Optionally, add scale labels */
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Liquidation Distance</h5>
+    </div>
+    <div class="card-body">
+      <!-- Assuming we're iterating over positions; for now, we'll show one example -->
+      <div class="progress-group">
+        <!-- You can replace "Negative Travel" with a more specific label, e.g. asset name -->
+        Negative Travel Percent
+        <span class="float-end">
+          {# Display the absolute negative travel percent, capped at 100% #}
+          <b>{{ position.travel_percent|abs if position.travel_percent|abs <= 100 else 100 }}</b>%
+        </span>
+        <div class="progress progress-sm">
+          <div class="progress-bar" style="width: {{ position.travel_percent|abs if position.travel_percent|abs <= 100 else 100 }}%">
+            <!-- Optionally display the percentage inside the bar -->
+            {{ position.travel_percent|abs if position.travel_percent|abs <= 100 else 100 }}%
+          </div>
+        </div>
+        <div class="scale-labels">
+          <span>0%</span>
+          <span>-100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

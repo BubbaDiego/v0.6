@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crypto Prices & Timeframe Toggle</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #ffffff;
+    }
+    /* Smaller styling for the radio toggle */
+    .timeframe-toggle .btn {
+      border-radius: 20px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+    }
+    /* Reduce the status bar height by minimizing padding */
+    .card.status-bar-card .card-body {
+      padding: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-4">
+    <!-- Timeframe Toggle on the right side -->
+    <div class="d-flex justify-content-end mb-3 timeframe-toggle">
+      <div class="btn-group" role="group" aria-label="Toggle Hours">
+        <input type="radio" class="btn-check" name="hours" id="hours1" value="1" autocomplete="off" checked />
+        <label class="btn btn-outline-secondary" for="hours1">1h</label>
+
+        <input type="radio" class="btn-check" name="hours" id="hours6" value="6" autocomplete="off" />
+        <label class="btn btn-outline-secondary" for="hours6">6h</label>
+
+        <input type="radio" class="btn-check" name="hours" id="hours12" value="12" autocomplete="off" />
+        <label class="btn btn-outline-secondary" for="hours12">12h</label>
+
+        <input type="radio" class="btn-check" name="hours" id="hours14" value="14" autocomplete="off" />
+        <label class="btn btn-outline-secondary" for="hours14">14h</label>
+      </div>
+    </div>
+
+    <!-- Inline Status Bar Card with minimized height -->
+    <div class="card status-bar-card" style="background-color: #f2f2f2;">
+      <div class="card-body">
+        <div class="row text-center">
+          <!-- Portfolio -->
+          <div class="col d-flex align-items-center justify-content-center border-end">
+            <i class="bi bi-wallet2" style="font-size: 24px; margin-right: 8px;"></i>
+            <div>
+              <span class="text-success"><i class="bi bi-caret-up-fill"></i> 5%</span>
+              <h5 class="fw-bold mb-0">$100,000.00</h5>
+              <span class="text-uppercase">PORTFOLIO</span>
+            </div>
+          </div>
+          <!-- Bitcoin -->
+          <div class="col d-flex align-items-center justify-content-center border-end">
+            <img src="images/btc_logo.png" alt="BTC" style="height: 20px; margin-right: 5px;" />
+            <div>
+              <span class="text-success"><i class="bi bi-caret-up-fill"></i> 17%</span>
+              <h5 class="fw-bold mb-0">$35,210.43</h5>
+              <span class="text-uppercase">BITCOIN</span>
+            </div>
+          </div>
+          <!-- Ethereum -->
+          <div class="col d-flex align-items-center justify-content-center border-end">
+            <img src="images/eth_logo.png" alt="ETH" style="height: 20px; margin-right: 5px;" />
+            <div>
+              <span class="text-info"><i class="bi bi-caret-left-fill"></i> 0%</span>
+              <h5 class="fw-bold mb-0">$10,390.90</h5>
+              <span class="text-uppercase">ETHEREUM</span>
+            </div>
+          </div>
+          <!-- Solana -->
+          <div class="col d-flex align-items-center justify-content-center border-end">
+            <img src="images/sol_logo.png" alt="SOL" style="height: 20px; margin-right: 5px;" />
+            <div>
+              <span class="text-success"><i class="bi bi-caret-up-fill"></i> 20%</span>
+              <h5 class="fw-bold mb-0">$24,813.53</h5>
+              <span class="text-uppercase">SOLANA</span>
+            </div>
+          </div>
+          <!-- S&P 500 -->
+          <div class="col d-flex align-items-center justify-content-center">
+            <div>
+              <span class="text-danger"><i class="bi bi-caret-down-fill"></i> 18%</span>
+              <h5 class="fw-bold mb-0">1,200</h5>
+              <span class="text-uppercase">S&P 500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper (if needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

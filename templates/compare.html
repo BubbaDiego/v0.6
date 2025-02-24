@@ -1,0 +1,475 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+  /* Container styling */
+  .container-fluid {
+    padding-top: 20px;
+  }
+  /* Reduce the space between the title bar and the page title */
+  .container-fluid h1 {
+    margin-top: 0;
+    margin-bottom: 0.375rem;
+  }
+  /* Simulation Controls Styling */
+  #simulationControls {
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  #simulationControls .control-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  #simulationControls .control-label {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 150px;
+  }
+  #simulationControls input[type="range"] {
+    flex-grow: 1;
+    margin-right: 10px;
+    min: 0;
+  }
+  #simulationControls input[type="number"] {
+    width: 80px;
+  }
+  #simulationControls fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  #simulationControls legend {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  /* Chart styling */
+  #dualChart {
+    height: 400px;
+    margin-bottom: 20px;
+  }
+  /* Card and table styling */
+  .card {
+    margin-bottom: 20px;
+  }
+  .card-header {
+    background-color: {{ theme.get('sidebar', {}).get('bg', '#007bff') }};
+    color: white;
+  }
+  .table-responsive {
+    font-size: 0.8rem;
+  }
+  .table-responsive table {
+    width: 100%;
+  }
+  .table-responsive th,
+  .table-responsive td {
+    padding: 0.2rem 0.4rem;
+    line-height: 1.1;
+    max-width: 80px;
+    word-wrap: break-word;
+  }
+  /* Force asset images to a consistent size */
+  .asset-icon {
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain;
+  }
+  /* Style for the Load Current Positions button */
+  #loadPositionsBtn {
+    margin-left: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1 class="mb-4">Comparison: Simulated vs Historical Data</h1>
+<!-- Debug output for simulated_positions -->
+  <pre>{{ simulated_positions|tojson }}</pre>
+  <!-- Simulation Controls -->
+  <form id="simulationControls">
+    <div class="control-group">
+      <label for="entryPrice" class="control-label">Entry Price:</label>
+      <input type="range" id="entryPrice" name="entry_price" min="0" max="15000" step="100" value="10000" oninput="syncControl('entryPrice')">
+      <input type="number" id="entryPriceNumber" value="10000" oninput="syncControl('entryPrice', 'number')">
+    </div>
+    <div class="control-group">
+      <label for="collateral" class="control-label">Collateral:</label>
+      <input type="range" id="collateral" name="collateral" min="0" max="5000" step="50" value="1000" oninput="syncControl('collateral')">
+      <input type="number" id="collateralNumber" value="1000" oninput="syncControl('collateral', 'number')">
+    </div>
+    <div class="control-group">
+      <label for="simulationDuration" class="control-label">Duration (min):</label>
+      <input type="range" id="simulationDuration" name="simulation_duration" min="0" max="180" step="10" value="60" oninput="syncControl('simulationDuration')">
+      <input type="number" id="simulationDurationNumber" value="60" oninput="syncControl('simulationDuration', 'number')">
+    </div>
+    <div class="control-group">
+      <label for="dtMinutes" class="control-label">Step Duration (min):</label>
+      <input type="range" id="dtMinutes" name="dt_minutes" min="0" max="10" step="0.5" value="1" oninput="syncControl('dtMinutes')">
+      <input type="number" id="dtMinutesNumber" value="1" oninput="syncControl('dtMinutes', 'number')">
+    </div>
+    <div class="control-group">
+      <label for="drift" class="control-label">Drift (annual):</label>
+      <input type="range" id="drift" name="drift" min="0" max="0.2" step="0.01" value="0.05" oninput="syncControl('drift')">
+      <input type="number" id="driftNumber" value="0.05" step="0.01" oninput="syncControl('drift', 'number')">
+    </div>
+    <div class="control-group">
+      <label for="volatility" class="control-label">Volatility (annual):</label>
+      <input type="range" id="volatility" name="volatility" min="0" max="1.5" step="0.1" value="0.8" oninput="syncControl('volatility')">
+      <input type="number" id="volatilityNumber" value="0.8" step="0.1" oninput="syncControl('volatility', 'number')">
+    </div>
+    <div class="control-group">
+      <label for="positionSide" class="control-label">Position Side:</label>
+      <select id="positionSide" name="position_side">
+        <option value="long" selected>Long</option>
+        <option value="short">Short</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label for="startDate" class="control-label">Start Date:</label>
+      <input type="date" id="startDate" name="start_date" value="{{ now.strftime('%Y-%m-%d') }}">
+    </div>
+    <fieldset id="yAxisSelection">
+      <legend>Select Y-Axis Data:</legend>
+      <label><input type="radio" name="y_axis" value="cumulative_profit" checked> Cumulative Profit</label>
+      <label><input type="radio" name="y_axis" value="travel_percent"> Travel %</label>
+      <label><input type="radio" name="y_axis" value="price"> Price</label>
+      <label><input type="radio" name="y_axis" value="unrealized_pnl"> Unrealized PnL</label>
+    </fieldset>
+    <div class="control-group">
+      <button type="button" class="btn btn-primary" onclick="runSimulation()">Run Simulation</button>
+      <button type="button" id="loadPositionsBtn" class="btn btn-secondary" onclick="loadCurrentPositions()">Load Current Positions</button>
+    </div>
+  </form>
+
+  <!-- Dual Chart Section -->
+  <div id="dualChart"></div>
+
+  <!-- Positions Tables Section -->
+  <div class="row">
+    <!-- Simulated Positions Table -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Simulated Positions</h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="simulatedPositionsTable">
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Type</th>
+                  <th>Profit</th>
+                  <th>Collateral</th>
+                  <th>Value</th>
+                  <th>Size</th>
+                  <th>Leverage</th>
+                  <th>Travel %</th>
+                  <th>Heat Index</th>
+                  <th>Liq Distance</th>
+                  <th>Wallet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for pos in simulated_positions|sort(attribute='size', reverse=True) %}
+                <tr>
+                  <td>
+                    {% if pos.asset_type == 'BTC' %}
+                      <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC" class="asset-icon">
+                    {% elif pos.asset_type == 'ETH' %}
+                      <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH" class="asset-icon">
+                    {% elif pos.asset_type == 'SOL' %}
+                      <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL" class="asset-icon">
+                    {% else %}
+                      {{ pos.asset_type }}
+                    {% endif %}
+                  </td>
+                  <td><b>{{ pos.position_type }}</b></td>
+                  <td>
+                    {% if pos.pnl_after_fees_usd is defined and pos.pnl_after_fees_usd is not none %}
+                      {{ "{:,.2f}".format(pos.pnl_after_fees_usd) }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>{{ "{:,.2f}".format(pos.collateral) }}</td>
+                  <td>{{ "{:,.2f}".format(pos.value) }}</td>
+                  <td>{{ "{:,.2f}".format(pos.size) }}</td>
+                  <td>{{ "{:,.2f}".format(pos.leverage) }}</td>
+                  <td>
+                    {% if pos.current_travel_percent is not none %}
+                      {{ "{:,.2f}".format(pos.current_travel_percent) }}%
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if pos.heat_index is not none %}
+                      {{ "{:,.2f}".format(pos.heat_index) }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if pos.liquidation_distance is not none %}
+                      {{ "{:,.2f}".format(pos.liquidation_distance) }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if pos.wallet_image %}
+                      <img src="{{ url_for('static', filename='images/' ~ pos.wallet_image) }}" alt="Wallet Image" class="wallet-img">
+                    {% else %}
+                      Unknown
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                {% set sim_total_profit = simulated_positions|sum(attribute='pnl_after_fees_usd') %}
+                <tr style="font-weight: bold; text-align: center;">
+                  <td>TOTALS</td>
+                  <td></td>
+                  <td>{{ "{:,.2f}".format(sim_total_profit) }}</td>
+                  <td><!-- Total collateral --></td>
+                  <td><!-- Total value --></td>
+                  <td><!-- Total size --></td>
+                  <td><!-- Avg leverage --></td>
+                  <td><!-- Avg travel percent --></td>
+                  <td><!-- Avg heat index --></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Historical Positions Table -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Historical Positions</h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="historicalPositionsTable">
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Type</th>
+                  <th>Profit</th>
+                  <th>Collateral</th>
+                  <th>Value</th>
+                  <th>Size</th>
+                  <th>Leverage</th>
+                  <th>Travel %</th>
+                  <th>Heat Index</th>
+                  <th>Liq Distance</th>
+                  <th>Wallet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for pos in real_positions|sort(attribute='size', reverse=True) %}
+                <tr>
+                  <td>
+                    {% if pos.asset_type == 'BTC' %}
+                      <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC" class="asset-icon">
+                    {% elif pos.asset_type == 'ETH' %}
+                      <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH" class="asset-icon">
+                    {% elif pos.asset_type == 'SOL' %}
+                      <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL" class="asset-icon">
+                    {% else %}
+                      {{ pos.asset_type }}
+                    {% endif %}
+                  </td>
+                  <td><b>{{ pos.position_type }}</b></td>
+                  <td>
+                    {% if pos.pnl_after_fees_usd is defined and pos.pnl_after_fees_usd is not none %}
+                      {{ "{:,.2f}".format(pos.pnl_after_fees_usd) }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>{{ "{:,.2f}".format(pos.collateral) }}</td>
+                  <td>{{ "{:,.2f}".format(pos.value) }}</td>
+                  <td>{{ "{:,.2f}".format(pos.size) }}</td>
+                  <td>{{ "{:,.2f}".format(pos.leverage) }}</td>
+                  <td>
+                    {% if pos.current_travel_percent is not none %}
+                      {{ "{:,.2f}".format(pos.current_travel_percent) }}%
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if pos.heat_index is not none %}
+                      {{ "{:,.2f}".format(pos.heat_index) }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if pos.liquidation_distance is not none %}
+                      {{ "{:,.2f}".format(pos.liquidation_distance) }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if pos.wallet_image %}
+                      <img src="{{ url_for('static', filename='images/' ~ pos.wallet_image) }}" alt="Wallet Image" class="wallet-img">
+                    {% else %}
+                      Unknown
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                {% set real_total_profit = real_positions|sum(attribute='pnl_after_fees_usd') %}
+                <tr style="font-weight: bold; text-align: center;">
+                  <td>TOTALS</td>
+                  <td></td>
+                  <td>{{ "{:,.2f}".format(real_total_profit) }}</td>
+                  <td><!-- Total collateral --></td>
+                  <td><!-- Total value --></td>
+                  <td><!-- Total size --></td>
+                  <td><!-- Avg leverage --></td>
+                  <td><!-- Avg travel percent --></td>
+                  <td><!-- Avg heat index --></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script>
+  // Function to synchronize slider and number inputs.
+  function syncControl(controlId, type) {
+    var slider = document.getElementById(controlId);
+    var numberInput = document.getElementById(controlId + "Number");
+    if (type === 'number') {
+      slider.value = numberInput.value;
+    } else {
+      numberInput.value = slider.value;
+    }
+  }
+
+  // Initialize the dual chart with ApexCharts.
+  var dualChart = new ApexCharts(document.querySelector("#dualChart"), {
+    chart: {
+      type: 'line',
+      height: 400,
+      zoom: { enabled: false }
+    },
+    series: [
+      { name: 'Simulated', data: [] },
+      { name: 'Historical', data: [] }
+    ],
+    xaxis: {
+      type: 'datetime',
+      title: { text: 'Time' }
+    },
+    yaxis: {
+      title: { text: 'Value' },
+      labels: {
+        formatter: function(val) {
+          return Number(val).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+      }
+    },
+    tooltip: {
+      x: { format: 'dd MMM HH:mm' },
+      y: {
+        formatter: function(val) {
+          return Number(val).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+      }
+    },
+    title: {
+      text: 'Simulated vs Historical Data Comparison',
+      align: 'center'
+    }
+  });
+  dualChart.render();
+
+  // Function to run simulation via AJAX and update the chart.
+  function runSimulation() {
+    var params = {
+      entry_price: parseFloat(document.getElementById("entryPrice").value),
+      collateral: parseFloat(document.getElementById("collateral").value),
+      simulation_duration: parseFloat(document.getElementById("simulationDuration").value),
+      dt_minutes: parseFloat(document.getElementById("dtMinutes").value),
+      drift: parseFloat(document.getElementById("drift").value),
+      volatility: parseFloat(document.getElementById("volatility").value),
+      position_side: document.getElementById("positionSide").value,
+      start_date: document.getElementById("startDate").value
+    };
+
+    var yAxisOption = document.querySelector('input[name="y_axis"]:checked').value;
+
+    fetch('/simulator/simulation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    })
+    .then(response => response.json())
+    .then(data => {
+      var simulationData = data.results.simulation_log.map(entry => {
+        var now = new Date().getTime();
+        var timestamp = now + entry.step * 60000;
+        return [timestamp, entry[yAxisOption]];
+      });
+      dualChart.updateSeries([
+        { name: 'Simulated', data: simulationData },
+        { name: 'Historical', data: dualChart.w.config.series[1].data }
+      ]);
+    })
+    .catch(error => {
+      console.error("Error running simulation:", error);
+    });
+  }
+
+  // Function to load current positions from the backend and update controls.
+  function loadCurrentPositions() {
+    fetch('/simulator/load_current_positions')
+      .then(response => response.json())
+      .then(data => {
+        if(data.positions && data.positions.length > 0) {
+          // For example, update controls based on the first position.
+          var pos = data.positions[0];
+          document.getElementById("entryPrice").value = pos.entry_price;
+          document.getElementById("entryPriceNumber").value = pos.entry_price;
+          document.getElementById("collateral").value = pos.collateral;
+          document.getElementById("collateralNumber").value = pos.collateral;
+          document.getElementById("positionSide").value = pos.position_type.toLowerCase();
+          alert("Current positions loaded into simulation controls.");
+        } else {
+          alert("No current positions found.");
+        }
+      })
+      .catch(error => {
+        console.error("Error loading current positions:", error);
+      });
+  }
+</script>
+{% endblock %}

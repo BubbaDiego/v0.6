@@ -1,0 +1,840 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block extra_styles %}
+<style>
+  /* -------------------- Background Wallpaper -------------------- */
+  body {
+    background: url("{{ url_for('static', filename='images/wallpaper.png') }}") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  /* -------------------- General Card Header Styling -------------------- */
+  .card-header {
+    position: relative; /* Added to allow absolute positioning of center icon */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e7f0fd;
+    padding: 0.5rem 1rem;
+    height: 50px;
+  }
+  .header-icon {
+    font-size: 1.5rem !important;
+  }
+  .header-icon.left i { color: green !important; }
+  /* Position the center icon over the "0" marker */
+  .header-icon.center {
+    position: absolute;
+    left: 25%; /* Align with the "0" marker */
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+  }
+  .header-icon.right span { font-size: 1.5rem; color: #000; }
+
+  /* -------------------- Liquidation Bar Styles -------------------- */
+  .progress.liquidation {
+    position: relative;
+    background-color: #e9ecef;
+    height: 1.5rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .progress.liquidation::before {
+    content: "";
+    position: absolute;
+    left: 25%; /* "0" marker moved from 50% to 25% */
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 5;
+  }
+  .liquidation-fill {
+    position: absolute;
+    height: 100%;
+    border-radius: 1rem;
+  }
+  .liquidation-fill.striped {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255,255,255,0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255,255,255,0.15) 50%,
+      rgba(255,255,255,0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+  .asset-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    z-index: 10;
+  }
+  .progress-text {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    z-index: 20;
+  }
+
+  /* -------------------- Dashboard Layout -------------------- */
+  .card-container {
+    margin: 2.5px auto;
+  }
+  .row {
+    margin-bottom: 20px;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  @media (max-width: 767.98px) {
+    .col-md-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* -------------------- Update Button Row -------------------- */
+  .update-row {
+    text-align: center;
+    margin: 10px 0;  /* Reduced top & bottom margin */
+  }
+  .update-row button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .update-row img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+
+  /* -------------------- Unified Status Bar Layout -------------------- */
+  .status-bar-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .status-col-left, .status-col-right {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  @media (max-width: 768px) {
+    .status-col-left, .status-col-right {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+  /* Single-row status bar with fixed min-height */
+  .status-bar {
+    width: 100%;
+    min-height: 120px;
+    background: url("{{ url_for('static', filename='images/cityscape.jpg') }}") no-repeat center center;
+    background-size: cover;
+    border-radius: 0.5rem;
+  }
+  .status-bar .card {
+    background-color: rgba(255,255,255,0.5);
+    border: none;
+    border-radius: 0.5rem;
+    min-height: 120px;
+  }
+  .status-bar .card-body {
+    display: flex;
+    align-items: flex-start; /* Top justify the text */
+    justify-content: space-between;
+    padding: 0.5rem 1rem; /* Reduced padding for less vertical spacing */
+    min-height: 120px;
+  }
+  .status-bar .col {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    padding: 0 0.5rem;
+  }
+  .status-bar .col:last-child {
+    border-right: none;
+  }
+  .status-bar .col span.label {
+    display: block;
+    font-size: 0.85rem;
+    color: #333;
+  }
+  .status-bar .col h5 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  /* Adjust asset image styling for left status bar */
+  .status-col-left .card-body .col img {
+    height: 24px !important;
+    margin-top: 0; /* Reduced top margin */
+  }
+
+  /* -------------------- Composition Chart & Other Sections (Unchanged) -------------------- */
+  .composition-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e7f0fd;
+    padding: 0.5rem 1rem;
+  }
+  .composition-header h3 {
+    margin: 0;
+    width: 50%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .composition-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  .composition-container > div {
+    width: 48%;
+    height: 233px;
+  }
+  .performance-time-controls .btn {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+  }
+  .performance-time-controls .btn:hover {
+    opacity: 1;
+  }
+  .asset-labels {
+    display: flex;
+    justify-content: space-around;
+    margin-top: -132px;
+    margin-bottom: 20px;
+  }
+  .size-chart-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .size-chart-col:nth-child(1) { margin-left: 50px; }
+  .size-chart-col:nth-child(2) { margin-left: 50px; }
+  .size-chart-col:nth-child(3) { margin-left: 37px; }
+  .size-chart-col:nth-child(4) { margin-left: 25px; }
+  .size-chart-col:nth-child(5) { margin-left: 25px; }
+  .size-chart-col:nth-child(6) { margin-left: -12px; }
+  /* Increased images in Size Balance by 50% */
+  .wallet-icon {
+    width: 37.5px;
+    height: 37.5px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+  .asset-icon2 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+  }
+  .size-chart-col p {
+    margin: 2px 0;
+    font-size: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container card-container">
+  <!-- Row: Jupiter Update Button Above the Status Bars -->
+  <div class="row update-row">
+    <button type="button" class="update-button" data-type="jupiter">
+      <img id="update-button-img-jupiter" src="{{ url_for('static', filename='images/jupiter.jpg') }}" alt="Jupiter Update Button">
+    </button>
+  </div>
+
+  <!-- Row: Two Symmetrical Status Bars Side by Side -->
+  <div class="row status-bar-container">
+    <!-- LEFT Status Bar: Now labeled BTC, ETH, SOL, S&P500, and Update Info -->
+    <div class="col-md-6 status-col-left">
+      <!-- No toggle row for a single-row layout -->
+      <div class="status-bar mt-2">
+        <div class="card">
+          <div class="card-body">
+            <!-- Column 1: BTC -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC">
+              <h5 class="fw-bold mb-0">${{ btc_price }}</h5>
+            </div>
+            <!-- Column 2: ETH -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH">
+              <h5 class="fw-bold mb-0">${{ eth_price }}</h5>
+            </div>
+            <!-- Column 3: SOL -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL">
+              <h5 class="fw-bold mb-0">${{ sol_price }}</h5>
+            </div>
+            <!-- Column 4: S&P500 -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <img src="{{ url_for('static', filename='images/sp500.png') }}" alt="S&P 500">
+              <h5 class="fw-bold mb-0">{{ sp500_value }}</h5>
+            </div>
+            <!-- Column 5: Update Info (Concise Display) -->
+            <div class="col d-flex flex-column align-items-center justify-content-center" style="font-size:0.9rem; font-weight:normal;">
+              <div>Time: <i>{{ last_update_time_only }}</i></div>
+              <div>Date: <i>{{ last_update_date_only }}</i></div>
+              <div>Source: <i>{{ last_update_positions_source }}</i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT Status Bar: Relabeled Columns: Value, Leverage, Size, Size Ratio, Travel Percent -->
+    <div class="col-md-6 status-col-right">
+      <!-- No toggle row for a single-row layout -->
+      <div class="status-bar mt-2"
+           style="background: url('{{ url_for('static', filename='images/cityscape.jpg') }}') no-repeat center center; background-size: cover;">
+        <div class="card">
+          <div class="card-body">
+            <!-- Column 1: Value -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <span class="label">Value</span>
+              <h5 class="fw-bold mb-0">${{ portfolio_value }}</h5>
+            </div>
+            <!-- Column 2: Leverage -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <span class="label">Leverage</span>
+              <h5 class="fw-bold mb-0">
+                {% if totals.avg_leverage|default(0) %}
+                  {{ "{:.2f}".format(totals.avg_leverage|default(0)) }}
+                {% else %}
+                  N/A
+                {% endif %}
+              </h5>
+            </div>
+            <!-- Column 3: Size (formatted to k) -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <span class="label">Size</span>
+              <h5 class="fw-bold mb-0">
+                {% if (totals.total_size|default(0))/1000 >= 100 %}
+                  ${{ "{:.0f}".format((totals.total_size|default(0))/1000) }}k
+                {% else %}
+                  ${{ "{:.1f}".format((totals.total_size|default(0))/1000) }}k
+                {% endif %}
+              </h5>
+            </div>
+            <!-- Column 4: Size Ratio -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <span class="label">Size Ratio</span>
+              <h5 class="fw-bold mb-0">
+                {% if totals.avg_leverage|default(0) and totals.avg_leverage|default(0) != 0 %}
+                  {{ "{:.2f}".format((totals.total_size|default(0)) / (totals.avg_leverage|default(0))) }}
+                {% else %}
+                  N/A
+                {% endif %}
+              </h5>
+            </div>
+            <!-- Column 5: Travel Percent -->
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <span class="label">Travel Percent</span>
+              <h5 class="fw-bold mb-0">
+                {% if totals.avg_travel_percent|default(0) %}
+                  {{ "{:.1f}".format(totals.avg_travel_percent|default(0)) }}%
+                {% else %}
+                  N/A
+                {% endif %}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: Liquidation Bar & Portfolio Performance (Unchanged except for liquidation bar adjustments) -->
+  <div class="row">
+    <!-- Liquidation Bar Card -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="header-icon left"><i class="bi bi-currency-dollar"></i></div>
+          <div class="header-icon center"><span>⚖</span></div>
+          <div class="header-icon right"><span>💀</span></div>
+        </div>
+        <div class="card-body">
+          {% for pos in liquidation_positions %}
+            {% set travel = pos.current_travel_percent | float %}
+            <div class="progress liquidation">
+              {% if travel >= 0 %}
+                {# Positive travel: Range 25 (far left) to 0 at the marker (25% from left) #}
+                <div class="liquidation-fill striped bg-success" style="right: 75%; width: calc(({{ travel }} / 25) * 25%);"></div>
+                <img class="asset-icon"
+                     src="{{ url_for('static', filename='images/' ~ (pos.asset_type|default('btc')|lower) ~ '_logo.png') }}"
+                     alt="{{ pos.asset_type|default('btc')|lower }} logo"
+                     style="left: calc(25% - ({{ travel }} / 25 * 25%) - 15px); {% if (pos.asset_type|default('btc')|lower)=='eth' %}background-color: white;{% endif %}">
+                {% if travel > 12.5 %}
+                  <span class="progress-text" style="left: calc(25% - ({{ travel }} / 25 * 12.5%)); top: 50%; transform: translate(-50%, -50%);">
+                    {{ travel }}%
+                  </span>
+                {% endif %}
+              {% else %}
+                {# Negative travel: Range 0 at the marker (25%) to -100 at the far right #}
+                {% if travel|abs <= 50 %}
+                  <div class="liquidation-fill striped bg-warning" style="left: 25%; width: calc(({{ travel | abs }} / 100) * 75%);"></div>
+                {% else %}
+                  <div class="liquidation-fill striped bg-danger" style="left: 25%; width: calc(({{ travel | abs }} / 100) * 75%);"></div>
+                {% endif %}
+                <img class="asset-icon"
+                     src="{{ url_for('static', filename='images/' ~ (pos.asset_type|default('btc')|lower) ~ '_logo.png') }}"
+                     alt="{{ pos.asset_type|default('btc')|lower }} logo"
+                     style="left: calc(25% + ({{ travel | abs }} / 100 * 75%) - 15px); {% if (pos.asset_type|default('btc')|lower)=='eth' %}background-color: white;{% endif %}">
+                {% if travel < -25 %}
+                  <span class="progress-text" style="left: calc(25% + ({{ travel | abs }} / 100 * 37.5%)); top: 50%; transform: translate(-50%, -50%);">
+                    {{ travel }}%
+                  </span>
+                {% endif %}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Performance Card (Unchanged except for y-axis labels) -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <h3 class="card-title mb-0">Performance</h3>
+          <small id="percentChangeDisplay" class="ms-auto" style="font-weight: bold; font-size: 1.5rem;"></small>
+        </div>
+        <div class="card-body" style="position: relative;">
+          <div class="d-flex">
+            <div class="flex-grow-1">
+              <canvas id="portfolioChart" style="width: 100%; height: 300px;"></canvas>
+            </div>
+            <div class="performance-time-controls d-flex flex-column justify-content-center" style="margin-left: 10px;">
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(1)">1h</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(3)">3h</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(6)">6h</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(12)">12h</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(24)">24h</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: Size Balance Bar Chart & Composition Card (Unchanged) -->
+  <div class="row">
+    <!-- SIZE BALANCE SECTION -->
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h3 class="card-title mb-0">Size Balance</h3>
+          <div class="legend">
+            <span class="me-3">
+              <i class="bi bi-square-fill" style="color:#0d6efd;"></i>
+              Long(<b id="legend-long-value">0K</b>)
+            </span>
+            <span class="me-3">
+              <i class="bi bi-square-fill" style="color:#20c997;"></i>
+              Short(<b id="legend-short-value">0K</b>)
+            </span>
+            <span>
+              <i class="bi bi-square-fill" style="color:#ab79e8;"></i>
+              Total(<b id="legend-total-value">0K</b>)
+            </span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="size-chart"></div>
+          <div class="asset-labels"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Composition Card (Unchanged) -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="composition-header">
+          <h3>📐 Size</h3>
+          <h3>Collateral 💸</h3>
+        </div>
+        <div class="card-body">
+          <div class="composition-container">
+            <div id="positions-chart"></div>
+            <div id="collateral-composition-chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<!-- Include Chart.js and adapter for time scales -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script>
+  const portfolioData = {{ portfolio_data | tojson }};
+  let portfolioChart;
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!portfolioData || portfolioData.length === 0) {
+      console.warn("No portfolio data available for chart rendering.");
+      return;
+    }
+    const labels = portfolioData.map(item => item.snapshot_time);
+    const valueData = portfolioData.map(item => item.total_value);
+    const collateralData = portfolioData.map(item => item.total_collateral);
+    const ctx = document.getElementById('portfolioChart').getContext('2d');
+    portfolioChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Total Portfolio Value',
+            data: valueData,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false
+          },
+          {
+            label: 'Total Collateral',
+            data: collateralData,
+            borderColor: 'rgba(192, 75, 192, 1)',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: { type: 'time', time: { unit: 'day' } },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value, index, values) {
+                if (value >= 1000) {
+                  let num = value / 1000;
+                  return num >= 100 ? num.toFixed(0) + 'k' : num.toFixed(1) + 'k';
+                }
+                return value;
+              }
+            }
+          }
+        }
+      }
+    });
+    setPortfolioTimeframe(24);
+  });
+  function setPortfolioTimeframe(hours) {
+    if (!portfolioData || portfolioData.length === 0) return;
+    const currentTime = new Date();
+    const cutoff = new Date(currentTime.getTime() - hours * 3600000);
+    const filteredData = portfolioData.filter(item => new Date(item.snapshot_time) >= cutoff);
+    portfolioChart.data.labels = filteredData.map(item => item.snapshot_time);
+    portfolioChart.data.datasets[0].data = filteredData.map(item => item.total_value);
+    portfolioChart.data.datasets[1].data = filteredData.map(item => item.total_collateral);
+    portfolioChart.update();
+    if (filteredData.length > 0) {
+      const firstValue = filteredData[0].total_value;
+      const lastValue = filteredData[filteredData.length - 1].total_value;
+      const percentChange = ((lastValue - firstValue) / firstValue) * 100;
+      const percentElem = document.getElementById("percentChangeDisplay");
+      if (percentElem) {
+        percentElem.textContent = percentChange.toFixed(2) + "%";
+        percentElem.style.color = percentChange >= 0 ? "green" : "red";
+      }
+    }
+  }
+</script>
+
+<!-- ApexCharts for the Size/Collateral Composition & Size Balance charts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" crossorigin="anonymous"></script>
+<script>
+  // SIZE Composition Chart (Pie) - for the Composition Card
+  window.onload = function() {
+    if (typeof ApexCharts === 'undefined') {
+      console.error("ApexCharts library not loaded!");
+      return;
+    }
+    const positionsChartContainer = document.getElementById("positions-chart");
+    if (positionsChartContainer) {
+      fetch("/api/size_composition")
+        .then(response => response.json())
+        .then(data => {
+          const seriesData = data.series || [0, 0];
+          const options = {
+            series: seriesData,
+            chart: {
+              type: 'pie',
+              height: 233,
+              events: {
+                click: function(event, chartContext, config) {
+                  const currentType = positionsChartInstance.w.config.chart.type;
+                  const newType = (currentType === 'pie') ? 'donut' : 'pie';
+                  positionsChartInstance.updateOptions({ chart: { type: newType } });
+                }
+              }
+            },
+            labels: ['Long Positions', 'Short Positions'],
+            colors: ['#0d6efd', '#5dcc8e'],
+            legend: { position: 'bottom' },
+            dataLabels: {
+              enabled: true,
+              style: { fontSize: '1rem' },
+              formatter: function (val) {
+                return val.toFixed(2) + "%";
+              }
+            },
+            plotOptions: {
+              pie: {
+                dataLabels: { offset: -5 }
+              }
+            }
+          };
+          const positionsChartInstance = new ApexCharts(positionsChartContainer, options);
+          positionsChartInstance.render().catch(err => {
+            console.error("ApexCharts (Size) render error:", err);
+          });
+        })
+        .catch(err => {
+          console.error("Error fetching size composition data:", err);
+        });
+    }
+    // COLLATERAL Composition Chart (Pie) - for the Composition Card
+    const collateralChartContainer = document.getElementById("collateral-composition-chart");
+    if (collateralChartContainer) {
+      fetch("/api/collateral_composition")
+        .then(response => response.json())
+        .then(data => {
+          const seriesData = data.series || [0, 0];
+          const collateralOptions = {
+            series: seriesData,
+            chart: {
+              type: 'pie',
+              height: 233,
+              events: {
+                click: function(event, chartContext, config) {
+                  const currentType = collateralChartInstance.w.config.chart.type;
+                  const newType = (currentType === 'pie') ? 'donut' : 'pie';
+                  collateralChartInstance.updateOptions({ chart: { type: newType } });
+                }
+              }
+            },
+            labels: ['Long Collateral', 'Short Collateral'],
+            colors: ['#ca477d', '#d1ef9a'],
+            legend: { position: 'bottom' },
+            dataLabels: {
+              enabled: true,
+              style: { fontSize: '1rem' },
+              formatter: function (val) {
+                return val.toFixed(2) + "%";
+              }
+            },
+            plotOptions: {
+              pie: {
+                dataLabels: { offset: -5 }
+              }
+            }
+          };
+          const collateralChartInstance = new ApexCharts(collateralChartContainer, collateralOptions);
+          collateralChartInstance.render().catch(err => {
+            console.error("ApexCharts (Collateral) render error:", err);
+          });
+        })
+        .catch(err => {
+          console.error("Error fetching collateral composition data:", err);
+        });
+    }
+  };
+
+  /*
+    ============================
+    START: SIZE BALANCE SECTION (JS)
+    ============================
+  */
+  document.addEventListener('DOMContentLoaded', function() {
+    const sizeChartContainer = document.getElementById("size-chart");
+    if (sizeChartContainer) {
+      fetch("/api/size_balance")
+        .then(response => response.json())
+        .then(data => {
+          const groups = data.groups;
+          const categories = groups.map(g => `${g.wallet} ${g.asset}`);
+          const longData = groups.map(g => g.long);
+          const shortData = groups.map(g => g.short);
+          const totalData = groups.map(g => g.total);
+
+          const chartOptions = {
+            series: [
+              { name: 'Long',  data: longData },
+              { name: 'Short', data: shortData },
+              { name: 'Total', data: totalData }
+            ],
+            chart: {
+              type: 'bar',
+              height: 400,
+              toolbar: { show: false }
+            },
+            grid: { padding: { bottom: 120 } },
+            plotOptions: {
+              bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+              }
+            },
+            dataLabels: { enabled: false },
+            stroke: { show: true, width: 2, colors: ['transparent'] },
+            colors: ['#0d6efd', '#20c997', '#ab79e8'],
+            xaxis: {
+              categories: categories,
+              labels: { show: true }
+            },
+            yaxis: {
+              title: { text: 'Size Amount' },
+              labels: {
+                formatter: function(val) {
+                  return Math.round(val / 1000) + "k";
+                }
+              }
+            },
+            fill: { opacity: 1 },
+            tooltip: {
+              y: { formatter: (val) => val }
+            },
+            legend: { show: false },
+            annotations: {
+              yaxis: [
+                {
+                  y: data.avg_short || 2683.33,
+                  borderColor: '#20c997',
+                  label: {
+                    borderColor: '#20c997',
+                    style: { color: '#fff', background: '#20c997' },
+                    text: 'Avg Short'
+                  },
+                  strokeDashArray: 4
+                },
+                {
+                  y: data.avg_long || 4500,
+                  borderColor: '#0d6efd',
+                  label: {
+                    borderColor: '#0d6efd',
+                    style: { color: '#fff', background: '#0d6efd' },
+                    text: 'Avg Long'
+                  },
+                  strokeDashArray: 4
+                }
+              ]
+            }
+          };
+          const sizeChart = new ApexCharts(sizeChartContainer, chartOptions);
+          sizeChart.render();
+
+          // Compute overall totals
+          const sumLong = longData.reduce((acc, val) => acc + val, 0);
+          const sumShort = shortData.reduce((acc, val) => acc + val, 0);
+          const sumTotal = totalData.reduce((acc, val) => acc + val, 0);
+
+          function formatK(num) {
+            return num >= 1000 ? (num / 1000).toFixed(1) + "K" : num;
+          }
+          document.getElementById("legend-long-value").textContent = formatK(sumLong);
+          document.getElementById("legend-short-value").textContent = formatK(sumShort);
+          document.getElementById("legend-total-value").textContent = formatK(sumTotal);
+
+          // Dynamically generate the asset labels row
+          const labelsContainer = document.querySelector(".asset-labels");
+          labelsContainer.innerHTML = "";
+          groups.forEach(g => {
+            const col = document.createElement("div");
+            col.className = "size-chart-col";
+            const walletImg = document.createElement("img");
+            walletImg.className = "wallet-icon";
+            walletImg.src = `/static/images/${g.wallet.toLowerCase()}.jpg`;
+            walletImg.alt = g.wallet;
+            const assetImg = document.createElement("img");
+            assetImg.className = "asset-icon2";
+            assetImg.src = `/static/images/${g.asset.toLowerCase()}_logo.png`;
+            assetImg.alt = g.asset;
+            col.appendChild(walletImg);
+            col.appendChild(assetImg);
+            labelsContainer.appendChild(col);
+          });
+        })
+        .catch(err => console.error("Error fetching size balance data:", err));
+    }
+  });
+  /*
+    ==========================
+    END: SIZE BALANCE SECTION (JS)
+    ==========================
+  */
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const container = document.querySelector('.update-button[data-type="jupiter"]');
+    if (!container) return;
+    const img = container.querySelector('img');
+    container.addEventListener("click", function() {
+      img.classList.add("spin");
+      fetch("/positions/update_jupiter?source=jupiter", { method: "POST" })
+        .then(response => response.json())
+        .then(data => {
+          img.classList.remove("spin");
+          window.location.reload();
+        })
+        .catch(err => {
+          img.classList.remove("spin");
+          console.error(err);
+        });
+    });
+  });
+</script>
+
+<style>
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .spin { animation: spin 1s linear infinite; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.body.classList.add(currentTheme + '-mode');
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+    themeToggle.checked = (currentTheme === 'dark');
+    themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  });
+</script>
+{% endblock %}
