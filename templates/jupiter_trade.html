@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Jupiter Trade Tester{% endblock %}
+
+{% block extra_styles %}
+<style>
+  .trade-form {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  .trade-form .form-group {
+    margin-bottom: 15px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container trade-form">
+  <h1>Jupiter Trade Tester</h1>
+  {% if result %}
+    <div class="alert alert-info">
+      {{ result }}
+    </div>
+  {% endif %}
+  <form method="POST" action="{{ url_for('jupiter_trade') }}">
+    <div class="form-group">
+      <label for="walletAddress">Wallet Address</label>
+      <input type="text" class="form-control" name="walletAddress" id="walletAddress" required>
+    </div>
+    <div class="form-group">
+      <label for="action">Action</label>
+      <select class="form-control" name="action" id="action" required>
+        <option value="open">Open Leveraged Position</option>
+        <option value="close">Close Position</option>
+      </select>
+    </div>
+    <div id="openFields">
+      <div class="form-group">
+        <label for="leverage">Leverage (e.g. 10)</label>
+        <input type="number" step="0.01" class="form-control" name="leverage" id="leverage">
+      </div>
+      <div class="form-group">
+        <label for="collateralTokenDelta">Collateral Token Delta</label>
+        <input type="text" class="form-control" name="collateralTokenDelta" id="collateralTokenDelta">
+      </div>
+      <div class="form-group">
+        <label for="inputMint">Input Mint</label>
+        <input type="text" class="form-control" name="inputMint" id="inputMint">
+      </div>
+      <div class="form-group">
+        <label for="marketMint">Market Mint</label>
+        <input type="text" class="form-control" name="marketMint" id="marketMint">
+      </div>
+      <div class="form-group">
+        <label for="sizeUsdDelta">Size USD Delta</label>
+        <input type="text" class="form-control" name="sizeUsdDelta" id="sizeUsdDelta">
+      </div>
+      <div class="form-group">
+        <label for="side">Side</label>
+        <select class="form-control" name="side" id="side">
+          <option value="long">Long</option>
+          <option value="short">Short</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="maxSlippageBps">Max Slippage (BPS)</label>
+        <input type="text" class="form-control" name="maxSlippageBps" id="maxSlippageBps" value="100">
+      </div>
+      <div class="form-group">
+        <label for="collateralMint">Collateral Mint</label>
+        <input type="text" class="form-control" name="collateralMint" id="collateralMint">
+      </div>
+    </div>
+    <!-- Future: Add fields for closing a position if needed -->
+    <button type="submit" class="btn btn-primary">Execute Trade</button>
+  </form>
+</div>
+
+<script>
+  // Toggle openFields if action changes (for future expansion)
+  document.getElementById('action').addEventListener('change', function() {
+    const openFields = document.getElementById('openFields');
+    if (this.value === 'open') {
+      openFields.style.display = 'block';
+    } else {
+      openFields.style.display = 'none';
+    }
+  });
+</script>
+{% endblock %}

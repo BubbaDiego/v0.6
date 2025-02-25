@@ -224,6 +224,36 @@ def exchanges():
     return render_template("exchanges.html", brokers=brokers_data)
 
 
+@app.route("/jupiter_trade", methods=["GET", "POST"])
+def jupiter_trade():
+    result = None
+    if request.method == "POST":
+        # Retrieve form data
+        wallet_address = request.form.get("walletAddress")
+        action = request.form.get("action")
+
+        if action == "open":
+            # Extract parameters for opening a position
+            leverage = request.form.get("leverage")
+            collateral_token_delta = request.form.get("collateralTokenDelta")
+            input_mint = request.form.get("inputMint")
+            market_mint = request.form.get("marketMint")
+            size_usd_delta = request.form.get("sizeUsdDelta")
+            side = request.form.get("side")
+            max_slippage_bps = request.form.get("maxSlippageBps")
+            collateral_mint = request.form.get("collateralMint")
+
+            # Here you would call your automation logic (e.g., a function that invokes Playwright)
+            # For now, we'll simulate the trade execution.
+            result = (
+                f"Executed open leveraged position for wallet {wallet_address} "
+                f"with {side} side, {leverage}x leverage, and size delta {size_usd_delta}."
+            )
+        elif action == "close":
+            # If implementing closing functionality, call the appropriate function here.
+            result = f"Executed close position for wallet {wallet_address}."
+    return render_template("jupiter_trade.html", result=result)
+
 @app.route("/edit_wallet/<wallet_name>", methods=["GET", "POST"])
 def edit_wallet(wallet_name):
     dl = DataLocker.get_instance(DB_PATH)
