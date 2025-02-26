@@ -31,6 +31,13 @@ class DataLocker:
         self.cursor = None
         self._initialize_database()
 
+    class DictRow(sqlite3.Row):
+        def get(self, key, default=None):
+            try:
+                return self[key]
+            except KeyError:
+                return default
+
     def _initialize_database(self):
         try:
             self._init_sqlite_if_needed()
@@ -209,7 +216,7 @@ class DataLocker:
             self.logger.debug(f"Created directory for DB: {db_dir}")
         if self.conn is None:
             self.conn = sqlite3.connect(self.db_path, check_same_thread=False)
-            self.conn.row_factory = sqlite3.Row
+            self.conn.row_factory = self.DictRow
         if self.cursor is None:
             self.cursor = self.conn.cursor()
 
