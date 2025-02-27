@@ -795,7 +795,7 @@
     const img = container.querySelector('img');
     container.addEventListener("click", function() {
       img.classList.add("spin");
-      fetch("/positions/update_jupiter?source=jupiter", { method: "POST" })
+      fetch("/positions/update_jupiter?source=User", { method: "POST" })
         .then(response => response.json())
         .then(data => {
           img.classList.remove("spin");

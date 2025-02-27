@@ -26,7 +26,7 @@ from positions.position_service import PositionService
 from utils.calc_services import CalcServices
 
 logger = logging.getLogger("DashboardBlueprint")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.CRITICAL)
 
 dashboard_bp = Blueprint("dashboard", __name__, template_folder="templates")
 

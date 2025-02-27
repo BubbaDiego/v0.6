@@ -186,12 +186,14 @@ def format_alert_config_table(alert_ranges: dict) -> str:
 # -------------------------------
 @alerts_bp.route('/config', methods=['GET'], endpoint="alert_config_page")
 def config():
-    """
-    Render the alert configuration page.
-    """
     try:
         config_data = config_mgr.load_config()
-        return render_template("alert_manager_config.html", alert_ranges=config_data.get("alert_ranges", {}))
+        theme_config = config_data.get("theme_config", {})
+        return render_template(
+            "alert_manager_config.html",
+            alert_ranges=config_data.get("alert_ranges", {}),
+            theme=theme_config
+        )
     except Exception as e:
         logger.error("Error loading config: %s", str(e))
         return "Error loading config", 500

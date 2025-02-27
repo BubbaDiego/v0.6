@@ -378,12 +378,12 @@ class DataLocker:
             self.logger.exception(f"Unexpected error in get_prices: {e}")
             return []
 
-    def read_positions(self):
+    def read_positions(self) -> List[dict]:
         cursor = self.conn.cursor()
         cursor.execute("SELECT * FROM positions")
         rows = cursor.fetchall()
-        cursor.close()
-        return rows
+        # Convert each row to a dictionary
+        return [dict(row) for row in rows]
 
     def read_prices(self) -> List[dict]:
         self._init_sqlite_if_needed()

@@ -125,9 +125,16 @@ class AlertManager:
             travel_alert = self.check_travel_percent_liquid(pos)
             if travel_alert:
                 aggregated_alerts.append(travel_alert)
+            swing_alert = self.check_swing_alert(pos)
+            if swing_alert:
+                aggregated_alerts.append(swing_alert)
+            blast_alert = self.check_blast_alert(pos)
+            if blast_alert:
+                aggregated_alerts.append(blast_alert)
 
         price_alerts = self.check_price_alerts()
         aggregated_alerts.extend(price_alerts)
+
         if aggregated_alerts:
             message = f"{len(aggregated_alerts)} alerts triggered:\n" + "\n".join(aggregated_alerts)
             self.send_call(message, "aggregated-alert")
@@ -160,7 +167,11 @@ class AlertManager:
             logger.error("%s %s (ID: %s): Error parsing travel percent thresholds.", asset_full, position_type, position_id)
             return ""
 
-        logger.debug("Travel percent check: value=%.2f, limits: low=%.2f, medium=%.2f, high=%.2f", current_val, low, medium, high)
+        logger.debug(
+            f"[Travel Percent Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
+            f"Actual Travel% = {current_val:.2f}, Low = {low:.2f}, Medium = {medium:.2f}, High = {high:.2f}"
+        )
+
         alert_level = ""
         if current_val <= high:
             alert_level = "HIGH"
@@ -181,6 +192,72 @@ class AlertManager:
         msg = f"Travel Percent Liquid ALERT: {asset_full} {position_type} (Wallet: {wallet_name}) - Travel% = {current_val:.2f}%, Level = {alert_level}"
         return msg
 
+    def check_swing_alert(self, pos: Dict[str, Any]) -> str:
+        """
+        Checks if the position's liquidation distance exceeds the average daily swing threshold.
+        Returns an alert message if the threshold is exceeded.
+        """
+        asset = pos.get("asset_type", "???").upper()
+        asset_full = self.ASSET_FULL_NAMES.get(asset, asset)
+        position_type = pos.get("position_type", "").capitalize()
+        position_id = pos.get("position_id") or pos.get("id") or "unknown"
+        try:
+            current_value = float(pos.get("liquidation_distance", 0.0))
+        except Exception:
+            logger.error("%s %s (ID: %s): Error converting liquidation distance.", asset_full, position_type, position_id)
+            return ""
+        try:
+            swing_threshold = float(self.config.get("alert_ranges", {}).get("average_daily_swing", {}).get(asset, 0))
+        except Exception as e:
+            logger.error("Error parsing swing threshold for %s: %s", asset_full, e)
+            return ""
+        logger.debug(
+            f"[Swing Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
+            f"Actual Value = {current_value:.2f} vs Swing Threshold = {swing_threshold:.2f}"
+        )
+        if current_value >= swing_threshold:
+            key = f"swing-{asset_full}-{position_type}-{position_id}"
+            now = time.time()
+            last_time = self.last_triggered.get(key, 0)
+            if now - last_time >= self.cooldown:
+                self.last_triggered[key] = now
+                return (f"Average Daily Swing ALERT: {asset_full} {position_type} (ID: {position_id}) - "
+                        f"Actual Value = {current_value:.2f} exceeds Swing Threshold of {swing_threshold:.2f}")
+        return ""
+
+    def check_blast_alert(self, pos: Dict[str, Any]) -> str:
+        """
+        Checks if the position's liquidation distance exceeds the one day blast radius threshold.
+        Returns an alert message if the threshold is exceeded.
+        """
+        asset = pos.get("asset_type", "???").upper()
+        asset_full = self.ASSET_FULL_NAMES.get(asset, asset)
+        position_type = pos.get("position_type", "").capitalize()
+        position_id = pos.get("position_id") or pos.get("id") or "unknown"
+        try:
+            current_value = float(pos.get("liquidation_distance", 0.0))
+        except Exception:
+            logger.error("%s %s (ID: %s): Error converting liquidation distance.", asset_full, position_type, position_id)
+            return ""
+        try:
+            blast_threshold = float(self.config.get("alert_ranges", {}).get("one_day_blast_radius", {}).get(asset, 0))
+        except Exception as e:
+            logger.error("Error parsing blast threshold for %s: %s", asset_full, e)
+            return ""
+        logger.debug(
+            f"[Blast Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
+            f"Actual Value = {current_value:.2f} vs Blast Threshold = {blast_threshold:.2f}"
+        )
+        if current_value >= blast_threshold:
+            key = f"blast-{asset_full}-{position_type}-{position_id}"
+            now = time.time()
+            last_time = self.last_triggered.get(key, 0)
+            if now - last_time >= self.cooldown:
+                self.last_triggered[key] = now
+                return (f"One Day Blast Radius ALERT: {asset_full} {position_type} (ID: {position_id}) - "
+                        f"Actual Value = {current_value:.2f} exceeds Blast Threshold of {blast_threshold:.2f}")
+        return ""
+
     def check_profit(self, pos: Dict[str, Any]) -> str:
         asset_code = pos.get("asset_type", "???").upper()
         asset_full = self.ASSET_FULL_NAMES.get(asset_code, asset_code)
@@ -192,28 +269,22 @@ class AlertManager:
         except Exception:
             logger.error("%s %s (ID: %s): Error converting profit.", asset_full, position_type, position_id)
             return ""
-
-        # If profit is less than or equal to 0, do not trigger any alert.
         if profit_val <= 0:
             return ""
-
         profit_config = self.config.get("alert_ranges", {}).get("profit_ranges", {})
         if not profit_config.get("enabled", False):
             return ""
-
         try:
-            # For profit, we use thresholds: low=25, medium=50, high=75.
             low_thresh = float(profit_config.get("low", 25))
             med_thresh = float(profit_config.get("medium", 50))
             high_thresh = float(profit_config.get("high", 75))
         except Exception:
             logger.error("%s %s (ID: %s): Error parsing profit thresholds.", asset_full, position_type, position_id)
             return ""
-
-        logger.debug("Profit check: value=%.2f, thresholds: low=%.2f, med=%.2f, high=%.2f", profit_val, low_thresh,
-                     med_thresh, high_thresh)
-
-        # Only trigger an alert if profit is at least low_thresh.
+        logger.debug(
+            f"[Profit Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
+            f"Profit = {profit_val:.2f}, Thresholds: Low = {low_thresh:.2f}, Medium = {med_thresh:.2f}, High = {high_thresh:.2f}"
+        )
         if profit_val < low_thresh:
             return ""
         elif profit_val < med_thresh:
@@ -222,7 +293,6 @@ class AlertManager:
             current_level = "medium"
         else:
             current_level = "high"
-
         profit_key = f"profit-{asset_full}-{position_type}-{position_id}"
         last_level = self.last_profit.get(profit_key, "none")
         level_order = {"none": 0, "low": 1, "medium": 2, "high": 3}
@@ -257,7 +327,9 @@ class AlertManager:
             if not price_info:
                 continue
             current_price = float(price_info.get("current_price", 0.0))
-            logger.debug("Price check for %s: condition=%s, trigger=%.2f, current=%.2f", asset_full, condition, trigger_val, current_price)
+            logger.debug(
+                f"[Price Alert Debug] {asset_full}: Condition = {condition}, Trigger Value = {trigger_val:.2f}, Current Price = {current_price:.2f}"
+            )
             if (condition == "ABOVE" and current_price >= trigger_val) or (condition != "ABOVE" and current_price <= trigger_val):
                 msg = self.handle_price_alert_trigger(alert, current_price, asset_full)
                 if msg:
