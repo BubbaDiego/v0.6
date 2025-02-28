@@ -11,7 +11,7 @@
 
   /* -------------------- General Card Header Styling -------------------- */
   .card-header {
-    position: relative; /* Added to allow absolute positioning of center icon */
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,15 +23,19 @@
     font-size: 1.5rem !important;
   }
   .header-icon.left i { color: green !important; }
-  /* Position the center icon over the "0" marker */
   .header-icon.center {
     position: absolute;
-    left: 25%; /* Align with the "0" marker */
+    left: 25%;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 15;
   }
-  .header-icon.right span { font-size: 1.5rem; color: #000; }
+  /* Move the skull icon all the way to the right */
+  .header-icon.right {
+    font-size: 1.5rem;
+    color: #000;
+    margin-left: auto;
+  }
 
   /* -------------------- Liquidation Bar Styles -------------------- */
   .progress.liquidation {
@@ -45,7 +49,7 @@
   .progress.liquidation::before {
     content: "";
     position: absolute;
-    left: 25%; /* "0" marker moved from 50% to 25% */
+    left: 25%;
     top: 0;
     bottom: 0;
     width: 3px;
@@ -108,7 +112,7 @@
   /* -------------------- Update Button Row -------------------- */
   .update-row {
     text-align: center;
-    margin: 10px 0;  /* Reduced top & bottom margin */
+    margin: 10px 0;
   }
   .update-row button {
     background: none;
@@ -138,7 +142,6 @@
       max-width: 100%;
     }
   }
-  /* Single-row status bar with fixed min-height */
   .status-bar {
     width: 100%;
     min-height: 120px;
@@ -154,9 +157,9 @@
   }
   .status-bar .card-body {
     display: flex;
-    align-items: flex-start; /* Top justify the text */
+    align-items: flex-start;
     justify-content: space-between;
-    padding: 0.5rem 1rem; /* Reduced padding for less vertical spacing */
+    padding: 0.5rem 1rem;
     min-height: 120px;
   }
   .status-bar .col {
@@ -170,21 +173,20 @@
   }
   .status-bar .col span.label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 1rem; /* increased from 0.85rem */
     color: #333;
   }
   .status-bar .col h5 {
-    font-size: 1rem;
+    font-size: 1.2rem; /* increased from 1rem */
     font-weight: bold;
     margin: 0;
   }
-  /* Adjust asset image styling for left status bar */
   .status-col-left .card-body .col img {
     height: 24px !important;
-    margin-top: 0; /* Reduced top margin */
+    margin-top: 0;
   }
 
-  /* -------------------- Composition Chart & Other Sections (Unchanged) -------------------- */
+  /* -------------------- Composition & Balance Sections -------------------- */
   .composition-header {
     display: flex;
     justify-content: space-between;
@@ -207,15 +209,6 @@
     width: 48%;
     height: 233px;
   }
-  .performance-time-controls .btn {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.65rem;
-    opacity: 0.7;
-    margin-bottom: 0.2rem;
-  }
-  .performance-time-controls .btn:hover {
-    opacity: 1;
-  }
   .asset-labels {
     display: flex;
     justify-content: space-around;
@@ -233,7 +226,6 @@
   .size-chart-col:nth-child(4) { margin-left: 25px; }
   .size-chart-col:nth-child(5) { margin-left: 25px; }
   .size-chart-col:nth-child(6) { margin-left: -12px; }
-  /* Increased images in Size Balance by 50% */
   .wallet-icon {
     width: 37.5px;
     height: 37.5px;
@@ -251,70 +243,83 @@
     margin: 2px 0;
     font-size: 10px;
   }
+
+  /* -------------------- Combined Logs Card (Alerts Log & Operation Log) -------------------- */
+  .logs-card {
+    max-width: 100%;
+    font-size: 0.8rem;
+  }
+  .logs-card .card-header {
+    padding: 0.25rem 0.5rem;
+  }
+  .logs-card .card-body {
+    padding: 0.25rem;
+  }
+  .logs-card .subheader {
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+  .logs-card .alert {
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.25rem;
+  }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container card-container">
-  <!-- Row: Jupiter Update Button Above the Status Bars -->
+  <!-- Row 1: Jupiter Update Button -->
   <div class="row update-row">
     <button type="button" class="update-button" data-type="jupiter">
       <img id="update-button-img-jupiter" src="{{ url_for('static', filename='images/jupiter.jpg') }}" alt="Jupiter Update Button">
     </button>
   </div>
 
-  <!-- Row: Two Symmetrical Status Bars Side by Side -->
+  <!-- Row 2: Status Bars -->
   <div class="row status-bar-container">
-    <!-- LEFT Status Bar: Now labeled BTC, ETH, SOL, S&P500, and Update Info -->
+    <!-- LEFT Status Bar (Update Info removed) -->
     <div class="col-md-6 status-col-left">
-      <!-- No toggle row for a single-row layout -->
       <div class="status-bar mt-2">
         <div class="card">
           <div class="card-body">
-            <!-- Column 1: BTC -->
+            <!-- BTC -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC">
               <h5 class="fw-bold mb-0">${{ btc_price }}</h5>
             </div>
-            <!-- Column 2: ETH -->
+            <!-- ETH -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH">
               <h5 class="fw-bold mb-0">${{ eth_price }}</h5>
             </div>
-            <!-- Column 3: SOL -->
+            <!-- SOL -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL">
               <h5 class="fw-bold mb-0">${{ sol_price }}</h5>
             </div>
-            <!-- Column 4: S&P500 -->
+            <!-- S&P500 -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <img src="{{ url_for('static', filename='images/sp500.png') }}" alt="S&P 500">
               <h5 class="fw-bold mb-0">{{ sp500_value }}</h5>
-            </div>
-            <!-- Column 5: Update Info (Concise Display) -->
-            <div class="col d-flex flex-column align-items-center justify-content-center" style="font-size:0.9rem; font-weight:normal;">
-              <div>Time: <i>{{ last_update_time_only }}</i></div>
-              <div>Date: <i>{{ last_update_date_only }}</i></div>
-              <div>Source: <i>{{ last_update_positions_source }}</i></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- RIGHT Status Bar: Relabeled Columns: Value, Leverage, Size, Size Ratio, Travel Percent -->
+    <!-- RIGHT Status Bar -->
     <div class="col-md-6 status-col-right">
-      <!-- No toggle row for a single-row layout -->
-      <div class="status-bar mt-2"
-           style="background: url('{{ url_for('static', filename='images/cityscape.jpg') }}') no-repeat center center; background-size: cover;">
+      <div class="status-bar mt-2" style="background: url('{{ url_for('static', filename='images/cityscape.jpg') }}') no-repeat center center; background-size: cover;">
         <div class="card">
           <div class="card-body">
-            <!-- Column 1: Value -->
+            <!-- Value -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <span class="label">Value</span>
               <h5 class="fw-bold mb-0">${{ portfolio_value }}</h5>
             </div>
-            <!-- Column 2: Leverage -->
+            <!-- Leverage -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <span class="label">Leverage</span>
               <h5 class="fw-bold mb-0">
@@ -325,7 +330,7 @@
                 {% endif %}
               </h5>
             </div>
-            <!-- Column 3: Size (formatted to k) -->
+            <!-- Size -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <span class="label">Size</span>
               <h5 class="fw-bold mb-0">
@@ -336,18 +341,19 @@
                 {% endif %}
               </h5>
             </div>
-            <!-- Column 4: Size Ratio -->
+            <!-- VC Ratio -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
-              <span class="label">Size Ratio</span>
+              <span class="label">VC Ratio</span>
               <h5 class="fw-bold mb-0">
-                {% if totals.avg_leverage|default(0) and totals.avg_leverage|default(0) != 0 %}
-                  {{ "{:.2f}".format((totals.total_size|default(0)) / (totals.avg_leverage|default(0))) }}
+                {% if totals.total_collateral|default(0) and totals.total_collateral|default(0) != 0 %}
+                  {% set vc_ratio = (totals.total_value|default(0)) / (totals.total_collateral|default(0)) %}
+                  {{ "{:.2f}".format(vc_ratio).lstrip("0") }}
                 {% else %}
                   N/A
                 {% endif %}
               </h5>
             </div>
-            <!-- Column 5: Travel Percent -->
+            <!-- Travel Percent -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <span class="label">Travel Percent</span>
               <h5 class="fw-bold mb-0">
@@ -364,7 +370,7 @@
     </div>
   </div>
 
-  <!-- Row: Liquidation Bar & Portfolio Performance (Unchanged except for liquidation bar adjustments) -->
+  <!-- Row 3: Liquidation Bar Card (Left) and 2 Pie Chart (Composition) Card (Right) -->
   <div class="row">
     <!-- Liquidation Bar Card -->
     <div class="col-md-6">
@@ -379,7 +385,6 @@
             {% set travel = pos.current_travel_percent | float %}
             <div class="progress liquidation">
               {% if travel >= 0 %}
-                {# Positive travel: Range 25 (far left) to 0 at the marker (25% from left) #}
                 <div class="liquidation-fill striped bg-success" style="right: 75%; width: calc(({{ travel }} / 25) * 25%);"></div>
                 <img class="asset-icon"
                      src="{{ url_for('static', filename='images/' ~ (pos.asset_type|default('btc')|lower) ~ '_logo.png') }}"
@@ -391,7 +396,6 @@
                   </span>
                 {% endif %}
               {% else %}
-                {# Negative travel: Range 0 at the marker (25%) to -100 at the far right #}
                 {% if travel|abs <= 50 %}
                   <div class="liquidation-fill striped bg-warning" style="left: 25%; width: calc(({{ travel | abs }} / 100) * 75%);"></div>
                 {% else %}
@@ -413,36 +417,50 @@
       </div>
     </div>
 
-    <!-- Portfolio Performance Card (Unchanged except for y-axis labels) -->
+    <!-- 2 Pie Chart (Composition) Card -->
     <div class="col-md-6">
       <div class="card">
-        <div class="card-header d-flex align-items-center">
-          <h3 class="card-title mb-0">Performance</h3>
-          <small id="percentChangeDisplay" class="ms-auto" style="font-weight: bold; font-size: 1.5rem;"></small>
+        <div class="composition-header">
+          <h3>📐 Size</h3>
+          <h3>Collateral 💸</h3>
         </div>
-        <div class="card-body" style="position: relative;">
-          <div class="d-flex">
-            <div class="flex-grow-1">
-              <canvas id="portfolioChart" style="width: 100%; height: 300px;"></canvas>
-            </div>
-            <div class="performance-time-controls d-flex flex-column justify-content-center" style="margin-left: 10px;">
-              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(1)">1h</button>
-              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(3)">3h</button>
-              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(6)">6h</button>
-              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(12)">12h</button>
-              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPortfolioTimeframe(24)">24h</button>
-            </div>
+        <div class="card-body">
+          <div class="composition-container">
+            <div id="positions-chart"></div>
+            <div id="collateral-composition-chart"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Row: Size Balance Bar Chart & Composition Card (Unchanged) -->
+  <!-- Row 4: Performance Card (Left) & Size Balance Card (Right) -->
   <div class="row">
-    <!-- SIZE BALANCE SECTION -->
+    <!-- Performance Card -->
     <div class="col-md-6">
-      <div class="card shadow">
+      <div class="card" style="min-height: 400px;">
+        <div class="card-header d-flex align-items-center">
+          <h3 class="card-title mb-0">Performance</h3>
+          <small id="percentChangeDisplay" class="ms-auto" style="font-weight: bold; font-size: 1.5rem;"></small>
+        </div>
+        <div class="card-body" style="position: relative; min-height: 400px;">
+          <canvas id="portfolioChart" style="width: 100%; height: 300px;"></canvas>
+        </div>
+        <!-- Timeframe Buttons at the Bottom of the Performance Card -->
+        <div class="card-footer">
+          <div class="performance-time-controls d-flex flex-row justify-content-center">
+            <button type="button" class="btn btn-outline-secondary btn-sm mx-1" onclick="setPortfolioTimeframe(1)">1h</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm mx-1" onclick="setPortfolioTimeframe(3)">3h</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm mx-1" onclick="setPortfolioTimeframe(6)">6h</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm mx-1" onclick="setPortfolioTimeframe(12)">12h</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm mx-1" onclick="setPortfolioTimeframe(24)">24h</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Size Balance Card -->
+    <div class="col-md-6">
+      <div class="card shadow" style="min-height: 400px;">
         <div class="card-header d-flex align-items-center justify-content-between">
           <h3 class="card-title mb-0">Size Balance</h3>
           <div class="legend">
@@ -466,28 +484,95 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Composition Card (Unchanged) -->
+  <!-- Row 5: Combined Logs Card (Alerts Log & Operation Log in one card) -->
+  <div class="row">
     <div class="col-md-6">
-      <div class="card">
-        <div class="composition-header">
-          <h3>📐 Size</h3>
-          <h3>Collateral 💸</h3>
+      <div class="card card-outline logs-card">
+        <div class="card-header">
+          <div class="row w-100">
+            <div class="col-md-6 text-center"><strong>Alerts Log</strong></div>
+            <div class="col-md-6 text-center"><strong>Operation Log</strong></div>
+          </div>
         </div>
         <div class="card-body">
-          <div class="composition-container">
-            <div id="positions-chart"></div>
-            <div id="collateral-composition-chart"></div>
+          <div class="row">
+            <!-- Alerts Log Column -->
+            <div class="col-md-6">
+              {% set alert_entries = [
+                "Profit ALERT: BTC Long profit of 1000.00 (Level: HIGH)",
+                "Travel ALERT: ETH Short - Travel% = -35.00%, Level: LOW",
+                "Swing ALERT: SOL Long - Actual Value = 5000.00 vs Threshold: 4500.00 (Level: MEDIUM)",
+                "Blast ALERT: BTC Short - Actual Value = 9000.00 vs Threshold: 8500.00 (Level: HIGH)",
+                "Price ALERT: ETH Long - Current Price: 1800.00 vs Trigger: 1750.00 (Level: LOW)"
+              ] %}
+              {% if alert_entries %}
+                {% for entry in alert_entries %}
+                  {% if "Level: HIGH" in entry %}
+                    <div class="alert alert-danger p-1 mb-1" role="alert">
+                      ❌ {{ entry }}
+                    </div>
+                  {% elif "Level: MEDIUM" in entry %}
+                    <div class="alert alert-warning p-1 mb-1" role="alert">
+                      ⚠️ {{ entry }}
+                    </div>
+                  {% elif "Level: LOW" in entry %}
+                    <div class="alert alert-success p-1 mb-1" role="alert">
+                      ✅ {{ entry }}
+                    </div>
+                  {% else %}
+                    <div class="alert alert-secondary p-1 mb-1" role="alert">
+                      {{ entry }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                <div class="alert alert-secondary p-1 mb-1" role="alert">
+                  Alerts: None &nbsp; Source: Monitor
+                </div>
+              {% endif %}
+            </div>
+            <!-- Operation Log Column -->
+            <div class="col-md-6">
+              {% if ops_log_entries %}
+                {% for entry in ops_log_entries %}
+                  {% if "Launch Pad - Started" in entry %}
+                    <div class="alert alert-primary p-1 mb-1" role="alert">
+                      {{ entry }}
+                    </div>
+                  {% elif "Jupiter Update Complete:" in entry %}
+                    {% if "[Source: User]" in entry %}
+                      <div class="alert alert-success p-1 mb-1" role="alert">
+                        {{ entry }}
+                      </div>
+                    {% else %}
+                      <div class="alert alert-danger p-1 mb-1" role="alert">
+                        {{ entry }}
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    <div class="alert alert-secondary p-1 mb-1" role="alert">
+                      {{ entry }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                <div class="alert alert-secondary p-1 mb-1" role="alert">
+                  Operation Log: None &nbsp; Source: System
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
-<!-- Include Chart.js and adapter for time scales -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 <script>
@@ -527,7 +612,7 @@
           y: {
             beginAtZero: true,
             ticks: {
-              callback: function(value, index, values) {
+              callback: function(value) {
                 if (value >= 1000) {
                   let num = value / 1000;
                   return num >= 100 ? num.toFixed(0) + 'k' : num.toFixed(1) + 'k';
@@ -563,10 +648,8 @@
   }
 </script>
 
-<!-- ApexCharts for the Size/Collateral Composition & Size Balance charts -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" crossorigin="anonymous"></script>
 <script>
-  // SIZE Composition Chart (Pie) - for the Composition Card
   window.onload = function() {
     if (typeof ApexCharts === 'undefined') {
       console.error("ApexCharts library not loaded!");
@@ -602,9 +685,7 @@
               }
             },
             plotOptions: {
-              pie: {
-                dataLabels: { offset: -5 }
-              }
+              pie: { dataLabels: { offset: -5 } }
             }
           };
           const positionsChartInstance = new ApexCharts(positionsChartContainer, options);
@@ -612,11 +693,8 @@
             console.error("ApexCharts (Size) render error:", err);
           });
         })
-        .catch(err => {
-          console.error("Error fetching size composition data:", err);
-        });
+        .catch(err => console.error("Error fetching size composition data:", err));
     }
-    // COLLATERAL Composition Chart (Pie) - for the Composition Card
     const collateralChartContainer = document.getElementById("collateral-composition-chart");
     if (collateralChartContainer) {
       fetch("/api/collateral_composition")
@@ -637,7 +715,7 @@
               }
             },
             labels: ['Long Collateral', 'Short Collateral'],
-            colors: ['#ca477d', '#d1ef9a'],
+            colors: ['#7707ff', '#d1ef9a'],
             legend: { position: 'bottom' },
             dataLabels: {
               enabled: true,
@@ -647,9 +725,7 @@
               }
             },
             plotOptions: {
-              pie: {
-                dataLabels: { offset: -5 }
-              }
+              pie: { dataLabels: { offset: -5 } }
             }
           };
           const collateralChartInstance = new ApexCharts(collateralChartContainer, collateralOptions);
@@ -657,17 +733,10 @@
             console.error("ApexCharts (Collateral) render error:", err);
           });
         })
-        .catch(err => {
-          console.error("Error fetching collateral composition data:", err);
-        });
+        .catch(err => console.error("Error fetching collateral composition data:", err));
     }
   };
 
-  /*
-    ============================
-    START: SIZE BALANCE SECTION (JS)
-    ============================
-  */
   document.addEventListener('DOMContentLoaded', function() {
     const sizeChartContainer = document.getElementById("size-chart");
     if (sizeChartContainer) {
@@ -715,9 +784,7 @@
               }
             },
             fill: { opacity: 1 },
-            tooltip: {
-              y: { formatter: (val) => val }
-            },
+            tooltip: { y: { formatter: (val) => val } },
             legend: { show: false },
             annotations: {
               yaxis: [
@@ -747,7 +814,6 @@
           const sizeChart = new ApexCharts(sizeChartContainer, chartOptions);
           sizeChart.render();
 
-          // Compute overall totals
           const sumLong = longData.reduce((acc, val) => acc + val, 0);
           const sumShort = shortData.reduce((acc, val) => acc + val, 0);
           const sumTotal = totalData.reduce((acc, val) => acc + val, 0);
@@ -759,7 +825,6 @@
           document.getElementById("legend-short-value").textContent = formatK(sumShort);
           document.getElementById("legend-total-value").textContent = formatK(sumTotal);
 
-          // Dynamically generate the asset labels row
           const labelsContainer = document.querySelector(".asset-labels");
           labelsContainer.innerHTML = "";
           groups.forEach(g => {
@@ -781,14 +846,7 @@
         .catch(err => console.error("Error fetching size balance data:", err));
     }
   });
-  /*
-    ==========================
-    END: SIZE BALANCE SECTION (JS)
-    ==========================
-  */
-</script>
 
-<script>
   document.addEventListener("DOMContentLoaded", function() {
     const container = document.querySelector('.update-button[data-type="jupiter"]');
     if (!container) return;

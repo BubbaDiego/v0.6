@@ -9595,3 +9595,215 @@
 2025-02-27 01:36:28,765 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
 2025-02-27 01:36:28,766 - AlertManagerLogger - INFO - Found 0 active price alerts.
 2025-02-27 01:36:28,766 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 01:39:08,651 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 01:39:09,846 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 01:39:14,318 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 01:39:14,319 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 01:39:14,319 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 01:40:56,215 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 01:40:56,215 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 01:40:56,215 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 01:41:29,218 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 01:41:30,561 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 01:47:03,323 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 06:46:14,900 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:04:40,943 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:14:30,994 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:14:32,368 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:15:06,918 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 09:15:06,920 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 09:15:06,921 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 09:15:11,666 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 09:15:11,667 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 09:15:11,667 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 09:18:58,456 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:18:59,823 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:19:04,058 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 09:19:04,058 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 09:19:04,058 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 09:19:10,712 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 09:19:10,713 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 09:19:10,713 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 09:26:40,262 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:26:51,450 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:26:52,715 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:33:49,794 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 09:33:49,794 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 09:33:49,794 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 09:35:03,103 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:35:04,277 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:35:05,544 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 09:35:14,446 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 09:35:14,446 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 09:35:14,446 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 12:04:59,394 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 12:04:59,394 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 12:04:59,394 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 12:18:39,972 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 12:18:39,972 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 12:18:39,972 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 12:31:33,194 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 12:31:33,195 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 12:31:33,195 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 12:42:41,749 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 12:42:41,749 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 12:42:41,749 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 15:52:43,021 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 15:52:43,021 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 15:52:43,021 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 15:56:17,260 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 15:56:17,260 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 15:56:17,260 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 15:57:14,220 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 15:57:16,202 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 15:57:22,297 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 15:57:22,298 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 15:57:22,298 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 16:33:22,515 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 16:33:23,231 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 16:33:33,478 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 16:33:33,478 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 16:33:33,479 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 16:45:08,690 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 16:45:09,405 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 16:46:00,524 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 16:46:00,524 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 16:46:00,524 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 16:49:02,859 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 16:49:02,859 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 16:49:02,859 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:04:34,822 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 17:04:36,936 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 17:04:43,591 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 17:04:43,593 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 17:04:43,593 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:05:03,123 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 17:05:03,123 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 17:05:03,123 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:06:04,153 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 17:06:04,154 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 17:06:04,155 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:06:23,417 - AlertManagerLogger - DEBUG - Loaded config: {'price_config': {'assets': ['BTC', 'ETH', 'SOL'], 'currency': 'USD', 'cmc_api_key': 'c51c0c22-1bf3-4674-86bf-36f39a912d1a'}, 'system_config': {'logging_enabled': True, 'log_level': 'DEBUG', 'console_output': True, 'log_file': './v0.6/price_monitor.log', 'db_path': './v0.6/mother_brain.db', 'price_monitor_enabled': True, 'alert_monitor_enabled': True, 'sonic_monitor_loop_time': 300, 'last_price_update_time': None}, 'api_config': {'coingecko_api_enabled': 'ENABLE', 'kucoin_api_enabled': 'ENABLE', 'coinmarketcap_api_enabled': 'ENABLE', 'coinpaprika_api_enabled': 'ENABLE', 'binance_api_enabled': 'ENABLE', 'coinmarketcap_api_key': 'c51c0c22-1bf3-4674-86bf-36f39a912d1a'}, 'alert_ranges': {'heat_index_ranges': {'enabled': False, 'low': 444.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium': 444.0, 'high': 777.0, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'collateral_ranges': {'enabled': False, 'low': 1111.0, 'medium': 1111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'value_ranges': {'enabled': False, 'low': 1111.0, 'medium': 1111.0, 'high': 1111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'size_ranges': {'enabled': False, 'low': 11111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'leverage_ranges': {'enabled': False, 'low': 11111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'liquidation_distance_ranges': {'enabled': False, 'low': 1111111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'travel_percent_liquid_ranges': {'enabled': False, 'low': -10.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium': -60.0, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high': -75.0, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'travel_percent_profit_ranges': {'enabled': True, 'low': -5.0, 'medium': -75.0, 'high': -85.0, 'low_notifications': {'call': True, 'sms': False, 'email': False}, 'medium_notifications': {'call': True, 'sms': False, 'email': False}, 'high_notifications': {'call': True, 'sms': False, 'email': False}}, 'profit_ranges': {'enabled': True, 'low': 46.0, 'low_notifications': {'call': True, 'sms': True, 'email': True}, 'medium': 101.3, 'medium_notifications': {'call': True, 'sms': True, 'email': True}, 'high': 202.0, 'high_notifications': {'call': True, 'sms': True, 'email': True}}, 'average_daily_swing': {'BTC': 6.24, 'ETH': 8.0, 'SOL': 13.0}, 'one_day_blast_radius': {'BTC': 17.6, 'ETH': 18.0, 'SOL': 23.0}}, 'notification_config': {'email': {'smtp_server': 'smtp.gmail.com', 'smtp_port': 587, 'smtp_user': 'bubba.diego@gmail.com', 'smtp_password': 'pzix taan afbe igxb', 'recipient_email': 'bubba.diego@gmail.com'}, 'sms': {'carrier_gateway': 'txt.att.net', 'recipient_number': '6199804758'}}, 'alert_cooldown_seconds': 6000, 'call_refractory_period': 1, 'theme_config': {'selected_profile': 'profile1', 'profiles': {'profile1': {'title_bar': {'color': '#FF5733', 'image': 'static/images/alert_wall.jpg'}, 'side_bar': {'color': '#C70039', 'image': None}, 'wallpaper': {'color': '#900C3F', 'image': 'static/images/alert_wall.jpg'}, 'primary': {'color': '#581845', 'image': None}, 'secondary': {'color': '#FFC300', 'image': None}, 'text': {'color': '#FFFFFF'}}, 'profile2': {'title_bar': {'color': '#007BFF', 'image': None}, 'side_bar': {'color': '#6C757D', 'image': None}, 'wallpaper': {'color': '#F8F9FA', 'image': 'static/images/alert_wall.jpg'}, 'primary': {'color': '#28A745', 'image': None}, 'secondary': {'color': '#17A2B8', 'image': None}, 'text': {'color': '#212529'}}, 'profile3': {'title_bar': {'color': '#343A40', 'image': None}, 'side_bar': {'color': '#495057', 'image': None}, 'wallpaper': {'color': '#E9ECEF', 'image': None}, 'primary': {'color': '#007BFF', 'image': None}, 'secondary': {'color': '#6C757D', 'image': None}, 'text': {'color': '#FFFFFF'}}, 'profile4': {'title_bar': {'color': '#28A745', 'image': None}, 'side_bar': {'color': '#17A2B8', 'image': None}, 'wallpaper': {'color': '#F8F9FA', 'image': None}, 'primary': {'color': '#FFC107', 'image': None}, 'secondary': {'color': '#DC3545', 'image': None}, 'text': {'color': '#212529'}}}}, 'twilio_config': {'account_sid': 'ACb606788ada5dccbfeeebed0f440099b3', 'auth_token': 'f0826247cb619d552a501dffc6b07125', 'flow_sid': 'FW5b3bf49ee04af4d23a118b613bbc0df2', 'to_phone': '+16199804758', 'from_phone': '+18336913467'}}
+2025-02-27 17:15:17,100 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 17:15:19,517 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 17:15:25,657 - AlertManagerLogger - DEBUG - Loaded config: {'price_config': {'assets': ['BTC', 'ETH', 'SOL'], 'currency': 'USD', 'cmc_api_key': 'c51c0c22-1bf3-4674-86bf-36f39a912d1a'}, 'system_config': {'logging_enabled': True, 'log_level': 'DEBUG', 'console_output': True, 'log_file': './v0.6/price_monitor.log', 'db_path': './v0.6/mother_brain.db', 'price_monitor_enabled': True, 'alert_monitor_enabled': True, 'sonic_monitor_loop_time': 300, 'last_price_update_time': None}, 'api_config': {'coingecko_api_enabled': 'ENABLE', 'kucoin_api_enabled': 'ENABLE', 'coinmarketcap_api_enabled': 'ENABLE', 'coinpaprika_api_enabled': 'ENABLE', 'binance_api_enabled': 'ENABLE', 'coinmarketcap_api_key': 'c51c0c22-1bf3-4674-86bf-36f39a912d1a'}, 'alert_ranges': {'heat_index_ranges': {'enabled': False, 'low': 444.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium': 444.0, 'high': 777.0, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'collateral_ranges': {'enabled': False, 'low': 1111.0, 'medium': 1111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'value_ranges': {'enabled': False, 'low': 1111.0, 'medium': 1111.0, 'high': 1111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'size_ranges': {'enabled': False, 'low': 11111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'leverage_ranges': {'enabled': False, 'low': 11111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'liquidation_distance_ranges': {'enabled': False, 'low': 1111111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'travel_percent_liquid_ranges': {'enabled': False, 'low': -10.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium': -60.0, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high': -75.0, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'travel_percent_profit_ranges': {'enabled': True, 'low': -5.0, 'medium': -75.0, 'high': -85.0, 'low_notifications': {'call': True, 'sms': False, 'email': False}, 'medium_notifications': {'call': True, 'sms': False, 'email': False}, 'high_notifications': {'call': True, 'sms': False, 'email': False}}, 'profit_ranges': {'enabled': True, 'low': 46.0, 'low_notifications': {'call': True, 'sms': True, 'email': True}, 'medium': 101.3, 'medium_notifications': {'call': True, 'sms': True, 'email': True}, 'high': 202.0, 'high_notifications': {'call': True, 'sms': True, 'email': True}}, 'average_daily_swing': {'BTC': 6.24, 'ETH': 8.0, 'SOL': 13.0}, 'one_day_blast_radius': {'BTC': 17.6, 'ETH': 18.0, 'SOL': 23.0}}, 'notification_config': {'email': {'smtp_server': 'smtp.gmail.com', 'smtp_port': 587, 'smtp_user': 'bubba.diego@gmail.com', 'smtp_password': 'pzix taan afbe igxb', 'recipient_email': 'bubba.diego@gmail.com'}, 'sms': {'carrier_gateway': 'txt.att.net', 'recipient_number': '6199804758'}}, 'alert_cooldown_seconds': 6000, 'call_refractory_period': 1, 'theme_config': {'selected_profile': 'profile1', 'profiles': {'profile1': {'title_bar': {'color': '#FF5733', 'image': 'static/images/alert_wall.jpg'}, 'side_bar': {'color': '#C70039', 'image': None}, 'wallpaper': {'color': '#900C3F', 'image': 'static/images/alert_wall.jpg'}, 'primary': {'color': '#581845', 'image': None}, 'secondary': {'color': '#FFC300', 'image': None}, 'text': {'color': '#FFFFFF'}}, 'profile2': {'title_bar': {'color': '#007BFF', 'image': None}, 'side_bar': {'color': '#6C757D', 'image': None}, 'wallpaper': {'color': '#F8F9FA', 'image': 'static/images/alert_wall.jpg'}, 'primary': {'color': '#28A745', 'image': None}, 'secondary': {'color': '#17A2B8', 'image': None}, 'text': {'color': '#212529'}}, 'profile3': {'title_bar': {'color': '#343A40', 'image': None}, 'side_bar': {'color': '#495057', 'image': None}, 'wallpaper': {'color': '#E9ECEF', 'image': None}, 'primary': {'color': '#007BFF', 'image': None}, 'secondary': {'color': '#6C757D', 'image': None}, 'text': {'color': '#FFFFFF'}}, 'profile4': {'title_bar': {'color': '#28A745', 'image': None}, 'side_bar': {'color': '#17A2B8', 'image': None}, 'wallpaper': {'color': '#F8F9FA', 'image': None}, 'primary': {'color': '#FFC107', 'image': None}, 'secondary': {'color': '#DC3545', 'image': None}, 'text': {'color': '#212529'}}}}, 'twilio_config': {'account_sid': 'ACb606788ada5dccbfeeebed0f440099b3', 'auth_token': 'f0826247cb619d552a501dffc6b07125', 'flow_sid': 'FW5b3bf49ee04af4d23a118b613bbc0df2', 'to_phone': '+16199804758', 'from_phone': '+18336913467'}}
+2025-02-27 17:25:29,311 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 17:25:29,312 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 17:25:29,312 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:36:46,184 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 17:36:46,184 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 17:36:46,184 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:47:14,630 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 17:47:14,630 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 17:47:14,630 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 17:53:27,921 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 17:53:28,644 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:00:41,832 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:00:42,513 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:06:29,976 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:06:30,662 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:06:40,250 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:06:40,250 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:06:40,250 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 18:09:17,784 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:09:18,461 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 18:12:23,922 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:12:23,923 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:12:23,923 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 18:14:06,829 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:14:06,829 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:14:06,829 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 18:15:16,565 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:15:16,565 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:15:16,565 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 18:36:59,987 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:36:59,987 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:36:59,987 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 18:37:06,466 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:37:06,467 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:37:06,467 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 18:37:24,456 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 18:37:24,457 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 18:37:24,457 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:03:53,630 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:03:55,092 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:06:54,305 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:06:54,305 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:06:54,305 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:07:58,698 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:07:58,698 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:07:58,698 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:11:51,495 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:11:51,495 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:11:51,495 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:14:50,707 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:14:51,855 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:20:44,783 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:20:44,784 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:20:44,784 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:26:23,395 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:26:23,395 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:26:23,395 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:26:28,921 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:26:28,921 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:26:28,921 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:30:24,737 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:30:26,102 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:50:28,334 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:50:28,335 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:50:28,335 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:51:06,581 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:51:07,814 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:57:13,398 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 19:57:13,398 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 19:57:13,398 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 19:57:58,805 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 19:58:00,059 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:03:07,344 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:03:08,652 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:06:13,516 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:06:13,517 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:06:13,517 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:07:10,567 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:07:10,567 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:07:10,567 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:07:58,583 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:07:58,584 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:07:58,584 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:08:04,576 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:08:04,577 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:08:04,577 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:08:49,231 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:08:50,500 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:12:45,831 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:12:45,831 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:12:45,831 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:13:02,929 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:13:04,140 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:13:21,732 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:13:21,732 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:13:21,732 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:17:22,725 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:17:22,725 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:17:22,725 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-27 20:24:02,305 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:24:03,534 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-27 20:24:20,886 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-27 20:24:20,887 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-27 20:24:20,887 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-28 06:10:02,637 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-28 06:10:02,637 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-28 06:10:02,637 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-28 06:15:59,108 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-28 06:15:59,108 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-28 06:15:59,108 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-28 06:41:12,366 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-28 06:41:12,366 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-28 06:41:12,366 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-28 07:12:10,058 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
+2025-02-28 07:12:10,059 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-02-28 07:12:10,059 - AlertManagerLogger - INFO - No alerts triggered.
+2025-02-28 12:36:10,699 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-28 12:36:12,931 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-28 12:44:27,118 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-28 12:44:28,457 - AlertManagerLogger - INFO - AlertManager initialized.

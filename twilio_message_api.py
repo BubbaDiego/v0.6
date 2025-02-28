@@ -3,7 +3,7 @@ from twilio.rest import Client
 
 # Set your Twilio credentials and other configuration as environment variables
 os.environ['TWILIO_ACCOUNT_SID'] = 'ACb606788ada5dccbfeeebed0f440099b3'
-os.environ['TWILIO_AUTH_TOKEN'] = '2166616e962a358ece7bfdc0424f8fd0'
+os.environ['TWILIO_AUTH_TOKEN'] = 'f0826247cb619d552a501dffc6b07125'
 os.environ['TWILIO_FLOW_SID'] = 'FW5b3bf49ee04af4d23a118b613bbc0df2'
 os.environ['TWILIO_TO_PHONE'] = '+16199804758'
 os.environ['TWILIO_FROM_PHONE'] = '+18336913467'

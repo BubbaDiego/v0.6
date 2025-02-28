@@ -1,0 +1,98 @@
+2025-02-27 09:14:31,056 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:14:31 AM
+2025-02-27 09:14:32,425 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:14:32 AM
+2025-02-27 09:15:06,943 - Jupiter Update Complete: [Source: User] - 2-27-25 : 9:15:06 AM
+2025-02-27 09:15:11,687 - Jupiter Update Complete: [Source: User] - 2-27-25 : 9:15:11 AM
+2025-02-27 09:18:58,514 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:18:58 AM
+2025-02-27 09:18:59,885 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:18:59 AM
+2025-02-27 09:19:04,069 - Jupiter Update Complete: [Source: User] - 2-27-25 : 9:19:04 AM
+2025-02-27 09:19:10,730 - Jupiter Update Complete: [Source: jupiter] - 2-27-25 : 9:19:10 AM
+2025-02-27 09:26:51,514 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:26:51 AM
+2025-02-27 09:26:52,775 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:26:52 AM
+2025-02-27 09:33:49,805 - Jupiter Update Complete: [Source: User] - 2-27-25 : 9:33:49 AM
+2025-02-27 09:35:03,167 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:35:03 AM
+2025-02-27 09:35:04,344 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:35:04 AM
+2025-02-27 09:35:05,604 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 9:35:05 AM
+2025-02-27 09:35:14,460 - Jupiter Update Complete: [Source: User] - 2-27-25 : 9:35:14 AM
+2025-02-27 12:04:59,409 - Jupiter Update Complete: [Source: User] - 2-27-25 : 12:04:59 PM
+2025-02-27 12:18:39,983 - Jupiter Update Complete: [Source: User] - 2-27-25 : 12:18:39 PM
+2025-02-27 12:31:33,206 - Jupiter Update Complete: [Source: User] - 2-27-25 : 12:31:33 PM
+2025-02-27 12:42:41,764 - Jupiter Update Complete: [Source: User] - 2-27-25 : 12:42:41 PM
+2025-02-27 15:52:43,032 - Jupiter Update Complete: [Source: User] - 2-27-25 : 3:52:43 PM
+2025-02-27 15:56:17,276 - Jupiter Update Complete: [Source: User] - 2-27-25 : 3:56:17 PM
+2025-02-27 15:57:15,560 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 3:57:15 PM
+2025-02-27 15:57:16,264 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 3:57:16 PM
+2025-02-27 15:57:22,324 - Jupiter Update Complete: [Source: User] - 2-27-25 : 3:57:22 PM
+2025-02-27 16:33:22,580 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 4:33:22 PM
+2025-02-27 16:33:23,289 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 4:33:23 PM
+2025-02-27 16:33:33,490 - Jupiter Update Complete: [Source: User] - 2-27-25 : 4:33:33 PM
+2025-02-27 16:45:08,753 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 4:45:08 PM
+2025-02-27 16:45:09,470 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 4:45:09 PM
+2025-02-27 16:46:00,534 - Jupiter Update Complete: [Source: User] - 2-27-25 : 4:46:00 PM
+2025-02-27 16:49:02,870 - Jupiter Update Complete: [Source: User] - 2-27-25 : 4:49:02 PM
+2025-02-27 17:04:36,323 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 5:04:36 PM
+2025-02-27 17:04:36,998 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 5:04:36 PM
+2025-02-27 17:04:43,606 - Jupiter Update Complete: [Source: User] - 2-27-25 : 5:04:43 PM
+2025-02-27 17:05:03,134 - Jupiter Update Complete: [Source: User] - 2-27-25 : 5:05:03 PM
+2025-02-27 17:06:04,198 - Jupiter Update Complete: [Source: User] - 2-27-25 : 5:06:04 PM
+2025-02-27 17:15:18,841 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 5:15:18 PM
+2025-02-27 17:15:19,594 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 5:15:19 PM
+2025-02-27 17:25:29,339 - Jupiter Update Complete: [Source: User] - 2-27-25 : 5:25:29 PM
+2025-02-27 17:36:46,195 - Jupiter Update Complete: [Source: User] - 2-27-25 : 5:36:46 PM
+2025-02-27 17:47:14,647 - Jupiter Update Complete: [Source: User] - 2-27-25 : 5:47:14 PM
+2025-02-27 17:53:27,984 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 5:53:27 PM
+2025-02-27 17:53:28,699 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 5:53:28 PM
+2025-02-27 18:00:41,889 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 6:00:41 PM
+2025-02-27 18:00:42,570 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 6:00:42 PM
+2025-02-27 18:06:30,037 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 6:06:30 PM
+2025-02-27 18:06:30,719 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 6:06:30 PM
+2025-02-27 18:06:40,261 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:06:40 PM
+2025-02-27 18:09:17,845 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 6:09:17 PM
+2025-02-27 18:09:18,515 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 6:09:18 PM
+2025-02-27 18:12:23,937 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:12:23 PM
+2025-02-27 18:14:06,846 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:14:06 PM
+2025-02-27 18:15:16,580 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:15:16 PM
+2025-02-27 18:36:59,998 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:36:59 PM
+2025-02-27 18:37:06,477 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:37:06 PM
+2025-02-27 18:37:24,468 - Jupiter Update Complete: [Source: User] - 2-27-25 : 6:37:24 PM
+2025-02-27 19:03:53,691 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:03:53 PM
+2025-02-27 19:03:55,154 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:03:55 PM
+2025-02-27 19:06:54,316 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:06:54 PM
+2025-02-27 19:07:58,709 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:07:58 PM
+2025-02-27 19:11:51,506 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:11:51 PM
+2025-02-27 19:14:50,772 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:14:50 PM
+2025-02-27 19:14:51,915 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:14:51 PM
+2025-02-27 19:20:44,801 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:20:44 PM
+2025-02-27 19:26:23,406 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:26:23 PM
+2025-02-27 19:26:28,932 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:26:28 PM
+2025-02-27 19:30:24,801 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:30:24 PM
+2025-02-27 19:30:26,160 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:30:26 PM
+2025-02-27 19:50:28,348 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:50:28 PM
+2025-02-27 19:51:06,643 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:51:06 PM
+2025-02-27 19:51:07,871 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:51:07 PM
+2025-02-27 19:57:13,409 - Jupiter Update Complete: [Source: User] - 2-27-25 : 7:57:13 PM
+2025-02-27 19:57:58,867 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:57:58 PM
+2025-02-27 19:58:00,116 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 7:58:00 PM
+2025-02-27 20:03:07,405 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:03:07 PM
+2025-02-27 20:03:08,713 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:03:08 PM
+2025-02-27 20:06:13,529 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:06:13 PM
+2025-02-27 20:07:10,579 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:07:10 PM
+2025-02-27 20:07:58,595 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:07:58 PM
+2025-02-27 20:08:04,588 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:08:04 PM
+2025-02-27 20:08:49,289 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:08:49 PM
+2025-02-27 20:08:50,556 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:08:50 PM
+2025-02-27 20:12:45,842 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:12:45 PM
+2025-02-27 20:13:02,992 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:13:02 PM
+2025-02-27 20:13:04,199 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:13:04 PM
+2025-02-27 20:13:21,747 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:13:21 PM
+2025-02-27 20:17:22,737 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:17:22 PM
+2025-02-27 20:24:02,369 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:24:02 PM
+2025-02-27 20:24:03,594 - Launch Pad - Started [Source: System Start-up] - 2-27-25 : 8:24:03 PM
+2025-02-27 20:24:20,898 - Jupiter Update Complete: [Source: User] - 2-27-25 : 8:24:20 PM
+2025-02-28 06:10:02,648 - Jupiter Update Complete: [Source: User] - 2-28-25 : 6:10:02 AM
+2025-02-28 06:15:59,119 - Jupiter Update Complete: [Source: User] - 2-28-25 : 6:15:59 AM
+2025-02-28 06:41:12,376 - Jupiter Update Complete: [Source: User] - 2-28-25 : 6:41:12 AM
+2025-02-28 07:12:10,070 - Jupiter Update Complete: [Source: User] - 2-28-25 : 7:12:10 AM
+2025-02-28 12:36:12,247 - Launch Pad - Started [Source: System Start-up] - 2-28-25 : 12:36:12 PM
+2025-02-28 12:36:12,992 - Launch Pad - Started [Source: System Start-up] - 2-28-25 : 12:36:12 PM
+2025-02-28 12:44:27,176 - Launch Pad - Started [Source: System Start-up] - 2-28-25 : 12:44:27 PM
+2025-02-28 12:44:28,513 - Launch Pad - Started [Source: System Start-up] - 2-28-25 : 12:44:28 PM

@@ -216,6 +216,15 @@ def dashboard():
             last_update_time_only = "N/A"
             last_update_date_only = "N/A"
 
+        # New: Read last 5 operations log entries from file.
+        ops_log_entries = []
+        try:
+            with open("operations_log.txt", "r") as f:
+                lines = [line.strip() for line in f if line.strip()]
+                ops_log_entries = lines[-5:]
+        except Exception as ex:
+            logger.error(f"Error reading operations log: {ex}")
+
         return render_template(
             "dashboard.html",
             top_positions=top_positions,
@@ -232,7 +241,8 @@ def dashboard():
             totals=totals,
             last_update_time_only=last_update_time_only,
             last_update_date_only=last_update_date_only,
-            last_update_positions_source=last_update_positions_source
+            last_update_positions_source=last_update_positions_source,
+            ops_log_entries=ops_log_entries
         )
     except Exception as e:
         logger.error("Error retrieving dashboard data: %s", e, exc_info=True)
@@ -252,7 +262,8 @@ def dashboard():
             totals={},
             last_update_time_only="N/A",
             last_update_date_only="N/A",
-            last_update_positions_source="N/A"
+            last_update_positions_source="N/A",
+            ops_log_entries=[]
         )
 
 

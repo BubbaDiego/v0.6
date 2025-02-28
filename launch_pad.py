@@ -43,6 +43,7 @@ from positions.positions_bp import positions_bp
 from alerts.alerts_bp import alerts_bp
 from prices.prices_bp import prices_bp
 from dashboard.dashboard_bp import dashboard_bp  # Dashboard-specific routes and API endpoints
+from utils.operations_logger import OperationsLogger
 
 # *** NEW: Import the portfolio blueprint ***
 from portfolio.portfolio_bp import portfolio_bp
@@ -87,6 +88,12 @@ app.register_blueprint(portfolio_bp, url_prefix="/portfolio")
 
 # *** NEW: Register the Simulator Dashboard blueprint ***
 app.register_blueprint(simulator_bp, url_prefix="/simulator")
+
+# Call the OperationsLogger on startup with the source "System Start-up"
+
+op_logger = OperationsLogger(use_color=False)
+op_logger.log("Launch Pad - Started", source="System Start-up")
+
 
 # --- Alias endpoints if needed ---
 if "dashboard.index" in app.view_functions:
@@ -430,6 +437,12 @@ if __name__ == "__main__":
     monitor = False
     if len(sys.argv) > 1 and sys.argv[1] == "--monitor":
         monitor = True
+
+        # Call the OperationsLogger on startup with the source "System Start-up"
+        from utils.operations_logger import OperationsLogger
+
+        op_logger = OperationsLogger(use_color=False)
+        op_logger.log("Launch Pad - Started", source="System Start-up")
 
     if monitor:
         import subprocess
