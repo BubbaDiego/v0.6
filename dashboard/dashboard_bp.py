@@ -131,17 +131,17 @@ def dashboard():
     try:
         # Retrieve all positions.
         all_positions = PositionService.get_all_positions(DB_PATH) or []
-        positions = all_positions  # Use all positions for positions table.
-        liquidation_positions = all_positions  # Use all positions for liquidation bars.
-        # Sort positions for top and bottom based on current_travel_percent (defaulting to 0 if missing)
+        positions = all_positions
+        liquidation_positions = all_positions
         top_positions = sorted(all_positions, key=lambda pos: float(pos.get("current_travel_percent", 0)), reverse=True)
         bottom_positions = sorted(all_positions, key=lambda pos: float(pos.get("current_travel_percent", 0)))[:3]
 
         # Compute totals.
-        totals = {}
-        totals["total_collateral"] = sum(float(pos.get("collateral", 0)) for pos in positions)
-        totals["total_value"] = sum(float(pos.get("value", 0)) for pos in positions)
-        totals["total_size"] = sum(float(pos.get("size", 0)) for pos in positions)
+        totals = {
+            "total_collateral": sum(float(pos.get("collateral", 0)) for pos in positions),
+            "total_value": sum(float(pos.get("value", 0)) for pos in positions),
+            "total_size": sum(float(pos.get("size", 0)) for pos in positions)
+        }
         if positions:
             totals["avg_leverage"] = sum(float(pos.get("leverage", 0)) for pos in positions) / len(positions)
             totals["avg_travel_percent"] = sum(float(pos.get("current_travel_percent", 0)) for pos in positions) / len(positions)
@@ -156,24 +156,10 @@ def dashboard():
         portfolio_change = 0
         if portfolio_history:
             cutoff = datetime.now() - timedelta(hours=24)
-            filtered_history = []
-            for entry in portfolio_history:
-                snapshot = entry.get("snapshot_time")
-                if snapshot:
-                    try:
-                        t = datetime.fromisoformat(snapshot)
-                        if t >= cutoff:
-                            filtered_history.append(entry)
-                    except Exception as e:
-                        logger.error(f"Error parsing snapshot_time: {e}")
-            if filtered_history:
-                first_val = filtered_history[0].get("total_value", 0)
-                if first_val:
-                    portfolio_change = ((filtered_history[-1].get("total_value", 0) - first_val) / first_val) * 100
-            else:
-                first_val = portfolio_history[0].get("total_value", 0)
-                if first_val:
-                    portfolio_change = ((portfolio_history[-1].get("total_value", 0) - first_val) / first_val) * 100
+            filtered_history = [entry for entry in portfolio_history if entry.get("snapshot_time") and datetime.fromisoformat(entry.get("snapshot_time")) >= cutoff]
+            first_val = filtered_history[0].get("total_value", 0) if filtered_history else portfolio_history[0].get("total_value", 0)
+            if first_val:
+                portfolio_change = ((portfolio_history[-1].get("total_value", 0) - first_val) / first_val) * 100
 
         formatted_portfolio_value = "{:,.2f}".format(portfolio_value_num)
         formatted_portfolio_change = "{:,.1f}".format(portfolio_change)
@@ -184,15 +170,10 @@ def dashboard():
         sol_data = dl.get_latest_price("SOL") or {}
         sp500_data = dl.get_latest_price("S&P 500") or {}
 
-        btc_price = float(btc_data.get("current_price", 0))
-        eth_price = float(eth_data.get("current_price", 0))
-        sol_price = float(sol_data.get("current_price", 0))
-        sp500_value = float(sp500_data.get("current_price", 0))
-
-        formatted_btc_price = "{:,.2f}".format(btc_price)
-        formatted_eth_price = "{:,.2f}".format(eth_price)
-        formatted_sol_price = "{:,.2f}".format(sol_price)
-        formatted_sp500_value = "{:,.2f}".format(sp500_value)
+        formatted_btc_price = "{:,.2f}".format(float(btc_data.get("current_price", 0)))
+        formatted_eth_price = "{:,.2f}".format(float(eth_data.get("current_price", 0)))
+        formatted_sol_price = "{:,.2f}".format(float(sol_data.get("current_price", 0)))
+        formatted_sp500_value = "{:,.2f}".format(float(sp500_data.get("current_price", 0)))
 
         # Retrieve last update times for positions.
         update_times = dl.get_last_update_times() or {}
@@ -206,7 +187,6 @@ def dashboard():
                     last_update_time_only = dt_obj.strftime("%I:%M %p %Z").lstrip("0")
                     last_update_date_only = f"{dt_obj.month}/{dt_obj.day}/{dt_obj.strftime('%y')}"
                 except Exception as ex:
-                    logger.error(f"Error parsing converted last update time: {ex}")
                     last_update_time_only = "N/A"
                     last_update_date_only = "N/A"
             else:
@@ -216,14 +196,17 @@ def dashboard():
             last_update_time_only = "N/A"
             last_update_date_only = "N/A"
 
-        # New: Read last 5 operations log entries from file.
+        # Read last 5 operations log entries.
         ops_log_entries = []
         try:
             with open("operations_log.txt", "r") as f:
                 lines = [line.strip() for line in f if line.strip()]
                 ops_log_entries = lines[-5:]
-        except Exception as ex:
-            logger.error(f"Error reading operations log: {ex}")
+        except Exception:
+            pass
+
+        # Retrieve live alerts data.
+        alert_entries = dl.get_alerts() or []
 
         return render_template(
             "dashboard.html",
@@ -242,10 +225,10 @@ def dashboard():
             last_update_time_only=last_update_time_only,
             last_update_date_only=last_update_date_only,
             last_update_positions_source=last_update_positions_source,
-            ops_log_entries=ops_log_entries
+            ops_log_entries=ops_log_entries,
+            alert_entries=alert_entries
         )
     except Exception as e:
-        logger.error("Error retrieving dashboard data: %s", e, exc_info=True)
         return render_template(
             "dashboard.html",
             top_positions=[],
@@ -263,8 +246,10 @@ def dashboard():
             last_update_time_only="N/A",
             last_update_date_only="N/A",
             last_update_positions_source="N/A",
-            ops_log_entries=[]
+            ops_log_entries=[],
+            alert_entries=[]
         )
+
 
 
 @dashboard_bp.route("/dash_performance")
