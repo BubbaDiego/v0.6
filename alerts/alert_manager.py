@@ -110,7 +110,7 @@ class AlertManager:
             self.check_alerts()
             time.sleep(self.poll_interval)
 
-    def check_alerts(self):
+    def check_alerts(self, source: Optional[str] = None):
         if not self.monitor_enabled:
             logger.info("Alert monitoring disabled.")
             return
@@ -131,12 +131,37 @@ class AlertManager:
             blast_alert = self.check_blast_alert(pos)
             if blast_alert:
                 aggregated_alerts.append(blast_alert)
-
         price_alerts = self.check_price_alerts()
         aggregated_alerts.extend(price_alerts)
 
+        # Log to the operational log whether alerts were found or not.
+        from utils.operations_logger import OperationsLogger
+        op_logger = OperationsLogger()
+        now = datetime.now()
+        # Use a Windows-friendly formatting approach:
+        # First get a raw timestamp with leading zeros:
+        raw_timestamp = now.strftime("%m-%d-%y : %I:%M:%S %p")
+        # Remove any leading zeros from month, day, and hour:
+        month, day, year = raw_timestamp.split(" : ")[0].split("-")
+        time_part = raw_timestamp.split(" : ")[1]
+        hour, minute, sec_am = time_part.split(":", 2)
+        month = str(int(month))
+        day = str(int(day))
+        hour = str(int(hour))
+        timestamp_str = f"{month}-{day}-{year} : {hour}:{minute}:{sec_am}"
+
         if aggregated_alerts:
-            message = f"{len(aggregated_alerts)} alerts triggered:\n" + "\n".join(aggregated_alerts)
+            # Redish box (e.g., using a red alert icon) when alerts are found.
+            op_message = f"❌ {len(aggregated_alerts)} alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
+        else:
+            # Greensih box when no alerts are found.
+            op_message = f"✅ No alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
+            op_logger.log(op_message, source=source)
+
+        # Trigger alert call if there are any alerts.
+        if aggregated_alerts:
+            source_info = f" (source: {source})" if source else ""
+            message = f"{len(aggregated_alerts)} alerts triggered{source_info}:\n" + "\n".join(aggregated_alerts)
             self.send_call(message, "aggregated-alert")
         else:
             logger.info("No alerts triggered.")

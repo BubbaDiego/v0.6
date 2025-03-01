@@ -2,6 +2,7 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block extra_styles %}
+<meta charset="utf-8">
 <style>
   /* -------------------- Background Wallpaper -------------------- */
   body {
@@ -558,33 +559,16 @@
               {% else %}
                 <div class="alert alert-secondary p-1 mb-1" role="alert">
                   Alerts: None &nbsp; Source: Monitor
-                  <!-- If alerts are not appearing, please check your alert logging configuration in DataLocker.get_alerts() -->
                 </div>
               {% endif %}
             </div>
             <!-- Operation Log Column -->
             <div class="col-md-6">
               {% if ops_log_entries %}
-                {% for entry in ops_log_entries %}
-                  {% if "Launch Pad - Started" in entry %}
-                    <div class="alert alert-primary p-1 mb-1" role="alert">
-                      {{ entry }}
-                    </div>
-                  {% elif "Jupiter Update Complete:" in entry %}
-                    {% if "[Source: User]" in entry %}
-                      <div class="alert alert-success p-1 mb-1" role="alert">
-                        {{ entry }}
-                      </div>
-                    {% else %}
-                      <div class="alert alert-danger p-1 mb-1" role="alert">
-                        {{ entry }}
-                      </div>
-                    {% endif %}
-                  {% else %}
-                    <div class="alert alert-secondary p-1 mb-1" role="alert">
-                      {{ entry }}
-                    </div>
-                  {% endif %}
+                {% for entry_html in ops_log_entries %}
+                  <div class="alert alert-secondary p-1 mb-1" role="alert">
+                    {{ entry_html|safe }}
+                  </div>
                 {% endfor %}
               {% else %}
                 <div class="alert alert-secondary p-1 mb-1" role="alert">
@@ -790,116 +774,6 @@
   };
 
   document.addEventListener('DOMContentLoaded', function() {
-    const sizeChartContainer = document.getElementById("size-chart");
-    if (sizeChartContainer) {
-      fetch("/api/size_balance")
-        .then(response => response.json())
-        .then(data => {
-          const groups = data.groups;
-          const categories = groups.map(g => `${g.wallet} ${g.asset}`);
-          const longData = groups.map(g => g.long);
-          const shortData = groups.map(g => g.short);
-          const totalData = groups.map(g => g.total);
-
-          const chartOptions = {
-            series: [
-              { name: 'Long',  data: longData },
-              { name: 'Short', data: shortData },
-              { name: 'Total', data: totalData }
-            ],
-            chart: {
-              type: 'bar',
-              height: 400,
-              toolbar: { show: false }
-            },
-            grid: { padding: { bottom: 120 } },
-            plotOptions: {
-              bar: {
-                horizontal: false,
-                columnWidth: '55%',
-                endingShape: 'rounded'
-              }
-            },
-            dataLabels: { enabled: false },
-            stroke: { show: true, width: 2, colors: ['transparent'] },
-            colors: ['#0d6efd', '#20c997', '#ab79e8'],
-            xaxis: {
-              categories: categories,
-              labels: { show: true }
-            },
-            yaxis: {
-              title: { text: 'Size Amount' },
-              labels: {
-                formatter: function(val) {
-                  return Math.round(val / 1000) + "k";
-                }
-              }
-            },
-            fill: { opacity: 1 },
-            tooltip: { y: { formatter: (val) => val } },
-            legend: { show: false },
-            annotations: {
-              yaxis: [
-                {
-                  y: data.avg_short || 2683.33,
-                  borderColor: '#20c997',
-                  label: {
-                    borderColor: '#20c997',
-                    style: { color: '#fff', background: '#20c997' },
-                    text: 'Avg Short'
-                  },
-                  strokeDashArray: 4
-                },
-                {
-                  y: data.avg_long || 4500,
-                  borderColor: '#0d6efd',
-                  label: {
-                    borderColor: '#0d6efd',
-                    style: { color: '#fff', background: '#0d6efd' },
-                    text: 'Avg Long'
-                  },
-                  strokeDashArray: 4
-                }
-              ]
-            }
-          };
-          const sizeChart = new ApexCharts(sizeChartContainer, chartOptions);
-          sizeChart.render();
-
-          const sumLong = longData.reduce((acc, val) => acc + val, 0);
-          const sumShort = shortData.reduce((acc, val) => acc + val, 0);
-          const sumTotal = totalData.reduce((acc, val) => acc + val, 0);
-
-          function formatK(num) {
-            return num >= 1000 ? (num / 1000).toFixed(1) + "K" : num;
-          }
-          document.getElementById("legend-long-value").textContent = formatK(sumLong);
-          document.getElementById("legend-short-value").textContent = formatK(sumShort);
-          document.getElementById("legend-total-value").textContent = formatK(sumTotal);
-
-          const labelsContainer = document.querySelector(".asset-labels");
-          labelsContainer.innerHTML = "";
-          groups.forEach(g => {
-            const col = document.createElement("div");
-            col.className = "size-chart-col";
-            const walletImg = document.createElement("img");
-            walletImg.className = "wallet-icon";
-            walletImg.src = `/static/images/${g.wallet.toLowerCase()}.jpg`;
-            walletImg.alt = g.wallet;
-            const assetImg = document.createElement("img");
-            assetImg.className = "asset-icon2";
-            assetImg.src = `/static/images/${g.asset.toLowerCase()}_logo.png`;
-            assetImg.alt = g.asset;
-            col.appendChild(walletImg);
-            col.appendChild(assetImg);
-            labelsContainer.appendChild(col);
-          });
-        })
-        .catch(err => console.error("Error fetching size balance data:", err));
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", function() {
     const container = document.querySelector('.update-button[data-type="jupiter"]');
     if (!container) return;
     const img = container.querySelector('img');

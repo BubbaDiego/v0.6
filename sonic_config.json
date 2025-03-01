@@ -244,7 +244,7 @@
   "alert_cooldown_seconds": 6000,
   "call_refractory_period": 1,
   "theme_config": {
-    "selected_profile": "profile1",
+    "selected_profile": "profile4",
     "profiles": {
       "profile1": {
         "title_bar": {
@@ -352,7 +352,7 @@
     "account_sid": "ACb606788ada5dccbfeeebed0f440099b3",
     "auth_token": "f0826247cb619d552a501dffc6b07125",
     "flow_sid": "FW5b3bf49ee04af4d23a118b613bbc0df2",
-    "to_phone": "+16199804758",
+    "to_phone": "+16199804759",
     "from_phone": "+18336913467"
   }
 }

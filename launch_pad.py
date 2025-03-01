@@ -91,9 +91,12 @@ app.register_blueprint(simulator_bp, url_prefix="/simulator")
 
 # Call the OperationsLogger on startup with the source "System Start-up"
 
-op_logger = OperationsLogger(use_color=False)
-op_logger.log("Launch Pad - Started", source="System Start-up")
-
+op_logger = OperationsLogger()
+op_logger.log(
+    "Launch Pad - Started",
+    source="System Start-up",
+    operation_type="Start Launch Pad"
+)
 
 # --- Alias endpoints if needed ---
 if "dashboard.index" in app.view_functions:
@@ -403,6 +406,36 @@ def database_viewer():
     portfolio_data = []
     return render_template("database_viewer.html", db_data=db_data, portfolio_data=portfolio_data)
 
+@app.route('/system_config', methods=['GET'], endpoint='system_config_page')
+def system_config_page():
+    config = load_config()
+    return render_template('system_config.html', config=config)
+
+
+
+@app.route('/update_system_config', methods=['POST'])
+def update_system_config():
+    # Load the current configuration
+    config = load_config()
+
+    # Update system_config parameters
+    config['system_config']['db_path'] = request.form.get('db_path')
+    config['system_config']['log_file'] = request.form.get('log_file')
+
+    # Update twilio_config parameters
+    config['twilio_config']['account_sid'] = request.form.get('account_sid')
+    config['twilio_config']['auth_token'] = request.form.get('auth_token')
+    config['twilio_config']['flow_sid'] = request.form.get('flow_sid')
+    config['twilio_config']['to_phone'] = request.form.get('to_phone')
+    config['twilio_config']['from_phone'] = request.form.get('from_phone')
+
+    # Write the updated configuration back to the JSON file
+    update_config(config)
+
+    # Optionally, flash a success message
+    flash("Configuration updated successfully!", "success")
+    return redirect(url_for('system_config_page'))
+
 
 @app.context_processor
 def update_theme_context():
@@ -412,12 +445,10 @@ def update_theme_context():
             conf = json.load(f)
     except Exception as e:
         conf = {}
-    theme = {}
     theme_config = conf.get("theme_config", {})
-    selected = theme_config.get("selected_profile", "")
-    if selected:
-        theme = theme_config.get("profiles", {}).get(selected, {})
-    return dict(theme=theme)
+    # Return the entire theme_config so your template can access both 'selected_profile' and 'profiles'
+    return dict(theme=theme_config)
+
 
 
 # NEW: Global update route alias using the update_jupiter function from positions_bp.

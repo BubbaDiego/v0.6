@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}System Configuration{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>System Configuration</h1>
+  <form method="post" action="{{ url_for('update_system_config') }}">
+    <!-- Section: Database & Log Paths -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Database & Log Paths</h3>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="db_path" class="form-label">Database Path</label>
+          <input type="text" class="form-control" id="db_path" name="db_path" value="{{ config.system_config.db_path }}">
+        </div>
+        <div class="mb-3">
+          <label for="log_file" class="form-label">Log File Path</label>
+          <input type="text" class="form-control" id="log_file" name="log_file" value="{{ config.system_config.log_file }}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Twilio Configuration -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Twilio Configuration</h3>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="account_sid" class="form-label">Account SID</label>
+          <input type="text" class="form-control" id="account_sid" name="account_sid" value="{{ config.twilio_config.account_sid }}">
+        </div>
+        <div class="mb-3">
+          <label for="auth_token" class="form-label">Auth Token</label>
+          <input type="text" class="form-control" id="auth_token" name="auth_token" value="{{ config.twilio_config.auth_token }}">
+        </div>
+        <div class="mb-3">
+          <label for="flow_sid" class="form-label">Flow SID</label>
+          <input type="text" class="form-control" id="flow_sid" name="flow_sid" value="{{ config.twilio_config.flow_sid }}">
+        </div>
+        <div class="mb-3">
+          <label for="to_phone" class="form-label">To Phone</label>
+          <input type="text" class="form-control" id="to_phone" name="to_phone" value="{{ config.twilio_config.to_phone }}">
+        </div>
+        <div class="mb-3">
+          <label for="from_phone" class="form-label">From Phone</label>
+          <input type="text" class="form-control" id="from_phone" name="from_phone" value="{{ config.twilio_config.from_phone }}">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Configuration</button>
+  </form>
+</div>
+{% endblock %}

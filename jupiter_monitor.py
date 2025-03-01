@@ -27,16 +27,30 @@ def call_update_jupiter():
 
 def main():
     loop_counter = 0
-    # Create an instance of the OperationsLogger from the external module.
     op_logger = OperationsLogger()
     logging.info("Starting always‑on task for update_jupiter. URL: %s", URL)
     while True:
         loop_counter += 1
         logging.info("Loop count: %d. Calling URL: %s", loop_counter, URL)
         call_update_jupiter()
-        # Log the operation via the external operations logger.
-        op_logger.log(f"Jupiter Monitor - Update Jupiter - Successfull (Loop count: {loop_counter})")
-        time.sleep(SLEEP_INTERVAL)
+
+        # Format the current timestamp in a cross-platform way.
+        import datetime
+        now = datetime.datetime.now()
+        raw_timestamp = now.strftime("%m-%d-%y : %I:%M:%S %p")
+        # Remove leading zeros from month, day, and hour.
+        month, day, year = raw_timestamp.split(" : ")[0].split("-")
+        time_part = raw_timestamp.split(" : ")[1]
+        hour, minute, sec_am = time_part.split(":", 2)
+        month = str(int(month))
+        day = str(int(day))
+        hour = str(int(hour))
+       # timestamp_str = f"{month}-{day}-{year} : {hour}:{minute}:{sec_am}"
+
+        # Log the operation. The OperationsLogger will automatically append the formatted timestamp.
+        op_logger.log("Jupiter Positions Updated", source="Monitor", color="green", icon="✅")
+
+    time.sleep(SLEEP_INTERVAL)
 
 if __name__ == '__main__':
     main()
