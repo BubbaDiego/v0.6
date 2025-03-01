@@ -1,6 +1,39 @@
 {% extends "base.html" %}
 {% block title %}System Configuration{% endblock %}
 
+{% block extra_styles %}
+<style>
+  /* Set background wallpaper and style card headers if needed */
+  body {
+    background-image: url("{{ url_for('static', filename='images/sys_config_wall.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .card-header {
+    background-color: #6c757d !important;
+    color: #ffffff;
+  }
+  /* Ensure the System Configuration page title is white */
+  h1 {
+    color: #ffffff;
+  }
+  /* Style for the circular Twilio button */
+  .twilio-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  .twilio-btn img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
   <h1>System Configuration</h1>
@@ -24,8 +57,12 @@
 
     <!-- Section: Twilio Configuration -->
     <div class="card mb-4">
-      <div class="card-header">
-        <h3>Twilio Configuration</h3>
+      <div class="card-header d-flex align-items-center">
+        <!-- Circle button with Twilio image in the upper far left -->
+        <button type="button" class="twilio-btn me-2">
+          <img src="{{ url_for('static', filename='images/twilio.png') }}" alt="Twilio">
+        </button>
+        <h3 class="mb-0" style="color: white;">Twilio Configuration</h3>
       </div>
       <div class="card-body">
         <div class="mb-3">
@@ -48,10 +85,46 @@
           <label for="from_phone" class="form-label">From Phone</label>
           <input type="text" class="form-control" id="from_phone" name="from_phone" value="{{ config.twilio_config.from_phone }}">
         </div>
+        <!-- New Test Button -->
+        <div class="mb-3">
+          <button type="button" id="test-twilio-btn" class="btn btn-secondary">Test Twilio</button>
+        </div>
       </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Save Configuration</button>
   </form>
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const testBtn = document.getElementById("test-twilio-btn");
+    if(testBtn){
+      testBtn.addEventListener("click", () => {
+        fetch("{{ url_for('test_twilio') }}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: new URLSearchParams({
+            message: "Test message triggered from System Config"
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if(data.success) {
+            alert("Twilio triggered successfully! SID: " + data.sid);
+          } else {
+            alert("Error triggering Twilio: " + data.error);
+          }
+        })
+        .catch(error => {
+          alert("AJAX error: " + error);
+        });
+      });
+    }
+  });
+</script>
 {% endblock %}

@@ -1,33 +1,41 @@
-import os
+import json
 from twilio.rest import Client
 
-# Set your Twilio credentials and other configuration as environment variables
-os.environ['TWILIO_ACCOUNT_SID'] = 'ACb606788ada5dccbfeeebed0f440099b3'
-os.environ['TWILIO_AUTH_TOKEN'] = 'f0826247cb619d552a501dffc6b07125'
-os.environ['TWILIO_FLOW_SID'] = 'FW5b3bf49ee04af4d23a118b613bbc0df2'
-os.environ['TWILIO_TO_PHONE'] = '+16199804758'
-os.environ['TWILIO_FROM_PHONE'] = '+18336913467'
+CONFIG_FILE = 'sonic_config.json'
+
+
+def load_config():
+    """Load configuration from the JSON config file."""
+    try:
+        with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        return config
+    except Exception as e:
+        raise ValueError(f"Error loading config file '{CONFIG_FILE}': {e}")
 
 
 def trigger_twilio_flow(custom_message):
     """
-    Trigger a Twilio Studio Flow execution with a custom message.
+    Trigger a Twilio Studio Flow execution with a custom message using configuration from the JSON file.
     """
-    # Retrieve credentials and config from environment variables
-    account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
-    auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
-    flow_sid = os.environ.get('TWILIO_FLOW_SID')
-    to_phone = os.environ.get('TWILIO_TO_PHONE')
-    from_phone = os.environ.get('TWILIO_FROM_PHONE')
+    config = load_config()
+    twilio_config = config.get("twilio_config")
+    if not twilio_config:
+        raise ValueError("Twilio configuration is missing from config file.")
 
-    # Validate that all variables are set
+    account_sid = twilio_config.get('account_sid')
+    auth_token = twilio_config.get('auth_token')
+    flow_sid = twilio_config.get('flow_sid')
+    to_phone = twilio_config.get('to_phone')
+    from_phone = twilio_config.get('from_phone')
+
     if not all([account_sid, auth_token, flow_sid, to_phone, from_phone]):
-        raise ValueError("One or more Twilio configuration variables are missing.")
+        raise ValueError("One or more Twilio configuration variables are missing from config file.")
 
     # Initialize the Twilio client
     client = Client(account_sid, auth_token)
 
-    # Pass the custom message as a parameter to your Studio Flow.
+    # Trigger the Studio Flow with the custom message
     execution = client.studio.v2.flows(flow_sid).executions.create(
         to=to_phone,
         from_=from_phone,
@@ -39,7 +47,6 @@ def trigger_twilio_flow(custom_message):
 
 if __name__ == '__main__':
     try:
-        # Customize your message here:
         custom_msg = "Bananas and cream!"
         execution_sid = trigger_twilio_flow(custom_msg)
         print(f"Execution started successfully, SID: {execution_sid}")

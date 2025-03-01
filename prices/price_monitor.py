@@ -7,7 +7,7 @@ import asyncio
 import logging
 from typing import Dict, List
 
-from config.config_manager import load_config
+#from config.config_manager import load_config
 from data.data_locker import DataLocker
 from prices.coingecko_fetcher import fetch_current_coingecko
 from prices.coinmarketcap_fetcher import fetch_current_cmc, fetch_historical_cmc

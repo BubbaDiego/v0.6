@@ -7,6 +7,7 @@ import sqlite3
 from typing import Dict, Any, List, Optional
 from datetime import datetime
 from twilio.rest import Client
+from config.unified_config_manager import UnifiedConfigManager
 
 # Minimal Logging Configuration
 logger = logging.getLogger("AlertManagerLogger")
@@ -84,16 +85,23 @@ class AlertManager:
         # Import dependencies from your project.
         from data.data_locker import DataLocker
         from utils.calc_services import CalcServices
+
         self.data_locker = DataLocker(self.db_path)
         self.calc_services = CalcServices()
 
-        from config.config_manager import load_config
+        # Get a DB connection from your DataLocker.
         db_conn = self.data_locker.get_db_connection()
-        self.config = load_config(self.config_path, db_conn)
+        # Initialize the unified configuration manager.
+        config_manager = UnifiedConfigManager(self.config_path, db_conn=db_conn)
+        # Load the configuration as a plain dictionary.
+        self.config = config_manager.load_config()
+
+        # Access configuration values as dictionary keys.
         self.twilio_config = self.config.get("twilio_config", {})
         self.cooldown = self.config.get("alert_cooldown_seconds", 900)
         self.call_refractory_period = self.config.get("call_refractory_period", 3600)
         self.monitor_enabled = self.config.get("system_config", {}).get("alert_monitor_enabled", True)
+
         logger.info("AlertManager initialized.")
 
     def reload_config(self):

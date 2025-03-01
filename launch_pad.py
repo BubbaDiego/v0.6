@@ -33,7 +33,8 @@ from flask_socketio import SocketIO, emit
 
 # Import configuration and data modules
 from config.config_constants import DB_PATH, CONFIG_PATH, BASE_DIR
-from config.config_manager import load_config, update_config, deep_merge_dicts
+#from config.config_manager import load_config, update_config, deep_merge_dicts
+from config.unified_config_manager import UnifiedConfigManager
 from data.data_locker import DataLocker
 from positions.position_service import PositionService
 from prices.price_monitor import PriceMonitor
@@ -406,36 +407,51 @@ def database_viewer():
     portfolio_data = []
     return render_template("database_viewer.html", db_data=db_data, portfolio_data=portfolio_data)
 
-@app.route('/system_config', methods=['GET'], endpoint='system_config_page')
+@app.route("/system_config", methods=["GET"])
 def system_config_page():
-    config = load_config()
-    return render_template('system_config.html', config=config)
+    # Get a database connection from your DataLocker.
+    dl = DataLocker.get_instance(DB_PATH)
+    db_conn = dl.get_db_connection()
+    # Initialize the UnifiedConfigManager with your config path and the DB connection.
+    config_manager = UnifiedConfigManager(CONFIG_PATH, db_conn=db_conn)
+    # Load the configuration as a dictionary.
+    config = config_manager.load_config()
+    # Render the system_config template with the loaded config.
+    return render_template("system_config.html", config=config)
 
 
-
-@app.route('/update_system_config', methods=['POST'])
+@app.route("/update_system_config", methods=["POST"])
 def update_system_config():
-    # Load the current configuration
-    config = load_config()
+    # Get the database connection using DataLocker
+    dl = DataLocker.get_instance(DB_PATH)
+    db_conn = dl.get_db_connection()
 
-    # Update system_config parameters
-    config['system_config']['db_path'] = request.form.get('db_path')
-    config['system_config']['log_file'] = request.form.get('log_file')
+    # Initialize the UnifiedConfigManager with the config file path and DB connection
+    config_manager = UnifiedConfigManager(CONFIG_PATH, db_conn=db_conn)
 
-    # Update twilio_config parameters
-    config['twilio_config']['account_sid'] = request.form.get('account_sid')
-    config['twilio_config']['auth_token'] = request.form.get('auth_token')
-    config['twilio_config']['flow_sid'] = request.form.get('flow_sid')
-    config['twilio_config']['to_phone'] = request.form.get('to_phone')
-    config['twilio_config']['from_phone'] = request.form.get('from_phone')
+    # Build a new configuration dictionary from form data:
+    new_config = {}
 
-    # Write the updated configuration back to the JSON file
-    update_config(config)
+    # Update system_config section
+    new_config.setdefault("system_config", {})["db_path"] = request.form.get("db_path")
+    new_config["system_config"]["log_file"] = request.form.get("log_file")
 
-    # Optionally, flash a success message
+    # Update twilio_config section
+    new_config["twilio_config"] = {
+        "account_sid": request.form.get("account_sid"),
+        "auth_token": request.form.get("auth_token"),
+        "flow_sid": request.form.get("flow_sid"),
+        "to_phone": request.form.get("to_phone"),
+        "from_phone": request.form.get("from_phone")
+    }
+
+    # Optionally, update other sections as needed.
+
+    # Merge and save the updated configuration using the unified manager
+    config_manager.update_config(new_config)
+
     flash("Configuration updated successfully!", "success")
-    return redirect(url_for('system_config_page'))
-
+    return redirect(url_for("system_config_page"))
 
 @app.context_processor
 def update_theme_context():
@@ -449,6 +465,17 @@ def update_theme_context():
     # Return the entire theme_config so your template can access both 'selected_profile' and 'profiles'
     return dict(theme=theme_config)
 
+from flask import jsonify, request
+@app.route('/test_twilio', methods=["POST"])
+def test_twilio():
+    from twilio_message_api import trigger_twilio_flow
+    try:
+        # Get the test message from the POST data; use a default if not provided.
+        message = request.form.get("message", "Test message from system config")
+        execution_sid = trigger_twilio_flow(message)
+        return jsonify({"success": True, "sid": execution_sid})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 
 # NEW: Global update route alias using the update_jupiter function from positions_bp.
