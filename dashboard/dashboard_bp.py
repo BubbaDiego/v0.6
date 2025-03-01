@@ -96,7 +96,7 @@ def compute_value_composition():
         elif p.get("position_type", "").upper() == "SHORT":
             short_total += value
     total = long_total + short_total
-    logger.debug(f"[Value Composition] Totals: long_total={long_total}, short_total={short_total}, overall total={total}")
+    logger.debug(f"[Value Composition] Totals: long_total={long_total}, short_total={short_total}, overall total: {total}")
     if total > 0:
         series = [round(long_total / total * 100), round(short_total / total * 100)]
     else:
@@ -168,7 +168,8 @@ def dashboard():
         btc_data = dl.get_latest_price("BTC") or {}
         eth_data = dl.get_latest_price("ETH") or {}
         sol_data = dl.get_latest_price("SOL") or {}
-        sp500_data = dl.get_latest_price("S&P 500") or {}
+        # Updated key for S&P500 to match the stored key in price_monitor.py
+        sp500_data = dl.get_latest_price("SP500") or {}
 
         formatted_btc_price = "{:,.2f}".format(float(btc_data.get("current_price", 0)))
         formatted_eth_price = "{:,.2f}".format(float(eth_data.get("current_price", 0)))
@@ -249,7 +250,6 @@ def dashboard():
             ops_log_entries=[],
             alert_entries=[]
         )
-
 
 
 @dashboard_bp.route("/dash_performance")

@@ -1,3 +1,8 @@
+import sys
+import os
+# Add the parent directory of this file to sys.path so that 'config' can be found.
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import asyncio
 import logging
 from typing import Dict, List
@@ -33,8 +38,11 @@ class PriceMonitor:
 
         # 4) Parse price configuration.
         price_cfg = self.config.get("price_config", {})
-        # The assets list now may include "SP500" (in addition to crypto symbols)
+        # Default assets include "BTC", "ETH", and "SP500"
         self.assets = price_cfg.get("assets", ["BTC", "ETH", "SP500"])
+        # Ensure "SP500" is always in the asset list, regardless of config.
+        if "SP500" not in [asset.upper() for asset in self.assets]:
+            self.assets.append("SP500")
         self.currency = price_cfg.get("currency", "USD")
         self.cmc_api_key = price_cfg.get("cmc_api_key")
 
@@ -57,7 +65,7 @@ class PriceMonitor:
             tasks.append(self._fetch_coinpaprika_prices())
         if self.binance_enabled:
             tasks.append(self._fetch_binance_prices())
-        # Added support for S&P500:
+        # Added support for S&P500: will always be in self.assets now.
         if "SP500" in [a.upper() for a in self.assets]:
             tasks.append(self._fetch_sp500_prices())
 
@@ -180,7 +188,7 @@ class PriceMonitor:
                 # No last known price available; insert a default value.
                 price = 4000.0
                 logger.info("No last known S&P500 price available; using default price: %s", price)
-        self.data_locker.increment_api_report_counter("S&P500")
+        self.data_locker.increment_api_report_counter("SP500")
         logger.info("Fetched S&P500 price: %s", price)
         return {"SP500": price}
 
