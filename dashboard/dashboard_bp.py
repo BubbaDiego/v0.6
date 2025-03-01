@@ -168,7 +168,6 @@ def dashboard():
         btc_data = dl.get_latest_price("BTC") or {}
         eth_data = dl.get_latest_price("ETH") or {}
         sol_data = dl.get_latest_price("SOL") or {}
-        # Updated key for S&P500 to match the stored key in price_monitor.py
         sp500_data = dl.get_latest_price("SP500") or {}
 
         formatted_btc_price = "{:,.2f}".format(float(btc_data.get("current_price", 0)))
@@ -335,4 +334,24 @@ def api_collateral_composition():
         return jsonify({"series": series})
     except Exception as e:
         logger.error(f"Error in api_collateral_composition: {e}", exc_info=True)
+        return jsonify({"error": str(e)}), 500
+
+
+# New endpoint: API to get asset percent changes based on the universal time scale.
+@dashboard_bp.route("/api/asset_percent_changes")
+def api_asset_percent_changes():
+    try:
+        hours = int(request.args.get("hours", 24))
+        # For demonstration, adjust the dummy percent changes based on the time scale.
+        # Shorter timeframe yields larger percent changes.
+        factor = 24 / hours
+        asset_changes = {
+            "BTC": 2.34 * factor,
+            "ETH": -1.23 * factor,
+            "SOL": 0.56 * factor,
+            "SP500": -4.23 * factor
+        }
+        return jsonify(asset_changes)
+    except Exception as e:
+        logger.error(f"Error in api_asset_percent_changes: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
