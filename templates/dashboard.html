@@ -78,8 +78,8 @@
     border: 1px solid #ccc;
   }
   .asset-change {
-    font-size: 1rem; /* Reduced font size */
-    font-weight: bold; /* Bold text */
+    font-size: 1rem;
+    font-weight: bold;
     margin-left: 5px;
   }
   .progress-text {
@@ -87,6 +87,23 @@
     font-weight: bold;
     color: white;
     z-index: 20;
+  }
+  /* -------------------- Logs Header Icon & Title Styling -------------------- */
+  .logs-card .card-header .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logs-card .card-header .col-md-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .log-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 1.5rem;
   }
   /* -------------------- Dashboard Layout -------------------- */
   .card-container {
@@ -176,7 +193,6 @@
     font-weight: bold;
     margin: 0;
   }
-  /* Updated: Increase icon size and add spacing */
   .status-col-left .card-body .col img {
     height: 30px !important;
     margin-top: 0;
@@ -193,7 +209,6 @@
   .composition-header h3 {
     margin: 0;
     text-align: center;
-    /* Use card-title styling similar to others */
     font-size: 1.5rem;
     font-weight: bold;
   }
@@ -248,6 +263,16 @@
   .logs-card .card-header {
     padding: 0.25rem 0.5rem;
   }
+  .logs-card .card-header .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logs-card .card-header .col-md-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .logs-card .card-body {
     padding: 0.25rem;
   }
@@ -284,7 +309,7 @@
             <!-- BTC -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <div class="d-flex align-items-center">
-                <img src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC">
+                <img class="asset-icon" src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC">
                 <span class="asset-change" data-asset="BTC"></span>
               </div>
               <h5 class="fw-bold mb-0">${{ btc_price }}</h5>
@@ -292,7 +317,7 @@
             <!-- ETH -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <div class="d-flex align-items-center">
-                <img src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH">
+                <img class="asset-icon" src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH">
                 <span class="asset-change" data-asset="ETH"></span>
               </div>
               <h5 class="fw-bold mb-0">${{ eth_price }}</h5>
@@ -300,7 +325,7 @@
             <!-- SOL -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <div class="d-flex align-items-center">
-                <img src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL">
+                <img class="asset-icon" src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL">
                 <span class="asset-change" data-asset="SOL"></span>
               </div>
               <h5 class="fw-bold mb-0">${{ sol_price }}</h5>
@@ -308,7 +333,7 @@
             <!-- S&P500 -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
               <div class="d-flex align-items-center">
-                <img src="{{ url_for('static', filename='images/sp500.png') }}" alt="S&P 500">
+                <img class="asset-icon" src="{{ url_for('static', filename='images/sp500.png') }}" alt="S&P 500">
                 <span class="asset-change" data-asset="SP500"></span>
               </div>
               <h5 class="fw-bold mb-0">{{ sp500_value }}</h5>
@@ -499,10 +524,10 @@
         <div class="card-header">
           <div class="row w-100">
             <div class="col-md-6 text-center">
-              <h3 class="card-title mb-0">Alerts Log</h3>
+              <h3 class="card-title mb-0"><span class="log-icon">⚠️</span> Alert Log</h3>
             </div>
             <div class="col-md-6 text-center">
-              <h3 class="card-title mb-0">Operation Log</h3>
+              <h3 class="card-title mb-0"><span class="log-icon">🔧</span> Operation Log</h3>
             </div>
           </div>
         </div>
@@ -904,22 +929,26 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Apply theme based on localStorage and base.html's title support.
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.body.classList.add(currentTheme + '-mode');
     const themeToggle = document.getElementById('themeToggle');
-    if (!themeToggle) return;
-    themeToggle.checked = (currentTheme === 'dark');
-    themeToggle.addEventListener('change', function() {
-      if (this.checked) {
-        document.body.classList.remove('light-mode');
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.body.classList.remove('dark-mode');
-        document.body.classList.add('light-mode');
-        localStorage.setItem('theme', 'light');
-      }
-    });
+    if (themeToggle) {
+      themeToggle.checked = (currentTheme === 'dark');
+      themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+          document.body.classList.remove('light-mode');
+          document.body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-mode');
+          document.body.classList.add('light-mode');
+          localStorage.setItem('theme', 'light');
+        }
+        // Refresh the page to ensure all theme changes take effect.
+        window.location.reload();
+      });
+    }
   });
 </script>
 {% endblock %}

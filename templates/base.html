@@ -56,48 +56,45 @@
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
-            <!-- Color Mode Toggler -->
+            <!-- Title Bar Theme Toggler (manages themes dynamically) -->
             <li class="nav-item dropdown">
               <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                 <span class="theme-icon-active"><i class="my-1"></i></span>
-                <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                <span class="d-lg-none ms-2" id="bd-theme-text">Themes</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" style="--bs-dropdown-min-width: 8rem">
+                <!-- The options here can be modified per your new theme management -->
                 <li>
-                  <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="false">
+                  <button type="button" class="dropdown-item d-flex align-items-center active theme-option" data-profile="profile1">
                     <i class="bi bi-sun-fill me-2"></i>
-                    Light
+                    Profile 1
                     <i class="bi bi-check-lg ms-auto d-none"></i>
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                  <button type="button" class="dropdown-item d-flex align-items-center theme-option" data-profile="profile2">
                     <i class="bi bi-moon-fill me-2"></i>
-                    Dark
+                    Profile 2
                     <i class="bi bi-check-lg ms-auto d-none"></i>
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+                  <button type="button" class="dropdown-item d-flex align-items-center theme-option" data-profile="profile3">
                     <i class="bi bi-circle-fill-half-stroke me-2"></i>
-                    Auto
+                    Profile 3
+                    <i class="bi bi-check-lg ms-auto d-none"></i>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center theme-option" data-profile="profile4">
+                    <i class="bi bi-palette me-2"></i>
+                    Profile 4
                     <i class="bi bi-check-lg ms-auto d-none"></i>
                   </button>
                 </li>
               </ul>
             </li>
-            <!-- Theme Profiles Toggler -->
-            <li class="nav-item dropdown">
-              <button class="btn btn-link nav-link dropdown-toggle" id="themeProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Theme Profiles
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeProfileDropdown" style="--bs-dropdown-min-width: 8rem">
-                <li><a class="dropdown-item theme-option" data-profile="profile1" href="#">Profile 1</a></li>
-                <li><a class="dropdown-item theme-option" data-profile="profile2" href="#">Profile 2</a></li>
-                <li><a class="dropdown-item theme-option" data-profile="profile3" href="#">Profile 3</a></li>
-                <li><a class="dropdown-item theme-option" data-profile="profile4" href="#">Profile 4</a></li>
-              </ul>
-            </li>
+            <!-- End Theme Toggler -->
           </ul>
         </div>
       </nav>
@@ -126,13 +123,7 @@
                   <p>Dashboard</p>
                 </a>
               </li>
-              <!-- New Menu Item for Jupiter Trade in the Sidebar -->
-              <li class="nav-item">
-                <a href="{{ url_for('jupiter_trade') }}" class="nav-link">
-                  <i class="nav-icon bi bi-rocket-fill"></i>
-                  <p>Jupiter Trade</p>
-                </a>
-              </li>
+              <!-- Removed Jupiter Trade -->
               <li class="nav-item">
                 <a href="{{ url_for('positions.positions_table') }}" class="nav-link">
                   <i class="nav-icon bi bi-table"></i>
@@ -182,25 +173,7 @@
                   <p>Database</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ url_for('dashboard.theme_options') }}" class="nav-link">
-                  <i class="nav-icon bi bi-palette-fill"></i>
-                  <p>Theme</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url_for('console_view') }}" class="nav-link">
-                  <i class="nav-icon bi bi-terminal"></i>
-                  <p>Console View</p>
-                </a>
-              </li>
-              <!-- ChatGPT Side Menu Item -->
-              <li class="nav-item">
-                <a href="{{ url_for('dashboard.theme_options') }}" class="nav-link">
-                  <i class="nav-icon bi bi-chat-left-text"></i>
-                  <p>ChatGPT</p>
-                </a>
-              </li>
+              <!-- Removed Theme, Console View, and ChatGPT menu items -->
               <!-- New Blast Radius Menu Item -->
               <li class="nav-item">
                 <a href="{{ url_for('positions.blast_radius') }}" class="nav-link">
