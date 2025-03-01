@@ -1,13 +1,13 @@
 import sys
 import os
-# Add the parent directory of this file to sys.path so that 'config' can be found.
+# Add the parent directory of this file to sys.path so that modules can be found.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import asyncio
 import logging
 from typing import Dict, List
 
-#from config.config_manager import load_config
+from config.unified_config_manager import UnifiedConfigManager  # Updated to use the unified config manager.
 from data.data_locker import DataLocker
 from prices.coingecko_fetcher import fetch_current_coingecko
 from prices.coinmarketcap_fetcher import fetch_current_cmc, fetch_historical_cmc
@@ -26,8 +26,9 @@ class PriceMonitor:
         self.data_locker = DataLocker(self.db_path)
         self.db_conn = self.data_locker.get_db_connection()
 
-        # 2) Load final config as a pure dict.
-        self.config = load_config(self.config_path, self.db_conn)
+        # 2) Use UnifiedConfigManager to load the configuration.
+        self.ucm = UnifiedConfigManager(self.config_path, db_conn=self.db_conn)
+        self.config = self.ucm.load_config()
 
         # 3) Read API settings.
         api_cfg = self.config.get("api_config", {})

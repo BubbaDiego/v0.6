@@ -198,7 +198,7 @@
     },
     "profit_ranges": {
       "enabled": true,
-      "low": 46.0,
+      "low": 46.23,
       "low_notifications": {
         "call": true,
         "sms": true,
@@ -350,9 +350,9 @@
   },
   "twilio_config": {
     "account_sid": "ACb606788ada5dccbfeeebed0f440099b3",
-    "auth_token": "f0826247cb619d552a501dffc6b07125",
+    "auth_token": "3c3b8a7f830b79b3f735f3dc538a4852",
     "flow_sid": "FW5b3bf49ee04af4d23a118b613bbc0df2",
-    "to_phone": "+16199804759",
+    "to_phone": "+16199804758",
     "from_phone": "+18336913467"
   }
 }
