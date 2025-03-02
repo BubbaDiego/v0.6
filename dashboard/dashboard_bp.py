@@ -20,8 +20,6 @@ from datetime import datetime, timedelta
 
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for, flash, current_app
 from config.config_constants import DB_PATH, CONFIG_PATH
-#from config.config_manager import load_config
-#from config.unified_config_manager import UnifiedConfigManager
 from data.data_locker import DataLocker
 from positions.position_service import PositionService
 from utils.calc_services import CalcServices
@@ -37,12 +35,9 @@ def _convert_iso_to_pst(iso_str):
     if not iso_str or iso_str == "N/A":
         return "N/A"
     try:
-        # fromisoformat works for both aware and naive; if naive, we assume it's in local time.
         dt_obj = datetime.fromisoformat(iso_str)
-        # Force conversion to PST.
         pst = pytz.timezone("US/Pacific")
         if dt_obj.tzinfo is None:
-            # Assume dt_obj is in PST already if naive.
             dt_obj = pst.localize(dt_obj)
         dt_pst = dt_obj.astimezone(pst)
         return dt_pst.strftime("%m/%d/%Y %I:%M:%S %p %Z")
@@ -54,23 +49,19 @@ def _convert_iso_to_pst(iso_str):
 # Helper: Compute Size Composition.
 def compute_size_composition():
     positions = PositionService.get_all_positions(DB_PATH) or []
-    logger.debug(f"[Size Composition] Retrieved positions: {positions}")
     long_total = sum(float(p.get("size", 0)) for p in positions if p.get("position_type", "").upper() == "LONG")
     short_total = sum(float(p.get("size", 0)) for p in positions if p.get("position_type", "").upper() == "SHORT")
     total = long_total + short_total
-    logger.debug(f"[Size Composition] Long total: {long_total}, Short total: {short_total}, Overall total: {total}")
     if total > 0:
         series = [round(long_total / total * 100), round(short_total / total * 100)]
     else:
         series = [0, 0]
-    logger.debug(f"[Size Composition] Computed series: {series}")
     return series
 
 
 # Helper: Compute Value Composition.
 def compute_value_composition():
     positions = PositionService.get_all_positions(DB_PATH) or []
-    logger.debug(f"[Value Composition] Retrieved positions: {positions}")
     long_total = 0.0
     short_total = 0.0
     for p in positions:
@@ -88,7 +79,6 @@ def compute_value_composition():
             else:
                 pnl = 0.0
             value = collateral + pnl
-            logger.debug(f"[Value Composition] Position {p.get('id', 'unknown')}: entry_price={entry_price}, current_price={current_price}, size={size}, collateral={collateral}, pnl={pnl}, value={value}")
         except Exception as calc_err:
             logger.error(f"Error calculating value for position {p.get('id', 'unknown')}: {calc_err}", exc_info=True)
             value = 0.0
@@ -97,47 +87,35 @@ def compute_value_composition():
         elif p.get("position_type", "").upper() == "SHORT":
             short_total += value
     total = long_total + short_total
-    logger.debug(f"[Value Composition] Totals: long_total={long_total}, short_total={short_total}, overall total: {total}")
     if total > 0:
         series = [round(long_total / total * 100), round(short_total / total * 100)]
     else:
         series = [0, 0]
-    logger.debug(f"[Value Composition] Computed series: {series}")
     return series
 
 
 # Helper: Compute Collateral Composition.
 def compute_collateral_composition():
     positions = PositionService.get_all_positions(DB_PATH) or []
-    logger.debug(f"[Collateral Composition] Retrieved positions: {positions}")
     long_total = sum(float(p.get("collateral", 0)) for p in positions if p.get("position_type", "").upper() == "LONG")
     short_total = sum(float(p.get("collateral", 0)) for p in positions if p.get("position_type", "").upper() == "SHORT")
     total = long_total + short_total
-    logger.debug(f"[Collateral Composition] Totals: long_total={long_total}, short_total={short_total}, overall total: {total}")
     if total > 0:
         series = [round(long_total / total * 100), round(short_total / total * 100)]
     else:
         series = [0, 0]
-    logger.debug(f"[Collateral Composition] Computed series: {series}")
     return series
 
 
-# -------------------------------
-# Dashboard Routes
-# -------------------------------
-
-@dashboard_bp.route("/dashboard")
 @dashboard_bp.route("/dashboard")
 def dashboard():
     try:
-        # Retrieve all positions.
         all_positions = PositionService.get_all_positions(DB_PATH) or []
         positions = all_positions
         liquidation_positions = all_positions
         top_positions = sorted(all_positions, key=lambda pos: float(pos.get("current_travel_percent", 0)), reverse=True)
         bottom_positions = sorted(all_positions, key=lambda pos: float(pos.get("current_travel_percent", 0)))[:3]
 
-        # Compute totals.
         totals = {
             "total_collateral": sum(float(pos.get("collateral", 0)) for pos in positions),
             "total_value": sum(float(pos.get("value", 0)) for pos in positions),
@@ -150,14 +128,16 @@ def dashboard():
             totals["avg_leverage"] = 0
             totals["avg_travel_percent"] = 0
 
-        # Portfolio history and stats.
         dl = DataLocker.get_instance()
         portfolio_history = dl.get_portfolio_history() or []
         portfolio_value_num = portfolio_history[-1].get("total_value", 0) if portfolio_history else 0
         portfolio_change = 0
         if portfolio_history:
             cutoff = datetime.now() - timedelta(hours=24)
-            filtered_history = [entry for entry in portfolio_history if entry.get("snapshot_time") and datetime.fromisoformat(entry.get("snapshot_time")) >= cutoff]
+            filtered_history = [
+                entry for entry in portfolio_history
+                if entry.get("snapshot_time") and datetime.fromisoformat(entry.get("snapshot_time")) >= cutoff
+            ]
             first_val = filtered_history[0].get("total_value", 0) if filtered_history else portfolio_history[0].get("total_value", 0)
             if first_val:
                 portfolio_change = ((portfolio_history[-1].get("total_value", 0) - first_val) / first_val) * 100
@@ -165,7 +145,6 @@ def dashboard():
         formatted_portfolio_value = "{:,.2f}".format(portfolio_value_num)
         formatted_portfolio_change = "{:,.1f}".format(portfolio_change)
 
-        # Latest price data.
         btc_data = dl.get_latest_price("BTC") or {}
         eth_data = dl.get_latest_price("ETH") or {}
         sol_data = dl.get_latest_price("SOL") or {}
@@ -176,7 +155,6 @@ def dashboard():
         formatted_sol_price = "{:,.2f}".format(float(sol_data.get("current_price", 0)))
         formatted_sp500_value = "{:,.2f}".format(float(sp500_data.get("current_price", 0)))
 
-        # Retrieve last update times for positions.
         update_times = dl.get_last_update_times() or {}
         raw_last_update = update_times.get("last_update_time_positions")
         last_update_positions_source = update_times.get("last_update_positions_source", "N/A")
@@ -197,16 +175,25 @@ def dashboard():
             last_update_time_only = "N/A"
             last_update_date_only = "N/A"
 
-        # Read last 5 operations log entries.
+        # -------------------------
+        # Parse JSON for Operation Log
+        # -------------------------
         ops_log_entries = []
         try:
             with open("operations_log.txt", "r") as f:
                 lines = [line.strip() for line in f if line.strip()]
-                ops_log_entries = lines[-5:]
+                # We'll take the last 5 lines
+                for line in lines[-5:]:
+                    try:
+                        parsed_line = json.loads(line)
+                        ops_log_entries.append(parsed_line)
+                    except json.JSONDecodeError:
+                        # If a line isn't valid JSON, store it as a raw string
+                        ops_log_entries.append({"raw": line})
         except Exception:
             pass
 
-        # Retrieve live alerts data.
+        # Alerts can stay as raw lines or parse them if needed.
         alert_entries = dl.get_alerts() or []
 
         return render_template(
@@ -230,6 +217,7 @@ def dashboard():
             alert_entries=alert_entries
         )
     except Exception as e:
+        logger.exception("Error rendering dashboard:")
         return render_template(
             "dashboard.html",
             top_positions=[],
@@ -264,7 +252,7 @@ def theme_options():
 
 
 # -------------------------------
-# API Endpoints for Chart Data (Real Data)
+# API Endpoints for Chart Data
 # -------------------------------
 
 @dashboard_bp.route("/api/size_composition")
@@ -295,6 +283,7 @@ def api_size_balance():
         for pos in positions:
             wallet = pos.get("wallet", "ObiVault")
             asset = pos.get("asset_type", "BTC").upper()
+            # We only want certain assets, as an example:
             if asset not in ["BTC", "ETH", "SOL"]:
                 continue
             if wallet not in ["ObiVault", "R2Vault"]:
@@ -311,6 +300,7 @@ def api_size_balance():
                 groups[key]["long"] += size
             elif position_type == "SHORT":
                 groups[key]["short"] += size
+
         groups_list = []
         for (wallet, asset), values in groups.items():
             total = values["long"] + values["short"]
@@ -322,6 +312,7 @@ def api_size_balance():
                     "short": values["short"],
                     "total": total
                 })
+
         return jsonify({"groups": groups_list})
     except Exception as e:
         logger.error(f"Error in api_size_balance: {e}", exc_info=True)
@@ -338,13 +329,10 @@ def api_collateral_composition():
         return jsonify({"error": str(e)}), 500
 
 
-# New endpoint: API to get asset percent changes based on the universal time scale.
 @dashboard_bp.route("/api/asset_percent_changes")
 def api_asset_percent_changes():
     try:
         hours = int(request.args.get("hours", 24))
-        # For demonstration, adjust the dummy percent changes based on the time scale.
-        # Shorter timeframe yields larger percent changes.
         factor = 24 / hours
         asset_changes = {
             "BTC": 2.34 * factor,

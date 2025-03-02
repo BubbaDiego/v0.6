@@ -73,10 +73,14 @@
     background-size: 1rem 1rem;
   }
   .asset-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     width: 30px;
     height: 30px;
     border-radius: 50%;
     border: 1px solid #ccc;
+    z-index: 10;
   }
   .asset-change {
     font-size: 1rem;
@@ -195,9 +199,8 @@
     margin: 0;
   }
   .status-col-left .card-body .col img {
-    height: 30px !important;
+    height: 24px !important;
     margin-top: 0;
-    margin-bottom: 4px;
   }
   /* -------------------- Composition & Balance Sections -------------------- */
   .composition-header {
@@ -233,12 +236,6 @@
     flex-direction: column;
     align-items: center;
   }
-  .size-chart-col:nth-child(1) { margin-left: 50px; }
-  .size-chart-col:nth-child(2) { margin-left: 50px; }
-  .size-chart-col:nth-child(3) { margin-left: 37px; }
-  .size-chart-col:nth-child(4) { margin-left: 25px; }
-  .size-chart-col:nth-child(5) { margin-left: 25px; }
-  .size-chart-col:nth-child(6) { margin-left: -12px; }
   .wallet-icon {
     width: 37.5px;
     height: 37.5px;
@@ -256,7 +253,7 @@
     margin: 2px 0;
     font-size: 10px;
   }
-  /* -------------------- Combined Logs Card (Alerts & Operation Logs) -------------------- */
+  /* -------------------- Logs Card Styles -------------------- */
   .logs-card {
     max-width: 100%;
     font-size: 0.8rem;
@@ -264,29 +261,8 @@
   .logs-card .card-header {
     padding: 0.25rem 0.5rem;
   }
-  .logs-card .card-header .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .logs-card .card-header .col-md-6 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   .logs-card .card-body {
     padding: 0.25rem;
-  }
-  .logs-card .subheader {
-    font-weight: bold;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.25rem;
-  }
-  .logs-card .alert {
-    padding: 0.25rem 0.5rem;
-    margin-bottom: 0.25rem;
   }
 </style>
 {% endblock %}
@@ -309,35 +285,29 @@
           <div class="card-body">
             <!-- BTC -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
-              <div class="d-flex align-items-center">
-                <img class="asset-icon" src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC">
-                <span class="asset-change" data-asset="BTC"></span>
-              </div>
+              <img class="asset-icon" src="{{ url_for('static', filename='images/btc_logo.png') }}" alt="BTC">
               <h5 class="fw-bold mb-0">${{ btc_price }}</h5>
             </div>
             <!-- ETH -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
-              <div class="d-flex align-items-center">
-                <img class="asset-icon" src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH">
-                <span class="asset-change" data-asset="ETH"></span>
-              </div>
+              <img class="asset-icon" src="{{ url_for('static', filename='images/eth_logo.png') }}" alt="ETH">
               <h5 class="fw-bold mb-0">${{ eth_price }}</h5>
             </div>
             <!-- SOL -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
-              <div class="d-flex align-items-center">
-                <img class="asset-icon" src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL">
-                <span class="asset-change" data-asset="SOL"></span>
-              </div>
+              <img class="asset-icon" src="{{ url_for('static', filename='images/sol_logo.png') }}" alt="SOL">
               <h5 class="fw-bold mb-0">${{ sol_price }}</h5>
             </div>
             <!-- S&P500 -->
             <div class="col d-flex flex-column align-items-center justify-content-center">
-              <div class="d-flex align-items-center">
-                <img class="asset-icon" src="{{ url_for('static', filename='images/sp500.png') }}" alt="S&P 500">
-                <span class="asset-change" data-asset="SP500"></span>
-              </div>
+              <img class="asset-icon" src="{{ url_for('static', filename='images/sp500.png') }}" alt="S&P 500">
               <h5 class="fw-bold mb-0">{{ sp500_value }}</h5>
+            </div>
+            <!-- Update Info (Concise Display) -->
+            <div class="col d-flex flex-column align-items-center justify-content-center" style="font-size:0.9rem; font-weight:normal;">
+              <div>Time: <i>{{ last_update_time_only }}</i></div>
+              <div>Date: <i>{{ last_update_date_only }}</i></div>
+              <div>Source: <i>{{ last_update_positions_source }}</i></div>
             </div>
           </div>
         </div>
@@ -490,7 +460,7 @@
         </div>
       </div>
     </div>
-    <!-- Size Balance Card -->
+    <!-- Size Balance Card (Fully integrated with multi-series, dynamic legend, etc.) -->
     <div class="col-md-6">
       <div class="card shadow" style="min-height: 400px;">
         <div class="card-header d-flex align-items-center justify-content-between">
@@ -518,65 +488,68 @@
     </div>
   </div>
 
-  <!-- Row 5: Combined Logs Card (Alerts Log & Operation Log) -->
+  <!-- Row 5: Separate Logs Cards (Alert Log & Operation Log) -->
   <div class="row">
+    <!-- Alert Log Card -->
     <div class="col-md-6">
       <div class="card card-outline logs-card">
         <div class="card-header">
-          <div class="row w-100">
-            <div class="col-md-6 text-center">
-              <h3 class="card-title mb-0"><span class="log-icon">⚠️</span> Alert Log</h3>
-            </div>
-            <div class="col-md-6 text-center">
-              <h3 class="card-title mb-0"><span class="log-icon">🔧</span> Operation Log</h3>
-            </div>
-          </div>
+          <h3 class="card-title mb-0"><span class="log-icon">⚠️</span> Alert Log</h3>
         </div>
         <div class="card-body">
-          <div class="row">
-            <!-- Alerts Log Column -->
-            <div class="col-md-6">
-              {% if alert_entries %}
-                {% for entry in alert_entries %}
-                  {% if "Level: HIGH" in entry %}
-                    <div class="alert alert-danger p-1 mb-1" role="alert">
-                      ❌ {{ entry }}
-                    </div>
-                  {% elif "Level: MEDIUM" in entry %}
-                    <div class="alert alert-warning p-1 mb-1" role="alert">
-                      ⚠️ {{ entry }}
-                    </div>
-                  {% elif "Level: LOW" in entry %}
-                    <div class="alert alert-success p-1 mb-1" role="alert">
-                      ✅ {{ entry }}
-                    </div>
-                  {% else %}
-                    <div class="alert alert-secondary p-1 mb-1" role="alert">
-                      {{ entry }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
+          {% if alert_entries %}
+            {% for entry in alert_entries | reverse %}
+              {% if "Level: HIGH" in entry %}
+                <div class="alert alert-danger p-1 mb-1" role="alert">
+                  ❌ {{ entry }}
+                </div>
+              {% elif "Level: MEDIUM" in entry %}
+                <div class="alert alert-warning p-1 mb-1" role="alert">
+                  ⚠️ {{ entry }}
+                </div>
+              {% elif "Level: LOW" in entry %}
+                <div class="alert alert-success p-1 mb-1" role="alert">
+                  ✅ {{ entry }}
+                </div>
               {% else %}
                 <div class="alert alert-secondary p-1 mb-1" role="alert">
-                  Alerts: None &nbsp; Source: Monitor
+                  {{ entry }}
                 </div>
               {% endif %}
+            {% endfor %}
+          {% else %}
+            <div class="alert alert-secondary p-1 mb-1" role="alert">
+              Alerts: None &nbsp; Source: Monitor
             </div>
-            <!-- Operation Log Column -->
-            <div class="col-md-6">
-              {% if ops_log_entries %}
-                {% for entry_html in ops_log_entries %}
-                  <div class="alert alert-secondary p-1 mb-1" role="alert">
-                    {{ entry_html|safe }}
-                  </div>
-                {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <!-- Operation Log Card -->
+    <div class="col-md-6">
+      <div class="card card-outline logs-card">
+        <div class="card-header">
+          <h3 class="card-title mb-0"><span class="log-icon">🔧</span> Operation Log</h3>
+        </div>
+        <div class="card-body">
+          {% if ops_log_entries %}
+            {% for entry in ops_log_entries | reverse %}
+              {% if entry.message %}
+                <div class="alert alert-secondary p-1 mb-1" role="alert">
+                  <strong>{{ entry.operation_type or "Operation" }}</strong>: {{ entry.message }}
+                  <small>(Source: {{ entry.source or "Unknown" }}, {{ entry.timestamp or "N/A" }})</small>
+                </div>
               {% else %}
                 <div class="alert alert-secondary p-1 mb-1" role="alert">
-                  Operation Log: None &nbsp; Source: System
+                  {{ entry.raw }}
                 </div>
               {% endif %}
+            {% endfor %}
+          {% else %}
+            <div class="alert alert-secondary p-1 mb-1" role="alert">
+              Operation Log: None &nbsp; Source: System
             </div>
-          </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -586,12 +559,13 @@
 {% endblock %}
 
 {% block extra_scripts %}
+<!-- Chart.js & date-fns adapter for the performance chart -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 <script>
   const portfolioData = {{ portfolio_data | tojson }};
   let portfolioChart;
-  let currentTimeframe = 24; // universal time scale
+  let currentTimeframe = 24;
 
   document.addEventListener('DOMContentLoaded', function() {
     if (!portfolioData || portfolioData.length === 0) {
@@ -640,6 +614,7 @@
       }
     });
     setPortfolioTimeframe(currentTimeframe);
+    // If you have an endpoint for asset changes:
     updateAssetPercentChanges(currentTimeframe);
   });
 
@@ -663,27 +638,28 @@
         percentElem.style.color = percentChange >= 0 ? "green" : "red";
       }
     }
-    // Update asset percent changes to match the new timeframe.
     updateAssetPercentChanges(hours);
   }
 
+  // Example function for fetching asset changes
   function updateAssetPercentChanges(hours) {
     fetch("/api/asset_percent_changes?hours=" + hours)
       .then(response => response.json())
       .then(data => {
-         document.querySelectorAll('.asset-change').forEach(span => {
-             const asset = span.getAttribute('data-asset');
-             if (data[asset] !== undefined) {
-                 let change = parseFloat(data[asset]);
-                 span.textContent = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
-                 span.style.color = change >= 0 ? 'green' : 'red';
-             }
-         });
+        document.querySelectorAll('.asset-change').forEach(span => {
+          const asset = span.getAttribute('data-asset');
+          if (data[asset] !== undefined) {
+            let change = parseFloat(data[asset]);
+            span.textContent = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
+            span.style.color = change >= 0 ? 'green' : 'red';
+          }
+        });
       })
       .catch(err => console.error("Error fetching asset percent changes:", err));
   }
 </script>
 
+<!-- ApexCharts for Size/Collateral Composition & Size Balance -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" crossorigin="anonymous"></script>
 <script>
   window.onload = function() {
@@ -691,6 +667,7 @@
       console.error("ApexCharts library not loaded!");
       return;
     }
+    // Size Composition Pie
     const positionsChartContainer = document.getElementById("positions-chart");
     if (positionsChartContainer) {
       fetch("/api/size_composition")
@@ -703,7 +680,7 @@
               type: 'pie',
               height: 233,
               events: {
-                click: function(event, chartContext, config) {
+                click: function() {
                   const currentType = positionsChartInstance.w.config.chart.type;
                   const newType = (currentType === 'pie') ? 'donut' : 'pie';
                   positionsChartInstance.updateOptions({ chart: { type: newType } });
@@ -716,7 +693,7 @@
             dataLabels: {
               enabled: true,
               style: { fontSize: '1rem' },
-              formatter: function (val) {
+              formatter: function(val) {
                 return val.toFixed(2) + "%";
               }
             },
@@ -725,12 +702,11 @@
             }
           };
           const positionsChartInstance = new ApexCharts(positionsChartContainer, options);
-          positionsChartInstance.render().catch(err => {
-            console.error("ApexCharts (Size) render error:", err);
-          });
+          positionsChartInstance.render().catch(err => console.error("ApexCharts (Size) render error:", err));
         })
         .catch(err => console.error("Error fetching size composition data:", err));
     }
+    // Collateral Composition Pie
     const collateralChartContainer = document.getElementById("collateral-composition-chart");
     if (collateralChartContainer) {
       fetch("/api/collateral_composition")
@@ -743,7 +719,7 @@
               type: 'pie',
               height: 233,
               events: {
-                click: function(event, chartContext, config) {
+                click: function() {
                   const currentType = collateralChartInstance.w.config.chart.type;
                   const newType = (currentType === 'pie') ? 'donut' : 'pie';
                   collateralChartInstance.updateOptions({ chart: { type: newType } });
@@ -751,12 +727,12 @@
               }
             },
             labels: ['Long Collateral', 'Short Collateral'],
-            colors: ['#7707ff', '#d1ef9a'],
+            colors: ['#ca477d', '#d1ef9a'],
             legend: { position: 'bottom' },
             dataLabels: {
               enabled: true,
               style: { fontSize: '1rem' },
-              formatter: function (val) {
+              formatter: function(val) {
                 return val.toFixed(2) + "%";
               }
             },
@@ -765,15 +741,127 @@
             }
           };
           const collateralChartInstance = new ApexCharts(collateralChartContainer, collateralOptions);
-          collateralChartInstance.render().catch(err => {
-            console.error("ApexCharts (Collateral) render error:", err);
-          });
+          collateralChartInstance.render().catch(err => console.error("ApexCharts (Collateral) render error:", err));
         })
         .catch(err => console.error("Error fetching collateral composition data:", err));
     }
+
+    // SIZE BALANCE (Multi-series, vertical bars, dynamic legend, etc.)
+    const sizeChartContainer = document.getElementById("size-chart");
+    if (sizeChartContainer) {
+      fetch("/api/size_balance")
+        .then(response => response.json())
+        .then(data => {
+          const groups = data.groups;
+          const categories = groups.map(g => `${g.wallet} ${g.asset}`);
+          const longData = groups.map(g => g.long);
+          const shortData = groups.map(g => g.short);
+          const totalData = groups.map(g => g.total);
+
+          const chartOptions = {
+            series: [
+              { name: 'Long',  data: longData },
+              { name: 'Short', data: shortData },
+              { name: 'Total', data: totalData }
+            ],
+            chart: {
+              type: 'bar',
+              height: 400,
+              toolbar: { show: false }
+            },
+            grid: { padding: { bottom: 120 } },
+            plotOptions: {
+              bar: {
+                horizontal: false,  /* Vertical bars */
+                columnWidth: '55%',
+                endingShape: 'rounded'
+              }
+            },
+            dataLabels: { enabled: false },
+            stroke: { show: true, width: 2, colors: ['transparent'] },
+            colors: ['#0d6efd', '#20c997', '#ab79e8'],
+            xaxis: {
+              categories: categories,
+              labels: { show: true }
+            },
+            yaxis: {
+              title: { text: 'Size Amount' },
+              labels: {
+                formatter: function(val) {
+                  return Math.round(val / 1000) + "k";
+                }
+              }
+            },
+            fill: { opacity: 1 },
+            tooltip: {
+              y: { formatter: (val) => val }
+            },
+            legend: { show: false },
+            annotations: {
+              yaxis: [
+                {
+                  y: data.avg_short || 2683.33,
+                  borderColor: '#20c997',
+                  label: {
+                    borderColor: '#20c997',
+                    style: { color: '#fff', background: '#20c997' },
+                    text: 'Avg Short'
+                  },
+                  strokeDashArray: 4
+                },
+                {
+                  y: data.avg_long || 4500,
+                  borderColor: '#0d6efd',
+                  label: {
+                    borderColor: '#0d6efd',
+                    style: { color: '#fff', background: '#0d6efd' },
+                    text: 'Avg Long'
+                  },
+                  strokeDashArray: 4
+                }
+              ]
+            }
+          };
+          const sizeChart = new ApexCharts(sizeChartContainer, chartOptions);
+          sizeChart.render().catch(err => console.error("ApexCharts (Size Balance) render error:", err));
+
+          // Compute overall totals
+          const sumLong = longData.reduce((acc, val) => acc + val, 0);
+          const sumShort = shortData.reduce((acc, val) => acc + val, 0);
+          const sumTotal = totalData.reduce((acc, val) => acc + val, 0);
+
+          function formatK(num) {
+            return num >= 1000 ? (num / 1000).toFixed(1) + "K" : num;
+          }
+          document.getElementById("legend-long-value").textContent = formatK(sumLong);
+          document.getElementById("legend-short-value").textContent = formatK(sumShort);
+          document.getElementById("legend-total-value").textContent = formatK(sumTotal);
+
+          // Dynamically generate the asset labels row
+          const labelsContainer = document.querySelector(".asset-labels");
+          labelsContainer.innerHTML = "";
+          groups.forEach(g => {
+            const col = document.createElement("div");
+            col.className = "size-chart-col";
+            const walletImg = document.createElement("img");
+            walletImg.className = "wallet-icon";
+            walletImg.src = `/static/images/${g.wallet.toLowerCase()}.jpg`;
+            walletImg.alt = g.wallet;
+            const assetImg = document.createElement("img");
+            assetImg.className = "asset-icon2";
+            assetImg.src = `/static/images/${g.asset.toLowerCase()}_logo.png`;
+            assetImg.alt = g.asset;
+            col.appendChild(walletImg);
+            col.appendChild(assetImg);
+            labelsContainer.appendChild(col);
+          });
+        })
+        .catch(err => console.error("Error fetching size balance data:", err));
+    }
   };
 
-  document.addEventListener('DOMContentLoaded', function() {
+  // Jupiter update button
+  document.addEventListener("DOMContentLoaded", function() {
     const container = document.querySelector('.update-button[data-type="jupiter"]');
     if (!container) return;
     const img = container.querySelector('img');
@@ -781,7 +869,7 @@
       img.classList.add("spin");
       fetch("/positions/update_jupiter?source=User", { method: "POST" })
         .then(response => response.json())
-        .then(data => {
+        .then(() => {
           img.classList.remove("spin");
           window.location.reload();
         })
@@ -803,7 +891,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Apply theme based on localStorage and base.html's title support.
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.body.classList.add(currentTheme + '-mode');
     const themeToggle = document.getElementById('themeToggle');

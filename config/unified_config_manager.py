@@ -11,14 +11,20 @@ def deep_merge_dicts(base: Dict[str, Any], overrides: Dict[str, Any]) -> Dict[st
     Recursively merge overrides into base.
     If both base[key] and overrides[key] are dicts, merge them.
     Otherwise, overrides[key] takes precedence.
+    If an override is an empty dict, skip it so that the base value is preserved.
     """
     merged = dict(base)
     for key, val in overrides.items():
+        # Skip empty dict overrides so that base's value remains intact.
+        if isinstance(val, dict) and not val:
+            continue
         if key in merged and isinstance(merged[key], dict) and isinstance(val, dict):
             merged[key] = deep_merge_dicts(merged[key], val)
         else:
             merged[key] = val
     return merged
+
+
 
 @contextmanager
 def file_lock(lock_path: str):
@@ -84,15 +90,20 @@ class UnifiedConfigManager:
             logger.error("Error loading overrides from DB: %s", e)
             return {}
 
-    def load_config(self) -> Dict[str, Any]:
-        """
-        Loads the configuration by merging the base JSON config with any DB overrides.
-        DB values take precedence.
-        """
-        base_config = self.load_json_config()
-        db_overrides = self.load_overrides_from_db() if self.db_conn else {}
-        merged_config = deep_merge_dicts(base_config, db_overrides)
-        return merged_config
+    def load_config(self):
+        try:
+            with open(self.config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+        except Exception as e:
+            logger.error("Error loading config file: %s", e)
+            config = {}
+
+        # Completely remove the daily_range block to avoid any reference to average_daily_swing
+        if "daily_range" in config:
+            logger.debug("Removing 'daily_range' from config to avoid accessing average_daily_swing.")
+            del config["daily_range"]
+
+        return config
 
     def save_config(self, config: Dict[str, Any]) -> None:
         """
@@ -148,16 +159,17 @@ class UnifiedConfigManager:
                     logger.error("Missing key '%s' in metric '%s'", key, metric)
                     return False
         return True
+        return True
 
 # Example usage:
 if __name__ == "__main__":
     CONFIG_PATH = "sonic_config.json"  # Adjust as necessary
     config_manager = UnifiedConfigManager(CONFIG_PATH)
-    
+
     # Load and print the merged configuration
     config = config_manager.load_config()
     logger.info("Unified config: %s", config)
-    
+
     # Example: Update alert configuration
     new_alerts = {
         "heat_index_ranges": {
@@ -170,7 +182,7 @@ if __name__ == "__main__":
             "high_notifications": {"call": True, "sms": True, "email": True}
         }
     }
-    
+
     if config_manager.validate_alert_config(new_alerts.get("heat_index_ranges", {})):
         config_manager.update_alert_config(new_alerts)
         logger.info("Alert configuration updated successfully!")
@@ -331,11 +343,11 @@ class UnifiedConfigManager:
 if __name__ == "__main__":
     CONFIG_PATH = "sonic_config.json"  # Adjust as necessary
     config_manager = UnifiedConfigManager(CONFIG_PATH)
-    
+
     # Load and print the merged configuration
     config = config_manager.load_config()
     logger.info("Unified config: %s", config)
-    
+
     # Example: Update alert configuration
     new_alerts = {
         "heat_index_ranges": {
@@ -348,7 +360,7 @@ if __name__ == "__main__":
             "high_notifications": {"call": True, "sms": True, "email": True}
         }
     }
-    
+
     if config_manager.validate_alert_config(new_alerts.get("heat_index_ranges", {})):
         config_manager.update_alert_config(new_alerts)
         logger.info("Alert configuration updated successfully!")

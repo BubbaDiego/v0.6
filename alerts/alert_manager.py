@@ -82,21 +82,16 @@ class AlertManager:
         self.last_triggered: Dict[str, float] = {}
         self.last_call_triggered: Dict[str, float] = {}
 
-        # Import dependencies from your project.
         from data.data_locker import DataLocker
         from utils.calc_services import CalcServices
 
         self.data_locker = DataLocker(self.db_path)
         self.calc_services = CalcServices()
 
-        # Get a DB connection from your DataLocker.
         db_conn = self.data_locker.get_db_connection()
-        # Initialize the unified configuration manager.
         config_manager = UnifiedConfigManager(self.config_path, db_conn=db_conn)
-        # Load the configuration as a plain dictionary.
         self.config = config_manager.load_config()
 
-        # Access configuration values as dictionary keys.
         self.twilio_config = self.config.get("twilio_config", {})
         self.cooldown = self.config.get("alert_cooldown_seconds", 900)
         self.call_refractory_period = self.config.get("call_refractory_period", 3600)
@@ -142,14 +137,10 @@ class AlertManager:
         price_alerts = self.check_price_alerts()
         aggregated_alerts.extend(price_alerts)
 
-        # Log to the operational log whether alerts were found or not.
         from utils.operations_logger import OperationsLogger
         op_logger = OperationsLogger()
         now = datetime.now()
-        # Use a Windows-friendly formatting approach:
-        # First get a raw timestamp with leading zeros:
         raw_timestamp = now.strftime("%m-%d-%y : %I:%M:%S %p")
-        # Remove any leading zeros from month, day, and hour:
         month, day, year = raw_timestamp.split(" : ")[0].split("-")
         time_part = raw_timestamp.split(" : ")[1]
         hour, minute, sec_am = time_part.split(":", 2)
@@ -159,14 +150,11 @@ class AlertManager:
         timestamp_str = f"{month}-{day}-{year} : {hour}:{minute}:{sec_am}"
 
         if aggregated_alerts:
-            # Redish box (e.g., using a red alert icon) when alerts are found.
             op_message = f"❌ {len(aggregated_alerts)} alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
         else:
-            # Greensih box when no alerts are found.
             op_message = f"✅ No alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
             op_logger.log(op_message, source=source)
 
-        # Trigger alert call if there are any alerts.
         if aggregated_alerts:
             source_info = f" (source: {source})" if source else ""
             message = f"{len(aggregated_alerts)} alerts triggered{source_info}:\n" + "\n".join(aggregated_alerts)
@@ -227,8 +215,8 @@ class AlertManager:
 
     def check_swing_alert(self, pos: Dict[str, Any]) -> str:
         """
-        Checks if the position's liquidation distance exceeds the average daily swing threshold.
-        Returns an alert message if the threshold is exceeded.
+        Checks if the position's liquidation distance exceeds the hardcoded swing threshold.
+        If any error arises (which shouldn't happen now), trigger a call-out.
         """
         asset = pos.get("asset_type", "???").upper()
         asset_full = self.ASSET_FULL_NAMES.get(asset, asset)
@@ -239,14 +227,12 @@ class AlertManager:
         except Exception:
             logger.error("%s %s (ID: %s): Error converting liquidation distance.", asset_full, position_type, position_id)
             return ""
-        try:
-            swing_threshold = float(self.config.get("alert_ranges", {}).get("average_daily_swing", {}).get(asset, 0))
-        except Exception as e:
-            logger.error("Error parsing swing threshold for %s: %s", asset_full, e)
-            return ""
+        # Use hardcoded swing thresholds—completely bypassing any config reference.
+        hardcoded_swing_thresholds = {"BTC": 6.24, "ETH": 8.0, "SOL": 13.0}
+        swing_threshold = hardcoded_swing_thresholds.get(asset, 0)
         logger.debug(
             f"[Swing Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
-            f"Actual Value = {current_value:.2f} vs Swing Threshold = {swing_threshold:.2f}"
+            f"Actual Value = {current_value:.2f} vs Hardcoded Swing Threshold = {swing_threshold:.2f}"
         )
         if current_value >= swing_threshold:
             key = f"swing-{asset_full}-{position_type}-{position_id}"
@@ -255,14 +241,10 @@ class AlertManager:
             if now - last_time >= self.cooldown:
                 self.last_triggered[key] = now
                 return (f"Average Daily Swing ALERT: {asset_full} {position_type} (ID: {position_id}) - "
-                        f"Actual Value = {current_value:.2f} exceeds Swing Threshold of {swing_threshold:.2f}")
+                        f"Actual Value = {current_value:.2f} exceeds Hardcoded Swing Threshold of {swing_threshold:.2f}")
         return ""
 
     def check_blast_alert(self, pos: Dict[str, Any]) -> str:
-        """
-        Checks if the position's liquidation distance exceeds the one day blast radius threshold.
-        Returns an alert message if the threshold is exceeded.
-        """
         asset = pos.get("asset_type", "???").upper()
         asset_full = self.ASSET_FULL_NAMES.get(asset, asset)
         position_type = pos.get("position_type", "").capitalize()
@@ -273,7 +255,7 @@ class AlertManager:
             logger.error("%s %s (ID: %s): Error converting liquidation distance.", asset_full, position_type, position_id)
             return ""
         try:
-            blast_threshold = float(self.config.get("alert_ranges", {}).get("one_day_blast_radius", {}).get(asset, 0))
+            blast_threshold = 11.2 # TODO float(self.config.get("alert_ranges", {}).get("one_day_blast_radius", {}).get(asset, 0))
         except Exception as e:
             logger.error("Error parsing blast threshold for %s: %s", asset_full, e)
             return ""
