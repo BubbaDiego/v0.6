@@ -193,25 +193,26 @@ class OperationsViewer:
             date_part = timestamp_str
 
         # Build the HTML using a flex container with three columns.
+        # Updated the margin and padding values to reduce the container height.
         line_html = f"""
-<div class="alert {line_color_class} d-flex align-items-center justify-content-between mb-1" 
-     style="margin: 4px 0; padding: 6px; white-space: nowrap;">
-  <!-- Left Column: Icon and Bold Message -->
-  <div style="flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis;">
-    {icon_html} {msg_html}
-  </div>
-  <!-- Center Column: Source Icon (center aligned) -->
-  <div style="flex: 0 0 auto; margin: 0 16px; text-align: center; min-width: 30px;">
-    <span style="font-size: 1rem;">{source_icon}</span>
-  </div>
-  <!-- Right Column: Date (regular) and Time (bold) -->
-  <div style="flex: 0 0 auto; text-align: right; min-width: 120px;">
-    <span style="font-weight: normal;">{date_part}</span>
-    &nbsp;
-    <span style="font-weight: bold;">{time_part}</span>
-  </div>
-</div>
-""".strip()
+    <div class="alert {line_color_class} d-flex align-items-center justify-content-between mb-1" 
+         style="margin: 2px 0; padding: 3px; white-space: nowrap;">
+      <!-- Left Column: Icon and Bold Message -->
+      <div style="flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis;">
+        {icon_html} {msg_html}
+      </div>
+      <!-- Center Column: Source Icon (center aligned) -->
+      <div style="flex: 0 0 auto; margin: 0 16px; text-align: center; min-width: 30px;">
+        <span style="font-size: 1rem;">{source_icon}</span>
+      </div>
+      <!-- Right Column: Date (regular) and Time (bold) -->
+      <div style="flex: 0 0 auto; text-align: right; min-width: 120px;">
+        <span style="font-weight: normal;">{date_part}</span>
+        &nbsp;
+        <span style="font-weight: bold;">{time_part}</span>
+      </div>
+    </div>
+    """.strip()
         return line_html
 
     def get_all_display_strings(self) -> str:

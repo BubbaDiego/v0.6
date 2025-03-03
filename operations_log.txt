@@ -215,3 +215,295 @@
 {"message": "1 alerts suppressed", "source": "", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:01:30 AM"}
 {"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:01:30 AM"}
 {"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:01:30 AM"}
+{"message": "1 alerts suppressed", "source": "", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:02:29 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:02:29 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:02:29 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:05:54 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:12:49 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:12:50 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:13:15 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:13:15 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:13:15 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:13:24 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:13:24 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:13:24 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:13:35 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:13:35 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:13:35 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:14:28 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:14:28 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:14:28 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:15:33 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:15:33 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:15:33 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:17:24 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:17:24 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:17:24 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:03 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:04 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:21:09 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:21:09 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:21:09 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:28 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:29 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:30 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:21:33 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:21:33 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:21:33 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:48 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:21:49 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:21:55 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:21:55 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:21:55 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:21:58 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:21:58 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:21:58 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:22:51 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:22:51 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:22:51 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:23:54 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:23:55 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:24:06 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:24:06 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:24:06 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:24:27 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:24:27 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:24:27 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:24:50 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:24:51 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:24:58 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:24:58 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:24:58 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:25:19 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:25:19 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:25:19 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:27:19 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:27:19 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:27:19 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:27:42 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:27:43 AM"}
+{"message": "Jupiter Update Complete - loop count: 1", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:27:57 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:28:57 AM"}
+{"message": "Jupiter Update Complete - loop count: 1", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:29:30 AM"}
+{"message": "Jupiter Update Complete - loop count: 1", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:30:04 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:30:09 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:30:10 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:30:17 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:30:17 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:30:17 AM"}
+{"message": "Jupiter Update Complete - loop count: 2", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:32:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 3", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:34:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 4", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:36:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 5", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:38:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 6", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:40:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 7", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:42:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 8", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:44:04 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:45:05 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:45:05 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:45:05 AM"}
+{"message": "Jupiter Update Complete - loop count: 9", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:46:04 AM"}
+{"message": "Jupiter Update Complete - loop count: 10", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:48:04 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:48:18 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:48:19 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:48:26 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:48:26 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:48:26 AM"}
+{"message": "Jupiter Update Complete - loop count: 11", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:50:04 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:51:08 AM"}
+{"message": "Jupiter Update Complete - loop count: 12", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:52:04 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:53:20 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:53:37 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:53:38 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:54:06 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:54:07 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:54:16 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:54:16 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:54:16 AM"}
+{"message": "Monitor: Loop: 1", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:54:53 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:55:33 AM"}
+{"message": "1 alerts triggered", "source": "API", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:55:35 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:55:35 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:55:35 AM"}
+{"message": "Monitor: Loop: 1", "source": "monitor", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:55:35 AM"}
+{"message": "Monitor Loop-> 1", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 4:57:40 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:57:53 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 4:57:53 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 4:58:11 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:58:11 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:58:11 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 4:59:41 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 4:59:41 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 4:59:41 AM"}
+{"message": "Monitor Loop-> 2", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 4:59:41 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:01:31 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:01:32 AM"}
+{"message": "1 alerts triggered", "source": "API", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:01:47 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:01:47 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:01:47 AM"}
+{"message": "Monitor Loop # 1", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:01:47 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:02:29 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:02:29 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:02:29 AM"}
+{"message": "Monitor Loop # 1", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:03:54 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:04:00 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:04:01 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:04:09 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:04:09 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:04:09 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:05:56 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:05:56 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:05:56 AM"}
+{"message": "Monitor Loop # 2", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:05:56 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:06:30 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:06:31 AM"}
+{"message": "1 alerts triggered", "source": "API", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:07:57 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:07:57 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:07:57 AM"}
+{"message": "Monitor Loop # 3", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:07:57 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:09:59 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:09:59 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:09:59 AM"}
+{"message": "Monitor Loop # 4", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:09:59 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:10:16 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:10:16 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:10:16 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:12:02 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:12:02 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:12:02 AM"}
+{"message": "Monitor Loop # 5", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:12:02 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:14:03 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:14:03 AM"}
+{"message": "Testing Twilio Failed", "source": "system test", "operation_type": "Notification Sent", "timestamp": "3-3-25 : 5:14:03 AM"}
+{"message": "Monitor Loop # 6", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:14:03 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:15:33 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:15:34 AM"}
+{"message": "Jupiter Update Complete", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:15:55 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:15:55 AM"}
+{"message": "Jupiter Update Complete", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:16:04 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:16:05 AM"}
+{"message": "Monitor Loop # 7", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:16:05 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:17:16 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:18:06 AM"}
+{"message": "1 alerts triggered", "source": "API", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:18:07 AM"}
+{"message": "Monitor Loop # 8", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:18:07 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:18:14 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:18:34 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:18:35 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:18:45 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:18:45 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:18:52 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:18:53 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:26:23 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:26:24 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:26:29 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:26:29 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:26:44 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:26:45 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:28:02 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:28:03 AM"}
+{"message": "Monitor Loop # 1", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:28:03 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:28:09 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:28:10 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:29:01 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:29:02 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:30:04 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:30:04 AM"}
+{"message": "Monitor Loop # 2", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:30:04 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:32:06 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:32:06 AM"}
+{"message": "Monitor Loop # 3", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:32:06 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:34:09 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:34:09 AM"}
+{"message": "Monitor Loop # 4", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:34:09 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 5:35:31 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:35:37 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 5:35:38 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:36:10 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:36:10 AM"}
+{"message": "Monitor Loop # 5", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:36:10 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:38:12 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:38:12 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:38:12 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:38:12 AM"}
+{"message": "Monitor Loop # 6", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:38:12 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:38:44 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:38:44 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:40:13 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:40:13 AM"}
+{"message": "Monitor Loop # 7", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:40:13 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:40:27 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:40:27 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:42:15 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:42:16 AM"}
+{"message": "Monitor Loop # 8", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:42:16 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:44:17 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:44:17 AM"}
+{"message": "Monitor Loop # 9", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:44:17 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:46:19 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:46:19 AM"}
+{"message": "Monitor Loop # 10", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:46:19 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:48:21 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:48:21 AM"}
+{"message": "Monitor Loop # 11", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:48:21 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:50:23 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:50:23 AM"}
+{"message": "Monitor Loop # 12", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:50:23 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:52:27 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:52:27 AM"}
+{"message": "Monitor Loop # 13", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:52:27 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:54:29 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:54:29 AM"}
+{"message": "Monitor Loop # 14", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:54:29 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:56:30 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:56:31 AM"}
+{"message": "Monitor Loop # 15", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:56:31 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 5:58:34 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 5:58:34 AM"}
+{"message": "Monitor Loop # 16", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 5:58:34 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:00:35 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:00:35 AM"}
+{"message": "Monitor Loop # 17", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:00:35 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:02:38 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:02:39 AM"}
+{"message": "Monitor Loop # 18", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:02:39 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:04:40 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:04:41 AM"}
+{"message": "Monitor Loop # 19", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:04:41 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:06:42 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:06:42 AM"}
+{"message": "Monitor Loop # 20", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:06:42 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 6:07:12 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 6:07:24 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 6:07:25 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:08:19 AM"}
+{"message": "1 alerts triggered", "source": "User", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 6:08:20 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:08:45 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:08:45 AM"}
+{"message": "Monitor Loop # 21", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:08:45 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:10:47 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:10:47 AM"}
+{"message": "Monitor Loop # 22", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:10:47 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:10:54 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:10:54 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:12:48 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:12:48 AM"}
+{"message": "Monitor Loop # 23", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:12:48 AM"}
+{"message": "Jupiter Updated", "source": "User", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:13:52 AM"}
+{"message": "1 alerts suppressed", "source": "User", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:13:52 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:14:50 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:14:51 AM"}
+{"message": "Monitor Loop # 24", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:14:51 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:16:52 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:16:52 AM"}
+{"message": "Monitor Loop # 25", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:16:52 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:18:53 AM"}
+{"message": "1 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:18:54 AM"}
+{"message": "Monitor Loop # 26", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:18:54 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:20:55 AM"}
+{"message": "1 alerts triggered", "source": "API", "operation_type": "Alert Triggered", "timestamp": "3-3-25 : 6:20:55 AM"}
+{"message": "Monitor Loop # 27", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:20:55 AM"}
+{"message": "Jupiter Updated", "source": "API", "operation_type": "Jupiter Updated", "timestamp": "3-3-25 : 6:22:58 AM"}
+{"message": "2 alerts suppressed", "source": "API", "operation_type": "Alert Silenced", "timestamp": "3-3-25 : 6:22:58 AM"}
+{"message": "Monitor Loop # 28", "source": "monitor", "operation_type": "Monitor Loop", "timestamp": "3-3-25 : 6:22:58 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 6:23:39 AM"}
+{"message": "Launch Pad - Started", "source": "System", "operation_type": "Start Launch Pad", "timestamp": "3-3-25 : 6:23:40 AM"}
