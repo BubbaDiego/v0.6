@@ -345,7 +345,7 @@
   },
   "twilio_config": {
     "account_sid": "ACb606788ada5dccbfeeebed0f440099b3",
-    "auth_token": "fa03095fa23bbc489e88ebf671a137c1",
+    "auth_token": "1527daf6de1f544128660cc33abd2de7",
     "flow_sid": "FW5b3bf49ee04af4d23a118b613bbc0df2",
     "to_phone": "+16199804758",
     "from_phone": "+18336913467"

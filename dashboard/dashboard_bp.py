@@ -25,7 +25,7 @@ from positions.position_service import PositionService
 from utils.calc_services import CalcServices
 
 # Import the OperationsViewer from operations_logger.py (ensure it's updated as above)
-from utils.operations_logger import OperationsViewer
+from utils.operations_manager import OperationsViewer
 
 logger = logging.getLogger("DashboardBlueprint")
 logger.setLevel(logging.CRITICAL)

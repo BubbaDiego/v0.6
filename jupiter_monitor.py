@@ -3,7 +3,7 @@ import time
 import requests
 import logging
 import urllib3
-from utils.operations_logger import OperationsLogger  # Import from external module
+from utils.operations_manager import OperationsLogger  # Import from external module
 
 # Disable InsecureRequestWarning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -34,23 +34,10 @@ def main():
         logging.info("Loop count: %d. Calling URL: %s", loop_counter, URL)
         call_update_jupiter()
 
-        # Format the current timestamp in a cross-platform way.
-        import datetime
-        now = datetime.datetime.now()
-        raw_timestamp = now.strftime("%m-%d-%y : %I:%M:%S %p")
-        # Remove leading zeros from month, day, and hour.
-        month, day, year = raw_timestamp.split(" : ")[0].split("-")
-        time_part = raw_timestamp.split(" : ")[1]
-        hour, minute, sec_am = time_part.split(":", 2)
-        month = str(int(month))
-        day = str(int(day))
-        hour = str(int(hour))
-       # timestamp_str = f"{month}-{day}-{year} : {hour}:{minute}:{sec_am}"
+        # Log the operation with the loop count, source set to "monitor", and operation type "Jupiter Updated"
+        op_logger.log(f"Jupiter Update Complete - loop count: {loop_counter}", source="monitor", operation_type="Jupiter Updated")
 
-        # Log the operation. The OperationsLogger will automatically append the formatted timestamp.
-        op_logger.log("Jupiter Positions Updated", source="Monitor", color="green", icon="✅")
-
-    time.sleep(SLEEP_INTERVAL)
+        time.sleep(SLEEP_INTERVAL)
 
 if __name__ == '__main__':
     main()

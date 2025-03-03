@@ -16,9 +16,17 @@ OPERATION_CONFIG = {
         "icon": "🚀",
         "color": "blue"
     },
-    "Update Jupiter": {
+    "Jupiter Updated": {
         "icon": "🔄",
         "color": "green"
+    },
+    "Alerts Configuration Successful": {
+        "icon": "⚙✅",
+        "color": "green"
+    },
+    "Alert Configuration Failed": {
+        "icon": "⚙❌",
+        "color": "red"
     },
     "Alert Triggered": {
         "icon": "🚨",
@@ -28,27 +36,41 @@ OPERATION_CONFIG = {
         "icon": "🔕",
         "color": "yellow"
     },
+    "No Alerts Found": {
+        "icon": "✅",
+        "color": "green"
+    },
     "Notification Sent": {
         "icon": "📱",
         "color": "blue"
     },
-    "Notification Fail": {
+    "Notification Failed": {
         "icon": "💀",
-        "color": "blue"
+        "color": "red"
     }
-
     # Add more operation types here if you like
 }
 
+###############################################################################
+# SOURCE ICONS: Mapping of source names to Unicode icons.
+###############################################################################
+SOURCE_ICONS = {
+    "user": "👤",
+    "system": "💻",
+    "system test": "⚙️✅",
+    "sonic": "🦔",
+    "monitor": "📡"
+}
+# Fallback if no source is provided:
+DEFAULT_SOURCE_ICON = "❓"
+
 def fuzzy_find_op_type(op_type: str, config_keys) -> str:
     """
-    Fuzzy find the best matching operation_type key from config_keys
+    Fuzzy find the best matching operation_type key from config_keys.
     Returns the best match if it's above a certain threshold, else returns None.
     """
-    # Normalize: remove non-alphanumeric, lowercase
     def normalize(s):
         return re.sub(r'[^a-z0-9]+', '', s.lower())
-
     op_norm = normalize(op_type)
     best_key = None
     best_score = 0
@@ -58,11 +80,9 @@ def fuzzy_find_op_type(op_type: str, config_keys) -> str:
         if score > best_score:
             best_score = score
             best_key = k
-    # Use a threshold (e.g., 60 or 70) to ensure we only match if it's decently close
     if best_score >= 60:
         return best_key
     return None
-
 
 ###############################################################################
 # OPERATIONS LOGGER
@@ -82,7 +102,7 @@ class OperationsLogger:
         for h in self.logger.handlers[:]:
             self.logger.removeHandler(h)
 
-        # FileHandler with UTF-8 encoding; we output only the message (which is our JSON string).
+        # FileHandler with UTF-8 encoding; we output only the message (our JSON string).
         file_handler = logging.FileHandler(log_filename, encoding="utf-8")
         file_handler.setFormatter(logging.Formatter("%(message)s"))
         self.logger.addHandler(file_handler)
@@ -104,14 +124,18 @@ class OperationsLogger:
         }
         self.logger.info(json.dumps(record, ensure_ascii=False))
 
-
 ###############################################################################
 # OPERATIONS VIEWER
 ###############################################################################
 class OperationsViewer:
     """
-    Reads each JSON line from operations_log.txt, then injects icons and colors
-    at display time. The 'operation_type' field tells us which icon and color to use.
+    Reads each JSON line from operations_log.txt and renders log entries with:
+      - An outer container with a white background.
+      - Each log entry as a three-column flex row:
+           • Left: A larger icon and bold primary message.
+           • Center: A source icon (center-aligned).
+           • Right: The date (regular) and time (bold), all aligned to the right.
+      - The text color for the log entry is determined by its operation type.
     """
     def __init__(self, log_filename: str):
         self.log_filename = log_filename
@@ -128,72 +152,74 @@ class OperationsViewer:
                     # Skip any malformed lines.
                     pass
 
-    def fuzzy_find_op_type(op_type: str, config_keys) -> str:
-        """
-        Fuzzy find the best matching operation_type key from config_keys
-        Returns the best match if it's above a certain threshold, else returns None.
-        """
-
-        # Normalize: remove non-alphanumeric, lowercase
-        def normalize(s):
-            return re.sub(r'[^a-z0-9]+', '', s.lower())
-
-        op_norm = normalize(op_type)
-        best_key = None
-        best_score = 0
-        for k in config_keys:
-            k_norm = normalize(k)
-            score = fuzz.ratio(op_norm, k_norm)  # fuzzy ratio
-            if score > best_score:
-                best_score = score
-                best_key = k
-        # Use a threshold (e.g., 60 or 70) to ensure we only match if it's decently close
-        if best_score >= 60:
-            return best_key
-        return None
+    def get_line_color_class(self, color_name: str) -> str:
+        color_map = {
+            "red": "alert-danger",
+            "blue": "alert-primary",
+            "green": "alert-success",
+            "yellow": "alert-warning"
+        }
+        return color_map.get(color_name.lower(), "alert-secondary")
 
     def get_display_string(self, record: dict) -> str:
-        from fuzzywuzzy import fuzz  # or put this import at the top
+        # Determine the operation type and use fuzzy matching to get the best key.
         op_type = record.get("operation_type", "")
-        # Attempt a fuzzy match in OPERATION_CONFIG keys
         best_key = fuzzy_find_op_type(op_type, OPERATION_CONFIG.keys())
-        if best_key:
-            config = OPERATION_CONFIG[best_key]
-        else:
-            config = {}
-
+        config = OPERATION_CONFIG.get(best_key, {}) if best_key else {}
         icon = config.get("icon", "")
-        color = config.get("color", "")
+        # Make the icon a little smaller by wrapping it in a span with decreased font-size.
+        icon_html = f'<span style="font-size: 1rem;">{icon}</span>'
+        color_name = config.get("color", "secondary")
+        line_color_class = self.get_line_color_class(color_name)
 
-        # Map color to a Bootstrap alert class
-        alert_class = "alert-secondary"
-        if color.lower() == "red":
-            alert_class = "alert-danger"
-        elif color.lower() == "blue":
-            alert_class = "alert-primary"
-        elif color.lower() == "green":
-            alert_class = "alert-success"
-        elif color.lower() == "yellow":
-            alert_class = "alert-warning"
+        # Get the primary message and make it bold.
+        msg_text = record.get("message", "")
+        msg_html = f"<strong>{msg_text}</strong>"
 
-        # Build the line content
-        message = record.get("message", "")
-        source = record.get("source", "")
-        timestamp = record.get("timestamp", "")
-        line = f"{icon} {message}"
-        if source:
-            line += f" | Source: {source} - <b>{timestamp}</b>"
+        # Determine the source icon.
+        source_text = record.get("source", "")
+        source_icon = SOURCE_ICONS.get(source_text.lower(), DEFAULT_SOURCE_ICON) if source_text else DEFAULT_SOURCE_ICON
+
+        # Split timestamp into date and time parts.
+        timestamp_str = record.get("timestamp", "")
+        date_part, time_part = ("", "")
+        if " : " in timestamp_str:
+            date_part, time_part = timestamp_str.split(" : ", 1)
         else:
-            line += f" | <b>{timestamp}</b>"
+            date_part = timestamp_str
 
-        # Minimal internal padding, no bottom margin
-        return f'<div class="alert {alert_class} p-1 mb-0" role="alert">{line}</div>'
+        # Build the HTML using a flex container with three columns.
+        line_html = f"""
+<div class="alert {line_color_class} d-flex align-items-center justify-content-between mb-1" 
+     style="margin: 4px 0; padding: 6px; white-space: nowrap;">
+  <!-- Left Column: Icon and Bold Message -->
+  <div style="flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis;">
+    {icon_html} {msg_html}
+  </div>
+  <!-- Center Column: Source Icon (center aligned) -->
+  <div style="flex: 0 0 auto; margin: 0 16px; text-align: center; min-width: 30px;">
+    <span style="font-size: 1rem;">{source_icon}</span>
+  </div>
+  <!-- Right Column: Date (regular) and Time (bold) -->
+  <div style="flex: 0 0 auto; text-align: right; min-width: 120px;">
+    <span style="font-weight: normal;">{date_part}</span>
+    &nbsp;
+    <span style="font-weight: bold;">{time_part}</span>
+  </div>
+</div>
+""".strip()
+        return line_html
 
     def get_all_display_strings(self) -> str:
-        display_list = [self.get_display_string(e) for e in self.entries]
-        # Reverse the list so that the most recent entries appear first
-        return "<br>".join(display_list[::-1])
-
+        # Reverse the list so that the most recent entries appear first.
+        display_list = [self.get_display_string(e) for e in self.entries[::-1]]
+        # Wrap the entries in an outer container with a white background and a small padding.
+        final_html = f"""
+<div style="background-color: white; padding: 8px;">
+  {''.join(display_list)}
+</div>
+""".strip()
+        return final_html
 
 ###############################################################################
 # Example Usage (Run this file directly to test logging and viewing)
@@ -202,10 +228,11 @@ if __name__ == "__main__":
     # Create logger and log some events (plain JSON lines, no icons/colors stored).
     op_logger = OperationsLogger()
     op_logger.log("Launch Pad - Started", source="System Start-up", operation_type="Launch pad started")
-    op_logger.log("Jupiter Positions Updated", source="Monitor", operation_type="Update Jupiter")
+    op_logger.log("Jupiter Positions Updated", source="Monitor", operation_type="Jupiter Updated")
+    op_logger.log("No alerts found", source="Monitor")
     op_logger.log("Plain message with no operation type", source="NoIcon")
 
-    # Now read them back with the viewer, which injects icons and color at display time.
+    # Now read them back with the viewer, which injects icons and colors at display time.
     viewer = OperationsViewer(op_logger.log_filename)
     html_output = viewer.get_all_display_strings()
     print("----- HTML OUTPUT -----")

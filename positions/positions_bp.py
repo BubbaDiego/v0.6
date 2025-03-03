@@ -682,9 +682,12 @@ def update_jupiter():
 
     try:
         logger.debug("Step 9: Logging operation with OperationsLogger...")
-        from utils.operations_logger import OperationsLogger
+        from utils.operations_manager import OperationsLogger
         op_logger = OperationsLogger()
-        op_logger.log("Jupiter Update Complete:", source=source)
+        op_logger.log("Jupiter Update Complete", source=source, operation_type="Jupiter Updated")
+
+        op_logger.log(f"Testing Twilio Failed", source="system test", operation_type="Notification Sent")
+
         logger.debug("Operation logged successfully.")
         print("[DEBUG] Operation logged successfully.")
     except Exception as e:

@@ -74,7 +74,7 @@ class CalcServices:
 
     def calculate_value(self, position):
         # Since size is already in USD, just return it.
-        size = float(position.get("size", 0.0))
+        size = float(position.get("size") or 0.0)
         return round(size, 2)
 
     def calculate_leverage(self, size: float, collateral: float) -> float:

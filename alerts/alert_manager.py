@@ -10,7 +10,7 @@ from twilio.rest import Client
 from config.unified_config_manager import UnifiedConfigManager
 from config.config_constants import DB_PATH, CONFIG_PATH
 from pathlib import Path
-from utils.operations_logger import OperationsLogger
+from utils.operations_manager import OperationsLogger
 
 # Minimal Logging Configuration
 logger = logging.getLogger("AlertManagerLogger")
@@ -35,7 +35,6 @@ def trigger_twilio_flow(custom_message: str, twilio_config: dict) -> str:
     from_phone = twilio_config.get("from_phone")
     if not all([account_sid, auth_token, flow_sid, to_phone, from_phone]):
         raise ValueError("Missing Twilio configuration variables.")
-
 
     client = Client(account_sid, auth_token)
     execution = client.studio.v2.flows(flow_sid).executions.create(
@@ -107,10 +106,17 @@ class AlertManager:
     def reload_config(self):
         from config.config_manager import load_config
         db_conn = self.data_locker.get_db_connection()
-        self.config = load_config(self.config_path, db_conn)
-        self.cooldown = self.config.get("alert_cooldown_seconds", 900)
-        self.call_refractory_period = self.config.get("call_refractory_period", 3600)
-        logger.info("Alert configuration reloaded.")
+        try:
+            self.config = load_config(self.config_path, db_conn)
+            self.cooldown = self.config.get("alert_cooldown_seconds", 900)
+            self.call_refractory_period = self.config.get("call_refractory_period", 3600)
+            logger.info("Alert configuration reloaded.")
+            op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+            op_logger.log("Alerts configuration reloaded successfully", source="AlertManager", operation_type="Alerts Configuration Successful")
+        except Exception as e:
+            logger.error("Failed to reload alert configuration: %s", e)
+            op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+            op_logger.log("Alert configuration reload failed", source="AlertManager", operation_type="Alert Configuration Failed")
 
     def run(self):
         logger.info("Starting alert monitoring loop.")
@@ -121,12 +127,11 @@ class AlertManager:
     def check_alerts(self, source: Optional[str] = None):
         if not self.monitor_enabled:
             logger.info("Alert monitoring disabled.")
-            #return
+            return
 
         aggregated_alerts: List[str] = []
         positions = self.data_locker.read_positions()
         logger.info("Checking %d positions for alerts.", len(positions))
-        logger.debug("Positions data: %s", json.dumps(positions[:5], indent=2) if len(positions) > 5 else json.dumps(positions, indent=2))
 
         for pos in positions:
             profit_alert = self.check_profit(pos)
@@ -144,24 +149,15 @@ class AlertManager:
         price_alerts = self.check_price_alerts()
         aggregated_alerts.extend(price_alerts)
 
-        from utils.operations_logger import OperationsLogger
+        from utils.operations_manager import OperationsLogger
         op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
-        now = datetime.now()
-        raw_timestamp = now.strftime("%m-%d-%y : %I:%M:%S %p")
-        month, day, year = raw_timestamp.split(" : ")[0].split("-")
-        time_part = raw_timestamp.split(" : ")[1]
-        hour, minute, sec_am = time_part.split(":", 2)
-        month = str(int(month))
-        day = str(int(day))
-        hour = str(int(hour))
-        timestamp_str = f"{month}-{day}-{year} : {hour}:{minute}:{sec_am}"
 
         if aggregated_alerts:
-            op_message = f"❌ {len(aggregated_alerts)} alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
+            op_message = f"{len(aggregated_alerts)} alerts triggered"
             op_logger.log(op_message, source=source, operation_type="Alert Triggered")
         else:
-            op_message = f"✅ No alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
-            op_logger.log(op_message, source=source)
+            op_message = "✅ No alerts found"
+            op_logger.log(op_message, source=source, operation_type="No Alerts Found")
 
     def check_travel_percent_liquid(self, pos: Dict[str, Any]) -> str:
         asset_code = pos.get("asset_type", "???").upper()
@@ -178,29 +174,23 @@ class AlertManager:
 
         logger.debug("Checking travel percent for %s %s (ID: %s): current_travel_percent = %s",
                      asset_full, position_type, position_id, current_val)
-        print(
-            f"[DEBUG] Checking travel percent for {asset_full} {position_type} (ID: {position_id}): current_travel_percent = {current_val}")
+        print(f"[DEBUG] Checking travel percent for {asset_full} {position_type} (ID: {position_id}): current_travel_percent = {current_val}")
 
         if current_val >= 0:
             logger.debug("%s %s (ID: %s): Travel percent is non-negative (%s), no alert needed.",
                          asset_full, position_type, position_id, current_val)
-            print(
-                f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Travel percent is non-negative ({current_val}), no alert needed.")
+            print(f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Travel percent is non-negative ({current_val}), no alert needed.")
             return ""
 
-        # Get the travel percent liquid configuration and print it for debugging.
         tpli_config = self.config.get("alert_ranges", {}).get("travel_percent_liquid_ranges", {})
         print(f"[DEBUG] Loaded travel_percent_liquid_ranges config: {tpli_config}")
 
-        # If 'enabled' is missing, we'll assume alerts should be enabled if thresholds are provided.
         if not tpli_config.get("enabled", True):
             logger.debug("Travel percent alert not enabled in config for %s %s (ID: %s).",
                          asset_full, position_type, position_id)
-            print(
-                f"[DEBUG] Travel percent alert not enabled in config for {asset_full} {position_type} (ID: {position_id}).")
+            print(f"[DEBUG] Travel percent alert not enabled in config for {asset_full} {position_type} (ID: {position_id}).")
             return ""
 
-        # Handle empty string thresholds by substituting defaults.
         def parse_threshold(value, default):
             return float(value) if value not in (None, "") else default
 
@@ -209,18 +199,15 @@ class AlertManager:
             medium = parse_threshold(tpli_config.get("medium"), -50.0)
             high = parse_threshold(tpli_config.get("high"), -75.0)
         except Exception as e:
-            logger.error("%s %s (ID: %s): Error parsing travel percent thresholds.", asset_full, position_type,
-                         position_id)
-            print(
-                f"[ERROR] {asset_full} {position_type} (ID: {position_id}): Error parsing travel percent thresholds: {e}")
+            logger.error("%s %s (ID: %s): Error parsing travel percent thresholds.", asset_full, position_type, position_id)
+            print(f"[ERROR] {asset_full} {position_type} (ID: {position_id}): Error parsing travel percent thresholds: {e}")
             return ""
 
         logger.debug(
             "[Travel Percent Alert Debug] %s %s (ID: %s): Actual Travel%% = %.2f, Thresholds - Low: %.2f, Medium: %.2f, High: %.2f",
             asset_full, position_type, position_id, current_val, low, medium, high
         )
-        print(
-            f"[DEBUG] [Travel Percent Alert Debug] {asset_full} {position_type} (ID: {position_id}): Actual Travel% = {current_val:.2f}, Thresholds - Low: {low:.2f}, Medium: {medium:.2f}, High: {high:.2f}")
+        print(f"[DEBUG] [Travel Percent Alert Debug] {asset_full} {position_type} (ID: {position_id}): Actual Travel% = {current_val:.2f}, Thresholds - Low: {low:.2f}, Medium: {medium:.2f}, High: {high:.2f}")
 
         alert_level = ""
         if current_val <= high:
@@ -230,8 +217,7 @@ class AlertManager:
         elif current_val <= low:
             alert_level = "LOW"
         else:
-            logger.debug("%s %s (ID: %s): No travel percent alert level triggered.", asset_full, position_type,
-                         position_id)
+            logger.debug("%s %s (ID: %s): No travel percent alert level triggered.", asset_full, position_type, position_id)
             print(f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): No travel percent alert level triggered.")
             return ""
 
@@ -239,12 +225,9 @@ class AlertManager:
         now = time.time()
         last_time = self.last_triggered.get(key, 0)
         if now - last_time < self.cooldown:
-            logger.debug("%s %s (ID: %s): Alert for key '%s' suppressed due to cooldown.", asset_full, position_type,
-                         position_id, key)
-            print(
-                f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Alert for key '{key}' suppressed due to cooldown.")
+            logger.debug("%s %s (ID: %s): Alert for key '%s' suppressed due to cooldown.", asset_full, position_type, position_id, key)
+            print(f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Alert for key '{key}' suppressed due to cooldown.")
             return ""
-
         self.last_triggered[key] = now
         wallet_name = pos.get("wallet_name", "Unknown")
         msg = f"Travel Percent Liquid ALERT: {asset_full} {position_type} (Wallet: {wallet_name}) - Travel% = {current_val:.2f}%, Level = {alert_level}"
@@ -405,23 +388,20 @@ class AlertManager:
         return msg
 
     def send_call(self, body: str, key: str):
+        from utils.operations_manager import OperationsLogger
+        op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
         now = time.time()
         last_call_time = self.last_call_triggered.get(key, 0)
         if now - last_call_time < self.call_refractory_period:
             logger.info("Call alert '%s' suppressed.", key)
-            # Log an "Alert Silenced" event when the call is suppressed.
-            from utils.operations_logger import OperationsLogger
-            op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
             op_logger.log(f"Alert Silenced: {key}", source="AlertManager", operation_type="Alert Silenced")
             return
         try:
             trigger_twilio_flow(body, self.twilio_config)
             self.last_call_triggered[key] = now
-            # Log a "Notification Sent" event after a successful notification.
-            from utils.operations_logger import OperationsLogger
-            op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
             op_logger.log(f"Notification Sent: {key}", source="AlertManager", operation_type="Notification Sent")
         except Exception as e:
+            op_logger.log(f"Notification Failed: {key}", source="AlertManager", operation_type="Notification Failed")
             logger.error("Error sending call for '%s'.", key, exc_info=True)
 
     def load_json_config(self, json_path: str) -> dict:

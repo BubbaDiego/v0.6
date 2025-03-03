@@ -44,7 +44,7 @@ from positions.positions_bp import positions_bp
 from alerts.alerts_bp import alerts_bp
 from prices.prices_bp import prices_bp
 from dashboard.dashboard_bp import dashboard_bp  # Dashboard-specific routes and API endpoints
-from utils.operations_logger import OperationsLogger
+from utils.operations_manager import OperationsLogger
 
 # *** NEW: Import the portfolio blueprint ***
 from portfolio.portfolio_bp import portfolio_bp
@@ -91,25 +91,16 @@ app.register_blueprint(portfolio_bp, url_prefix="/portfolio")
 app.register_blueprint(simulator_bp, url_prefix="/simulator")
 
 # Call the OperationsLogger on startup with the source "System Start-up"
-
-#op_logger = OperationsLogger()
-##   "Launch Pad - Started",
-  #  source="System Start-up",
-  #  operation_type="Start Launch Pad"
-#)
-
-from utils.operations_logger import OperationsLogger
-op_logger = OperationsLogger()#log_filename=os.path.join(os.getcwd()))
+op_logger = OperationsLogger()
 op_logger.log(
     "Launch Pad - Started",
-    source="System Start-up",
+    source="System",
     operation_type="Start Launch Pad"
 )
 
 # --- Alias endpoints if needed ---
 if "dashboard.index" in app.view_functions:
     app.add_url_rule("/dashboard", endpoint="dashboard", view_func=app.view_functions["dashboard.index"])
-
 
 # Global Routes for non-dashboard-specific functionality
 
@@ -472,21 +463,23 @@ def update_theme_context():
     # Return the entire theme_config so your template can access both 'selected_profile' and 'profiles'
     return dict(theme=theme_config)
 
-from flask import jsonify, request
+
 @app.route('/test_twilio', methods=["POST"])
 def test_twilio():
     from twilio_message_api import trigger_twilio_flow
     from utils.operations_logger import OperationsLogger
-    import os
+
+    op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+
     try:
         # Get the test message from the POST data; use a default if not provided.
         message = request.form.get("message", "Test message from system config")
         execution_sid = trigger_twilio_flow(message)
         # Log the "Notification Sent" event.
-        op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
-        op_logger.log(f"Notification Sent: Test message", source="Test Twilio", operation_type="Notification Sent")
+        op_logger.log(f"Testing Twilio", source="system test", operation_type="Notification Sent")
         return jsonify({"success": True, "sid": execution_sid})
     except Exception as e:
+        op_logger.log(f"Testing Twilio Failed", source="system test", operation_type="Notification Failed")
         return jsonify({"success": False, "error": str(e)}), 500
 
 
@@ -512,7 +505,7 @@ if __name__ == "__main__":
         from utils.operations_logger import OperationsLogger
 
         op_logger = OperationsLogger(use_color=False)
-        op_logger.log("Launch Pad - Started", source="System Start-up")
+        op_logger.log("Launch Pad - Started", source="System")
 
     if monitor:
         import subprocess
