@@ -19,6 +19,10 @@
 2025-02-24 11:41:17,451 - AlertManagerLogger - INFO - AlertManager initialized.
 2025-02-24 11:47:33,859 - AlertManagerLogger - INFO - AlertManager initialized.
 2025-02-24 11:47:34,653 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-24 12:02:14,612 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-24 12:02:16,053 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-25 09:50:39,176 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-02-25 09:50:40,125 - AlertManagerLogger - INFO - AlertManager initialized.
 2025-02-26 11:10:57,988 - AlertManagerLogger - INFO - AlertManager initialized.
 2025-02-26 11:10:58,667 - AlertManagerLogger - INFO - AlertManager initialized.
 2025-02-26 11:11:11,261 - AlertManagerLogger - INFO - Checking 0 positions for alerts.
@@ -20938,3 +20942,9 @@ twilio.base.exceptions.TwilioRestException: HTTP 401 error: Unable to create rec
 2025-03-03 07:09:55,806 - AlertManagerLogger - ERROR - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Error converting liquidation distance.
 2025-03-03 07:09:55,806 - AlertManagerLogger - ERROR - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Error converting liquidation distance.
 2025-03-03 07:09:55,806 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 10:10:44,438 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 10:10:49,465 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 11:31:41,586 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 11:31:50,891 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 11:43:33,322 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 11:43:42,073 - AlertManagerLogger - INFO - AlertManager initialized.

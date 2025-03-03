@@ -3,6 +3,7 @@ import time
 import requests
 import logging
 import urllib3
+from fuzzywuzzy import fuzz
 from utils.operations_manager import OperationsLogger  # Import from external module
 
 # Disable InsecureRequestWarning

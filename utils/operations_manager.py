@@ -6,7 +6,7 @@ import logging
 import pytz
 from datetime import datetime
 import re
-from fuzzywuzzy import fuzz
+#from fuzzywuzzy import fuzz
 
 ###############################################################################
 # OPERATION CONFIG: Operation type -> icon & color (used by the viewer only)
