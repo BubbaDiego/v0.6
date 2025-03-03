@@ -14,7 +14,8 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-URL = "http://www.deadlypanda.com/update_jupiter"
+#URL = "http://www.deadlypanda.com/update_jupiter"
+URL = "http://127.0.0.1:5001/positions/update_jupiter"
 SLEEP_INTERVAL = 120  # 2 minutes in seconds
 
 def call_update_jupiter():
@@ -35,7 +36,7 @@ def main():
         call_update_jupiter()
 
         # Log the operation with the loop count, source set to "monitor", and operation type "Jupiter Updated"
-        op_logger.log(f"Jupiter Update Complete - loop count: {loop_counter}", source="monitor", operation_type="Jupiter Updated")
+        op_logger.log(f"Monitor Loop # {loop_counter}", source="monitor", operation_type="Monitor Loop")
 
         time.sleep(SLEEP_INTERVAL)
 

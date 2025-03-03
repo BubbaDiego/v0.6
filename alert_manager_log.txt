@@ -19310,3 +19310,906 @@ twilio.base.exceptions.TwilioRestException: HTTP 401 error: Unable to create rec
 2025-03-02 22:45:11,137 - AlertManagerLogger - ERROR - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Error converting liquidation distance.
 2025-03-02 22:45:11,137 - AlertManagerLogger - ERROR - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Error converting liquidation distance.
 2025-03-02 22:45:11,137 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-02 22:46:19,672 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-02 22:46:20,559 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-02 22:46:28,298 - AlertManagerLogger - INFO - Checking 4 positions for alerts.
+2025-03-02 22:46:28,298 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -22.08
+2025-03-02 22:46:28,298 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -22.08, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-02 22:46:28,298 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -22.08%, Level = LOW
+2025-03-02 22:46:28,298 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-02 22:46:28,298 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-02 22:46:28,298 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -49.71
+2025-03-02 22:46:28,301 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -49.71, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-02 22:46:28,302 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Long (Wallet: R2Vault) - Travel% = -49.71%, Level = LOW
+2025-03-02 22:46:28,302 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-02 22:46:28,302 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-02 22:46:28,302 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = -40.6
+2025-03-02 22:46:28,302 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Actual Travel% = -40.60, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-02 22:46:28,302 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Solana Long (Wallet: R2Vault) - Travel% = -40.60%, Level = LOW
+2025-03-02 22:46:28,302 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-02 22:46:28,302 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-02 22:46:28,302 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): current_travel_percent = 42.0
+2025-03-02 22:46:28,302 - AlertManagerLogger - DEBUG - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Travel percent is non-negative (42.0), no alert needed.
+2025-03-02 22:46:28,302 - AlertManagerLogger - ERROR - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Error converting liquidation distance.
+2025-03-02 22:46:28,302 - AlertManagerLogger - ERROR - Solana Short (ID: 3srKmac75QQChKLNNTDMbQT2M2qiNTJMWACUeu6QBdh2): Error converting liquidation distance.
+2025-03-02 22:46:28,302 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-02 22:46:34,033 - AlertManagerLogger - DEBUG - Loaded config: {'price_config': {'assets': ['BTC', 'ETH', 'SOL'], 'currency': 'USD', 'cmc_api_key': 'c51c0c22-1bf3-4674-86bf-36f39a912d1a'}, 'system_config': {'logging_enabled': True, 'log_level': 'DEBUG', 'console_output': True, 'log_file': './v0.6/price_monitor.log', 'db_path': './v0.6/mother_brain.db', 'price_monitor_enabled': True, 'alert_monitor_enabled': True, 'sonic_monitor_loop_time': 300, 'last_price_update_time': None}, 'api_config': {'coingecko_api_enabled': 'ENABLE', 'kucoin_api_enabled': 'ENABLE', 'coinmarketcap_api_enabled': 'ENABLE', 'coinpaprika_api_enabled': 'ENABLE', 'binance_api_enabled': 'ENABLE', 'coinmarketcap_api_key': 'c51c0c22-1bf3-4674-86bf-36f39a912d1a'}, 'alert_ranges': {'heat_index_ranges': {'enabled': False, 'low': 444.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium': 444.0, 'high': 777.0, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'collateral_ranges': {'enabled': False, 'low': 1111.0, 'medium': 1111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'value_ranges': {'enabled': False, 'low': 1111.0, 'medium': 1111.0, 'high': 1111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'size_ranges': {'enabled': False, 'low': 11111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'leverage_ranges': {'enabled': False, 'low': 11111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'liquidation_distance_ranges': {'enabled': False, 'low': 1111111.0, 'medium': 111111.0, 'high': 11111.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'travel_percent_liquid_ranges': {'enabled': True, 'low': -10.0, 'low_notifications': {'call': True, 'sms': False, 'email': False}, 'medium': -60.0, 'medium_notifications': {'call': True, 'sms': False, 'email': False}, 'high': -75.0, 'high_notifications': {'call': True, 'sms': False, 'email': False}}, 'travel_percent_profit_ranges': {'enabled': False, 'low': -5.0, 'medium': -75.0, 'high': -85.0, 'low_notifications': {'call': False, 'sms': False, 'email': False}, 'medium_notifications': {'call': False, 'sms': False, 'email': False}, 'high_notifications': {'call': False, 'sms': False, 'email': False}}, 'profit_ranges': {'enabled': True, 'low': 46.23, 'low_notifications': {'call': True, 'sms': True, 'email': True}, 'medium': 101.3, 'medium_notifications': {'call': True, 'sms': True, 'email': True}, 'high': 202.0, 'high_notifications': {'call': True, 'sms': True, 'email': True}}, 'one_day_blast_radius': {'BTC': 17.6, 'ETH': 18.0, 'SOL': 23.0}}, 'notification_config': {'email': {'smtp_server': 'smtp.gmail.com', 'smtp_port': 587, 'smtp_user': 'bubba.diego@gmail.com', 'smtp_password': 'pzix taan afbe igxb', 'recipient_email': 'bubba.diego@gmail.com'}, 'sms': {'carrier_gateway': 'txt.att.net', 'recipient_number': '6199804758'}}, 'alert_cooldown_seconds': 6000, 'call_refractory_period': 1, 'theme_config': {'selected_profile': 'profile4', 'profiles': {'profile1': {'title_bar': {'color': '#FF5733', 'image': 'static/images/alert_wall.jpg'}, 'side_bar': {'color': '#C70039', 'image': None}, 'wallpaper': {'color': '#900C3F', 'image': 'static/images/alert_wall.jpg'}, 'primary': {'color': '#581845', 'image': None}, 'secondary': {'color': '#FFC300', 'image': None}, 'text': {'color': '#FFFFFF'}}, 'profile2': {'title_bar': {'color': '#007BFF', 'image': None}, 'side_bar': {'color': '#6C757D', 'image': None}, 'wallpaper': {'color': '#F8F9FA', 'image': 'static/images/alert_wall.jpg'}, 'primary': {'color': '#28A745', 'image': None}, 'secondary': {'color': '#17A2B8', 'image': None}, 'text': {'color': '#212529'}}, 'profile3': {'title_bar': {'color': '#343A40', 'image': None}, 'side_bar': {'color': '#495057', 'image': None}, 'wallpaper': {'color': '#E9ECEF', 'image': None}, 'primary': {'color': '#007BFF', 'image': None}, 'secondary': {'color': '#6C757D', 'image': None}, 'text': {'color': '#FFFFFF'}}, 'profile4': {'title_bar': {'color': '#28A745', 'image': None}, 'side_bar': {'color': '#17A2B8', 'image': None}, 'wallpaper': {'color': '#F8F9FA', 'image': None}, 'primary': {'color': '#FFC107', 'image': None}, 'secondary': {'color': '#DC3545', 'image': None}, 'text': {'color': '#212529'}}}}, 'twilio_config': {'account_sid': 'ACb606788ada5dccbfeeebed0f440099b3', 'auth_token': '1527daf6de1f544128660cc33abd2de7', 'flow_sid': 'FW5b3bf49ee04af4d23a118b613bbc0df2', 'to_phone': '+16199804758', 'from_phone': '+18336913467'}}
+2025-03-02 22:56:10,422 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-02 22:56:11,313 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 03:38:44,463 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 03:38:45,870 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 03:38:51,251 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -61.42
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -61.42, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -61.42%, Level = MEDIUM
+2025-03-03 03:38:51,251 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:38:51,251 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -7.15
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -7.15, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 03:38:51,251 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:38:51,251 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 6.43
+2025-03-03 03:38:51,251 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (6.43), no alert needed.
+2025-03-03 03:38:51,251 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:38:51,251 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:38:51,251 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 03:39:43,602 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 03:39:43,602 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -61.08
+2025-03-03 03:39:43,602 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -61.08, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:39:43,602 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-MEDIUM' suppressed due to cooldown.
+2025-03-03 03:39:43,602 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:39:43,602 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:39:43,602 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -7.37
+2025-03-03 03:39:43,602 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -7.37, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:39:43,602 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 03:39:43,602 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:39:43,604 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:39:43,604 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 3.98
+2025-03-03 03:39:43,604 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (3.98), no alert needed.
+2025-03-03 03:39:43,604 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:39:43,604 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:39:43,605 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 03:43:42,742 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 03:43:43,638 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 03:43:55,149 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 03:43:55,149 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -62.57
+2025-03-03 03:43:55,149 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -62.57, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:43:55,149 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -62.57%, Level = MEDIUM
+2025-03-03 03:43:55,149 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:43:55,149 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:43:55,150 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -6.44
+2025-03-03 03:43:55,150 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -6.44, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:43:55,150 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 03:43:55,150 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:43:55,150 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:43:55,150 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 4.93
+2025-03-03 03:43:55,150 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (4.93), no alert needed.
+2025-03-03 03:43:55,150 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:43:55,150 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:43:55,150 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 03:46:05,456 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 03:46:13,571 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 03:46:13,571 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -65.74
+2025-03-03 03:46:13,571 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -65.74, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:46:13,571 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -65.74%, Level = MEDIUM
+2025-03-03 03:46:13,571 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:46:13,571 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:46:13,571 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -4.45
+2025-03-03 03:46:13,571 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -4.45, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:46:13,571 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 03:46:13,572 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:46:13,572 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:46:13,572 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 6.02
+2025-03-03 03:46:13,572 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (6.02), no alert needed.
+2025-03-03 03:46:13,572 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:46:13,572 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:46:13,572 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 03:46:30,333 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 03:46:30,333 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -65.55
+2025-03-03 03:46:30,333 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -65.55, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:46:30,333 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-MEDIUM' suppressed due to cooldown.
+2025-03-03 03:46:30,333 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:46:30,333 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 03:46:30,333 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -4.57
+2025-03-03 03:46:30,333 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -4.57, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 03:46:30,333 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 03:46:30,333 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:46:30,334 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 03:46:30,334 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 5.61
+2025-03-03 03:46:30,334 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (5.61), no alert needed.
+2025-03-03 03:46:30,334 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:46:30,334 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 03:46:30,335 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:01:19,795 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:01:20,658 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:01:26,615 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:01:26,615 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -70.98
+2025-03-03 04:01:26,615 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -70.98, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:01:26,616 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -70.98%, Level = MEDIUM
+2025-03-03 04:01:26,616 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:01:26,616 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:01:26,616 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -1.17
+2025-03-03 04:01:26,616 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -1.17, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:01:26,616 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 04:01:26,616 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:01:26,616 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:01:26,617 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 3.14
+2025-03-03 04:01:26,617 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (3.14), no alert needed.
+2025-03-03 04:01:26,617 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:01:26,617 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:01:26,617 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:01:30,579 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:01:30,579 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -70.68
+2025-03-03 04:01:30,579 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -70.68, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:01:30,579 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-MEDIUM' suppressed due to cooldown.
+2025-03-03 04:01:30,579 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:01:30,579 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:01:30,579 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -1.36
+2025-03-03 04:01:30,579 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -1.36, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:01:30,579 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 04:01:30,579 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:01:30,581 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:01:30,581 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 2.49
+2025-03-03 04:01:30,581 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (2.49), no alert needed.
+2025-03-03 04:01:30,581 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:01:30,581 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:01:30,581 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:02:29,792 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:02:29,792 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -73.57
+2025-03-03 04:02:29,792 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -73.57, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:02:29,792 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-MEDIUM' suppressed due to cooldown.
+2025-03-03 04:02:29,792 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:02:29,792 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:02:29,792 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.45
+2025-03-03 04:02:29,792 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.45), no alert needed.
+2025-03-03 04:02:29,792 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:02:29,794 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:02:29,794 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 6.74
+2025-03-03 04:02:29,794 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (6.74), no alert needed.
+2025-03-03 04:02:29,794 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:02:29,794 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:02:29,794 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:05:54,106 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:12:49,334 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:12:50,231 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:13:15,136 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:13:15,136 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -76.76
+2025-03-03 04:13:15,136 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -76.76, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:13:15,136 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -76.76%, Level = HIGH
+2025-03-03 04:13:15,136 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:13:15,136 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:13:15,136 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.44
+2025-03-03 04:13:15,136 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.44), no alert needed.
+2025-03-03 04:13:15,136 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:13:15,136 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:13:15,138 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 17.84
+2025-03-03 04:13:15,138 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (17.84), no alert needed.
+2025-03-03 04:13:15,138 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:13:15,138 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:13:15,138 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:13:24,215 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:13:24,215 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -77.75
+2025-03-03 04:13:24,215 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -77.75, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:13:24,215 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-HIGH' suppressed due to cooldown.
+2025-03-03 04:13:24,215 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:13:24,215 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:13:24,215 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 3.06
+2025-03-03 04:13:24,215 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (3.06), no alert needed.
+2025-03-03 04:13:24,215 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:13:24,215 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:13:24,216 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 18.67
+2025-03-03 04:13:24,216 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (18.67), no alert needed.
+2025-03-03 04:13:24,216 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:13:24,216 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:13:24,216 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:13:35,931 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:13:35,931 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -77.03
+2025-03-03 04:13:35,931 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -77.03, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:13:35,931 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-HIGH' suppressed due to cooldown.
+2025-03-03 04:13:35,931 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:13:35,931 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:13:35,931 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.61
+2025-03-03 04:13:35,931 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.61), no alert needed.
+2025-03-03 04:13:35,931 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:13:35,933 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:13:35,933 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 17.99
+2025-03-03 04:13:35,933 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (17.99), no alert needed.
+2025-03-03 04:13:35,933 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:13:35,933 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:13:35,933 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:14:28,528 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:14:28,528 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -76.42
+2025-03-03 04:14:28,528 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -76.42, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:14:28,528 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-HIGH' suppressed due to cooldown.
+2025-03-03 04:14:28,528 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:14:28,528 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:14:28,528 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.23
+2025-03-03 04:14:28,528 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.23), no alert needed.
+2025-03-03 04:14:28,528 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:14:28,531 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:14:28,531 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 16.99
+2025-03-03 04:14:28,531 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (16.99), no alert needed.
+2025-03-03 04:14:28,531 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:14:28,531 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:14:28,531 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:15:33,758 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -78.48
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -78.48, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-HIGH' suppressed due to cooldown.
+2025-03-03 04:15:33,758 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:15:33,758 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 3.52
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (3.52), no alert needed.
+2025-03-03 04:15:33,758 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:15:33,758 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 19.29
+2025-03-03 04:15:33,758 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (19.29), no alert needed.
+2025-03-03 04:15:33,759 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:15:33,759 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:15:33,759 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:17:24,850 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:17:24,850 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.43
+2025-03-03 04:17:24,850 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.43), no alert needed.
+2025-03-03 04:17:24,850 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:17:24,850 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:17:24,850 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 16.46
+2025-03-03 04:17:24,850 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (16.46), no alert needed.
+2025-03-03 04:17:24,850 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:17:24,850 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:17:24,854 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -50.75
+2025-03-03 04:17:24,854 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -50.75, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:17:24,854 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -50.75%, Level = LOW
+2025-03-03 04:17:24,854 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:17:24,854 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:17:24,854 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:21:03,066 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:03,958 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:09,962 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:21:09,962 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.31
+2025-03-03 04:21:09,962 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.31), no alert needed.
+2025-03-03 04:21:09,962 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:09,962 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:09,962 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 13.19
+2025-03-03 04:21:09,962 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (13.19), no alert needed.
+2025-03-03 04:21:09,962 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:09,962 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:09,964 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.27
+2025-03-03 04:21:09,964 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.27, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:21:09,965 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -49.27%, Level = LOW
+2025-03-03 04:21:09,965 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:09,965 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:09,965 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:21:27,970 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:29,842 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:30,711 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:33,584 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:21:33,584 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.05
+2025-03-03 04:21:33,584 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.05), no alert needed.
+2025-03-03 04:21:33,584 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:33,584 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:33,584 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 13.41
+2025-03-03 04:21:33,584 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (13.41), no alert needed.
+2025-03-03 04:21:33,584 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:33,584 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:33,585 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.94
+2025-03-03 04:21:33,585 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.94, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:21:33,585 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -48.94%, Level = LOW
+2025-03-03 04:21:33,585 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:33,585 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:33,586 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:21:48,823 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:49,704 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:21:55,084 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:21:55,084 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.39
+2025-03-03 04:21:55,084 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.39), no alert needed.
+2025-03-03 04:21:55,084 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:55,084 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:55,084 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 13.26
+2025-03-03 04:21:55,084 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (13.26), no alert needed.
+2025-03-03 04:21:55,084 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:55,084 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:55,084 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.38
+2025-03-03 04:21:55,084 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.38, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:21:55,085 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -49.38%, Level = LOW
+2025-03-03 04:21:55,085 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:55,085 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:55,085 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:21:58,518 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:21:58,518 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.45
+2025-03-03 04:21:58,518 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.45), no alert needed.
+2025-03-03 04:21:58,518 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:58,518 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:21:58,518 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 13.86
+2025-03-03 04:21:58,518 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (13.86), no alert needed.
+2025-03-03 04:21:58,519 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:58,519 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:21:58,519 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.47
+2025-03-03 04:21:58,519 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.47, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:21:58,519 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:21:58,519 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:58,519 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:21:58,519 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:22:51,142 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.39
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.39), no alert needed.
+2025-03-03 04:22:51,142 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:22:51,142 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 14.49
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (14.49), no alert needed.
+2025-03-03 04:22:51,142 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:22:51,142 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -50.7
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -50.70, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:22:51,142 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:22:51,142 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:22:51,142 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:22:51,142 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:23:54,510 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:23:55,389 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:24:06,846 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:24:06,846 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.16
+2025-03-03 04:24:06,846 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.16), no alert needed.
+2025-03-03 04:24:06,846 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:24:06,846 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:24:06,846 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 17.42
+2025-03-03 04:24:06,846 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (17.42), no alert needed.
+2025-03-03 04:24:06,846 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:24:06,846 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:24:06,846 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -51.72
+2025-03-03 04:24:06,847 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -51.72, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:24:06,848 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -51.72%, Level = LOW
+2025-03-03 04:24:06,848 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:24:06,848 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:24:06,848 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:24:27,000 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:24:27,000 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.46
+2025-03-03 04:24:27,000 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.46), no alert needed.
+2025-03-03 04:24:27,000 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:24:27,000 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:24:27,000 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 15.89
+2025-03-03 04:24:27,000 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (15.89), no alert needed.
+2025-03-03 04:24:27,000 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:24:27,000 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:24:27,004 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -50.79
+2025-03-03 04:24:27,004 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -50.79, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:24:27,004 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:24:27,004 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:24:27,004 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:24:27,004 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:24:50,202 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:24:51,062 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:24:58,851 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:24:58,851 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.23
+2025-03-03 04:24:58,851 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.23), no alert needed.
+2025-03-03 04:24:58,851 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:24:58,851 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:24:58,852 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 15.25
+2025-03-03 04:24:58,852 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (15.25), no alert needed.
+2025-03-03 04:24:58,852 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:24:58,852 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:24:58,853 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -50.49
+2025-03-03 04:24:58,853 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -50.49, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:24:58,853 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -50.49%, Level = LOW
+2025-03-03 04:24:58,853 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:24:58,853 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:24:58,853 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:25:19,398 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:25:19,398 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.2
+2025-03-03 04:25:19,398 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.2), no alert needed.
+2025-03-03 04:25:19,398 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:25:19,398 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:25:19,398 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 14.45
+2025-03-03 04:25:19,398 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (14.45), no alert needed.
+2025-03-03 04:25:19,398 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:25:19,398 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:25:19,401 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -50.45
+2025-03-03 04:25:19,401 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -50.45, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:25:19,401 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:25:19,401 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:25:19,401 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:25:19,401 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:27:19,652 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:27:19,652 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -0.56
+2025-03-03 04:27:19,652 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -0.56, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:27:19,652 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 04:27:19,652 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:27:19,652 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:27:19,652 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 11.4
+2025-03-03 04:27:19,652 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (11.4), no alert needed.
+2025-03-03 04:27:19,652 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:27:19,652 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:27:19,654 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.14
+2025-03-03 04:27:19,655 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.14, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:27:19,655 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:27:19,655 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:27:19,655 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:27:19,655 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:27:42,898 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:27:43,791 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:28:57,221 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:30:09,806 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:30:10,684 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:30:17,487 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:30:17,487 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -1.46
+2025-03-03 04:30:17,487 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -1.46, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:30:17,487 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 04:30:17,487 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:30:17,487 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:30:17,487 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 8.35
+2025-03-03 04:30:17,487 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (8.35), no alert needed.
+2025-03-03 04:30:17,487 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:30:17,488 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:30:17,489 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -46.96
+2025-03-03 04:30:17,489 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -46.96, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:30:17,489 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -46.96%, Level = LOW
+2025-03-03 04:30:17,489 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:30:17,490 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:30:17,490 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:45:05,815 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.06
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.06), no alert needed.
+2025-03-03 04:45:05,816 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:45:05,816 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 19.69
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (19.69), no alert needed.
+2025-03-03 04:45:05,816 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:45:05,816 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -50.28
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -50.28, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:45:05,816 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:45:05,816 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:45:05,816 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:45:05,816 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:48:18,280 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:48:19,169 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:48:26,016 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:48:26,016 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.72
+2025-03-03 04:48:26,016 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.72), no alert needed.
+2025-03-03 04:48:26,016 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:48:26,017 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:48:26,017 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 22.97
+2025-03-03 04:48:26,017 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (22.97), no alert needed.
+2025-03-03 04:48:26,017 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:48:26,017 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:48:26,017 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -51.16
+2025-03-03 04:48:26,017 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -51.16, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:48:26,017 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -51.16%, Level = LOW
+2025-03-03 04:48:26,017 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:48:26,017 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:48:26,018 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:51:08,451 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:53:20,864 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:53:37,425 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:53:38,270 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:54:06,697 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:54:07,555 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:54:16,862 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:54:16,862 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -0.2
+2025-03-03 04:54:16,862 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -0.20, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:54:16,862 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 04:54:16,862 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:54:16,862 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:54:16,862 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 18.03
+2025-03-03 04:54:16,862 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (18.03), no alert needed.
+2025-03-03 04:54:16,863 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:54:16,863 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:54:16,863 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.64
+2025-03-03 04:54:16,863 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.64, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:54:16,863 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -48.64%, Level = LOW
+2025-03-03 04:54:16,863 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:54:16,863 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:54:16,863 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:55:33,639 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:55:35,866 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -0.64
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -0.64, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 04:55:35,866 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:55:35,866 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 16.96
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (16.96), no alert needed.
+2025-03-03 04:55:35,866 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:55:35,866 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.06
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.06, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:55:35,866 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -48.06%, Level = LOW
+2025-03-03 04:55:35,867 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:55:35,867 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:55:35,867 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:57:53,008 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:57:53,884 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 04:58:11,410 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:58:11,410 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.33
+2025-03-03 04:58:11,410 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.33), no alert needed.
+2025-03-03 04:58:11,410 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:58:11,410 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:58:11,410 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 21.97
+2025-03-03 04:58:11,410 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (21.97), no alert needed.
+2025-03-03 04:58:11,410 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:58:11,410 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:58:11,413 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.34
+2025-03-03 04:58:11,414 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.34, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:58:11,414 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -49.34%, Level = LOW
+2025-03-03 04:58:11,414 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:58:11,414 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:58:11,414 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 04:59:41,745 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.37
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.37), no alert needed.
+2025-03-03 04:59:41,745 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:59:41,745 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 26.34
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (26.34), no alert needed.
+2025-03-03 04:59:41,745 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:59:41,745 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.39
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.39, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 04:59:41,745 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 04:59:41,745 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:59:41,745 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 04:59:41,745 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:01:31,052 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:01:31,951 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:01:47,672 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:01:47,672 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.58
+2025-03-03 05:01:47,672 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.58), no alert needed.
+2025-03-03 05:01:47,672 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:01:47,672 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:01:47,672 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 28.45
+2025-03-03 05:01:47,672 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (28.45), no alert needed.
+2025-03-03 05:01:47,672 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:01:47,672 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:01:47,674 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -52.3
+2025-03-03 05:01:47,674 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -52.30, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:01:47,674 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -52.30%, Level = LOW
+2025-03-03 05:01:47,674 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:01:47,674 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:01:47,674 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:02:29,445 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:02:29,445 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.28
+2025-03-03 05:02:29,445 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.28), no alert needed.
+2025-03-03 05:02:29,445 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:02:29,445 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:02:29,445 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 28.13
+2025-03-03 05:02:29,445 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (28.13), no alert needed.
+2025-03-03 05:02:29,445 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:02:29,446 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:02:29,446 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -51.9
+2025-03-03 05:02:29,446 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -51.90, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:02:29,447 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:02:29,447 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:02:29,447 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:02:29,447 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:04:00,711 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:04:01,591 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:04:09,399 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:04:09,399 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.84
+2025-03-03 05:04:09,399 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.84), no alert needed.
+2025-03-03 05:04:09,399 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:04:09,399 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:04:09,399 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 27.41
+2025-03-03 05:04:09,399 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (27.41), no alert needed.
+2025-03-03 05:04:09,399 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:04:09,399 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:04:09,403 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -52.64
+2025-03-03 05:04:09,404 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -52.64, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:04:09,404 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -52.64%, Level = LOW
+2025-03-03 05:04:09,404 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:04:09,404 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:04:09,404 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:05:56,426 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.97
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.97), no alert needed.
+2025-03-03 05:05:56,426 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:05:56,426 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 28.33
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (28.33), no alert needed.
+2025-03-03 05:05:56,426 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:05:56,426 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -52.81
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -52.81, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:05:56,426 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:05:56,428 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:05:56,428 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:05:56,428 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:06:30,488 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:06:31,357 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:07:57,714 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 4.71
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (4.71), no alert needed.
+2025-03-03 05:07:57,714 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:07:57,714 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 32.37
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (32.37), no alert needed.
+2025-03-03 05:07:57,714 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:07:57,714 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -55.1
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -55.10, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:07:57,714 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -55.10%, Level = LOW
+2025-03-03 05:07:57,715 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:07:57,715 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:07:57,715 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:09:59,960 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:09:59,960 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.48
+2025-03-03 05:09:59,960 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.48), no alert needed.
+2025-03-03 05:09:59,960 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:09:59,960 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:09:59,960 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.71
+2025-03-03 05:09:59,960 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.71), no alert needed.
+2025-03-03 05:09:59,960 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:09:59,960 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:09:59,963 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -52.17
+2025-03-03 05:09:59,963 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -52.17, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:09:59,963 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:09:59,963 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:09:59,963 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:09:59,963 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:10:16,981 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:10:16,981 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.11
+2025-03-03 05:10:16,981 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.11), no alert needed.
+2025-03-03 05:10:16,981 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:10:16,981 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:10:16,981 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 28.99
+2025-03-03 05:10:16,981 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (28.99), no alert needed.
+2025-03-03 05:10:16,981 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:10:16,981 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:10:16,982 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -51.68
+2025-03-03 05:10:16,982 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -51.68, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:10:16,982 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:10:16,982 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:10:16,982 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:10:16,982 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:12:02,200 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:12:02,200 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -0.8
+2025-03-03 05:12:02,200 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -0.80, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:12:02,200 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 05:12:02,200 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:12:02,200 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:12:02,200 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 23.42
+2025-03-03 05:12:02,200 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (23.42), no alert needed.
+2025-03-03 05:12:02,200 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:12:02,200 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:12:02,204 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.86
+2025-03-03 05:12:02,204 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.86, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:12:02,204 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:12:02,204 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:12:02,204 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:12:02,204 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:14:03,691 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:14:03,691 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -0.52
+2025-03-03 05:14:03,691 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -0.52, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:14:03,692 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 05:14:03,692 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:14:03,692 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:14:03,692 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 25.68
+2025-03-03 05:14:03,692 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (25.68), no alert needed.
+2025-03-03 05:14:03,692 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:14:03,692 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:14:03,692 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.23
+2025-03-03 05:14:03,692 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.23, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:14:03,692 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:14:03,692 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:14:03,692 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:14:03,692 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:15:33,493 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:15:34,362 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:15:55,436 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -1.38
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -1.38, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 05:15:55,436 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:15:55,436 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.77
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.77), no alert needed.
+2025-03-03 05:15:55,436 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:15:55,436 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.1
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.10, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:15:55,436 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -47.10%, Level = LOW
+2025-03-03 05:15:55,436 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:15:55,436 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:15:55,436 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:16:05,140 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:16:05,140 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = -0.32
+2025-03-03 05:16:05,140 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Actual Travel% = -0.32, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:16:05,140 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): No travel percent alert level triggered.
+2025-03-03 05:16:05,140 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:16:05,140 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:16:05,140 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 31.57
+2025-03-03 05:16:05,140 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (31.57), no alert needed.
+2025-03-03 05:16:05,140 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:16:05,140 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:16:05,141 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.5
+2025-03-03 05:16:05,141 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.50, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:16:05,141 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:16:05,141 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:16:05,141 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:16:05,141 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:17:16,029 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:18:07,368 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:18:07,368 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.35
+2025-03-03 05:18:07,368 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.35), no alert needed.
+2025-03-03 05:18:07,368 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:18:07,368 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:18:07,368 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 30.53
+2025-03-03 05:18:07,368 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (30.53), no alert needed.
+2025-03-03 05:18:07,368 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:18:07,368 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:18:07,368 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.37
+2025-03-03 05:18:07,368 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.37, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:18:07,370 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -49.37%, Level = LOW
+2025-03-03 05:18:07,370 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:18:07,370 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:18:07,370 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:18:13,942 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:18:34,077 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:18:34,954 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:18:45,427 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:18:45,427 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.28
+2025-03-03 05:18:45,427 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.28), no alert needed.
+2025-03-03 05:18:45,427 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:18:45,427 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:18:45,427 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.64
+2025-03-03 05:18:45,427 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.64), no alert needed.
+2025-03-03 05:18:45,427 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:18:45,428 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:18:45,430 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -49.29
+2025-03-03 05:18:45,430 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -49.29, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:18:45,430 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -49.29%, Level = LOW
+2025-03-03 05:18:45,430 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:18:45,430 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:18:45,430 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:18:53,201 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:18:53,201 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 0.01
+2025-03-03 05:18:53,201 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (0.01), no alert needed.
+2025-03-03 05:18:53,201 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:18:53,201 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:18:53,201 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.16
+2025-03-03 05:18:53,201 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.16), no alert needed.
+2025-03-03 05:18:53,201 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:18:53,201 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:18:53,201 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.93
+2025-03-03 05:18:53,202 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.93, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:18:53,202 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:18:53,202 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:18:53,202 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:18:53,203 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:26:23,325 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:26:24,175 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:26:29,631 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.23
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.23), no alert needed.
+2025-03-03 05:26:29,631 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:26:29,631 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 30.3
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (30.3), no alert needed.
+2025-03-03 05:26:29,631 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:26:29,631 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -46.85
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -46.85, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:26:29,631 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -46.85%, Level = LOW
+2025-03-03 05:26:29,632 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:26:29,632 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:26:29,632 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:26:45,197 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:26:45,197 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.34
+2025-03-03 05:26:45,197 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.34), no alert needed.
+2025-03-03 05:26:45,197 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:26:45,197 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:26:45,197 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.77
+2025-03-03 05:26:45,197 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.77), no alert needed.
+2025-03-03 05:26:45,197 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:26:45,197 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:26:45,199 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -46.99
+2025-03-03 05:26:45,200 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -46.99, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:26:45,200 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:26:45,200 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:26:45,200 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:26:45,200 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:28:03,098 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.81
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.81), no alert needed.
+2025-03-03 05:28:03,098 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:28:03,098 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.36
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.36), no alert needed.
+2025-03-03 05:28:03,098 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:28:03,098 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.58
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.58, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:28:03,098 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:28:03,098 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:28:03,098 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:28:03,099 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:28:10,226 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:28:10,227 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.46
+2025-03-03 05:28:10,227 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.46), no alert needed.
+2025-03-03 05:28:10,227 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:28:10,227 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:28:10,227 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.6
+2025-03-03 05:28:10,227 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.6), no alert needed.
+2025-03-03 05:28:10,227 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:28:10,227 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:28:10,227 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.14
+2025-03-03 05:28:10,227 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.14, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:28:10,228 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:28:10,228 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:28:10,228 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:28:10,228 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:29:02,076 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:29:02,076 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 2.48
+2025-03-03 05:29:02,076 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (2.48), no alert needed.
+2025-03-03 05:29:02,076 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:29:02,076 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:29:02,076 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 29.6
+2025-03-03 05:29:02,076 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (29.6), no alert needed.
+2025-03-03 05:29:02,076 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:29:02,076 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:29:02,078 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.17
+2025-03-03 05:29:02,078 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.17, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:29:02,078 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:29:02,078 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:29:02,078 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:29:02,079 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:30:04,696 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:30:04,696 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 1.0
+2025-03-03 05:30:04,696 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (1.0), no alert needed.
+2025-03-03 05:30:04,696 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:30:04,696 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:30:04,696 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 30.56
+2025-03-03 05:30:04,696 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (30.56), no alert needed.
+2025-03-03 05:30:04,696 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:30:04,696 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:30:04,696 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -45.31
+2025-03-03 05:30:04,697 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -45.31, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:30:04,697 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:30:04,697 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:30:04,697 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:30:04,697 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:32:06,785 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:32:06,785 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 3.06
+2025-03-03 05:32:06,785 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (3.06), no alert needed.
+2025-03-03 05:32:06,785 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:32:06,785 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:32:06,785 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 33.73
+2025-03-03 05:32:06,785 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (33.73), no alert needed.
+2025-03-03 05:32:06,785 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:32:06,785 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:32:06,787 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.9
+2025-03-03 05:32:06,787 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.90, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:32:06,787 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:32:06,787 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:32:06,787 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:32:06,787 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:34:09,572 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 3.18
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (3.18), no alert needed.
+2025-03-03 05:34:09,572 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:34:09,572 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 35.05
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (35.05), no alert needed.
+2025-03-03 05:34:09,572 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:34:09,572 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -48.05
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -48.05, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:34:09,572 - AlertManagerLogger - DEBUG - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Alert for key 'Bitcoin-Short-FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB-travel-LOW' suppressed due to cooldown.
+2025-03-03 05:34:09,572 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:34:09,572 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:34:09,572 - AlertManagerLogger - INFO - Found 0 active price alerts.
+2025-03-03 05:35:31,560 - AlertManagerLogger - INFO - AlertManager initialized.
+2025-03-03 05:35:38,339 - AlertManagerLogger - INFO - Checking 3 positions for alerts.
+2025-03-03 05:35:38,339 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): current_travel_percent = 3.1
+2025-03-03 05:35:38,339 - AlertManagerLogger - DEBUG - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Travel percent is non-negative (3.1), no alert needed.
+2025-03-03 05:35:38,339 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:35:38,339 - AlertManagerLogger - ERROR - Bitcoin Long (ID: 9Vc3YqjzsNMenfSFMZL6sNURqPC9dyBkzM28CPyLfpn5): Error converting liquidation distance.
+2025-03-03 05:35:38,339 - AlertManagerLogger - DEBUG - Checking travel percent for Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): current_travel_percent = 35.89
+2025-03-03 05:35:38,339 - AlertManagerLogger - DEBUG - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Travel percent is non-negative (35.89), no alert needed.
+2025-03-03 05:35:38,339 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:35:38,340 - AlertManagerLogger - ERROR - Solana Long (ID: HeDPdikGFjLFWogd9PCCZLGpFMuLnoco76NiqLB4Ns98): Error converting liquidation distance.
+2025-03-03 05:35:38,340 - AlertManagerLogger - DEBUG - Checking travel percent for Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): current_travel_percent = -47.95
+2025-03-03 05:35:38,340 - AlertManagerLogger - DEBUG - [Travel Percent Alert Debug] Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Actual Travel% = -47.95, Thresholds - Low: -10.00, Medium: -60.00, High: -75.00
+2025-03-03 05:35:38,340 - AlertManagerLogger - DEBUG - Triggered travel percent alert: Travel Percent Liquid ALERT: Bitcoin Short (Wallet: R2Vault) - Travel% = -47.95%, Level = LOW
+2025-03-03 05:35:38,340 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:35:38,340 - AlertManagerLogger - ERROR - Bitcoin Short (ID: FfrwvedUR8wfQcpy5HpaNttvQDC9pEiDPvNHHaQeZiPB): Error converting liquidation distance.
+2025-03-03 05:35:38,340 - AlertManagerLogger - INFO - Found 0 active price alerts.

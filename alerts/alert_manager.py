@@ -152,7 +152,6 @@ class AlertManager:
         price_alerts = self.check_price_alerts()
         aggregated_alerts.extend(price_alerts)
 
-        from utils.operations_manager import OperationsLogger
         op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
 
         if aggregated_alerts:
@@ -408,9 +407,9 @@ class AlertManager:
         try:
             trigger_twilio_flow(body, self.twilio_config)
             self.last_call_triggered[key] = now
-            op_logger.log(f"Notification Sent: {key}", source="AlertManager", operation_type="Notification Sent")
+            op_logger.log(f"Notification Sentz: {key}", source="AlertManager", operation_type="Notification Sent")
         except Exception as e:
-            op_logger.log(f"Notification Failed: {key}", source="AlertManager", operation_type="Notification Failed")
+            op_logger.log(f"Notification Failedz: {key}", source="AlertManager", operation_type="Notification Failed")
             logger.error("Error sending call for '%s'.", key, exc_info=True)
 
     def load_json_config(self, json_path: str) -> dict:

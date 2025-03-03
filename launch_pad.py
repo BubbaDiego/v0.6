@@ -469,17 +469,17 @@ def test_twilio():
     from twilio_message_api import trigger_twilio_flow
     from utils.operations_manager import OperationsLogger
 
-    op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+    #op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
 
     try:
         # Get the test message from the POST data; use a default if not provided.
         message = request.form.get("message", "Test message from system config")
         execution_sid = trigger_twilio_flow(message)
         # Log the "Notification Sent" event.
-        op_logger.log(f"Testing Twilio", source="system test", operation_type="Notification Sent")
+        op_logger.log(f"Testing Twilioz", source="unknown", operation_type="Notification Sent")
         return jsonify({"success": True, "sid": execution_sid})
     except Exception as e:
-        op_logger.log(f"Testing Twilio Failed", source="system test", operation_type="Notification Failed")
+        op_logger.log(f"Testing Twilio Failedz", source="system test", operation_type="Notification Failed")
         return jsonify({"success": False, "error": str(e)}), 500
 
 

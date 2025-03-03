@@ -17,8 +17,8 @@ OPERATION_CONFIG = {
         "color": "blue"
     },
     "Jupiter Updated": {
-        "icon": "🔄",
-        "color": "green"
+        "icon": "🪐",
+        "color": "blue"
     },
     "Alerts Configuration Successful": {
         "icon": "⚙✅",
@@ -35,6 +35,10 @@ OPERATION_CONFIG = {
     "Alert Silenced": {
         "icon": "🔕",
         "color": "yellow"
+    },
+    "Monitor Loop": {
+        "icon": "🔁",
+        "color": "blue"
     },
     "No Alerts Found": {
         "icon": "✅",
@@ -59,7 +63,7 @@ SOURCE_ICONS = {
     "system": "💻",
     "system test": "⚙️✅",
     "sonic": "🦔",
-    "monitor": "📡"
+    "monitor": "📺"
 }
 # Fallback if no source is provided:
 DEFAULT_SOURCE_ICON = "❓"

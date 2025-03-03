@@ -31,15 +31,16 @@ from alerts.alert_manager import manager as alert_manager
 # For example, update_prices and manual_check_alerts might come from other modules.
 from prices.price_monitor import PriceMonitor
 from alerts.alert_manager import AlertManager #manual_check_alerts, manager
+from utils.operations_manager import OperationsLogger
 
 # Assume that socketio is initialized in your main app and imported here.
 #from your_app import socketio  # Replace with the actual import if different
 
 logger = logging.getLogger("PositionsBlueprint")
 logger.setLevel(logging.DEBUG)
+op_logger = OperationsLogger()
 
 positions_bp = Blueprint("positions", __name__, template_folder="templates")
-
 
 def get_socketio():
     return current_app.extensions.get('socketio')
@@ -59,8 +60,6 @@ def _convert_iso_to_pst(iso_str):
     except Exception as e:
         logger.error(f"Error converting timestamp: {e}")
         return "N/A"
-
-
 
 
 @positions_bp.route("/", methods=["GET"])
@@ -573,7 +572,6 @@ def update_prices_wrapper():
         return DummyErrorResponse()
 
 @positions_bp.route("/update_jupiter", methods=["GET", "POST"])
-@positions_bp.route("/update_jupiter", methods=["GET", "POST"])
 def update_jupiter():
     source = request.args.get("source") or request.form.get("source") or "API"
     logger.debug(f"Update Jupiter called with source: {source}")
@@ -597,6 +595,9 @@ def update_jupiter():
             logger.error("Error during Jupiter positions update: " + str(update_result))
             print("[ERROR] Error during Jupiter positions update:", update_result)
             return jsonify(update_result), 500
+
+        op_logger.log("Jupiter Updated", source=source, operation_type="Jupiter Updated")
+
     except Exception as e:
         logger.error(f"Exception during Jupiter positions update: {e}", exc_info=True)
         print(f"[ERROR] Exception during Jupiter positions update: {e}")
@@ -619,7 +620,7 @@ def update_jupiter():
     try:
         logger.debug("Step 4: Performing manual alert check via alert_manager.check_alerts()...")
         print("[DEBUG] About to call alert_manager.check_alerts()")
-        alert_manager.check_alerts()
+        alert_manager.check_alerts(source)
         logger.debug("Manual alert check completed.")
         print("[DEBUG] Manual alert check completed.")
     except Exception as e:
@@ -682,11 +683,11 @@ def update_jupiter():
 
     try:
         logger.debug("Step 9: Logging operation with OperationsLogger...")
-        from utils.operations_manager import OperationsLogger
-        op_logger = OperationsLogger()
-        op_logger.log("Jupiter Update Complete", source=source, operation_type="Jupiter Updated")
+        #from utils.operations_manager import OperationsLogger
+       # op_logger = OperationsLogger()
+       # op_logger.log("Jupiter Update Complete", source=source, operation_type="Jupiter Updated")
 
-        op_logger.log(f"Testing Twilio Failed", source="system test", operation_type="Notification Sent")
+        #op_logger.log(f"Testing Twilio Failed", source="system test", operation_type="Notification Sent")
 
         logger.debug("Operation logged successfully.")
         print("[DEBUG] Operation logged successfully.")
