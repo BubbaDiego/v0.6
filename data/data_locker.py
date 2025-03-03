@@ -379,11 +379,24 @@ class DataLocker:
             return []
 
     def read_positions(self) -> List[dict]:
-        cursor = self.conn.cursor()
-        cursor.execute("SELECT * FROM positions")
-        rows = cursor.fetchall()
-        # Convert each row to a dictionary
-        return [dict(row) for row in rows]
+        try:
+            self._init_sqlite_if_needed()
+            self.logger.debug("Using database at path: %s", self.db_path)
+            self.logger.debug("Executing SELECT * FROM positions")
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT * FROM positions")
+            rows = cursor.fetchall()
+            num_rows = len(rows)
+            self.logger.debug("Number of positions fetched: %d", num_rows)
+            if num_rows > 0:
+                sample = [dict(rows[i]) for i in range(min(5, num_rows))]
+                self.logger.debug("Sample positions: %s", sample)
+            else:
+                self.logger.debug("No positions found in the table.")
+            return [dict(row) for row in rows]
+        except Exception as ex:
+            self.logger.exception("Error reading positions: %s", ex)
+            return []
 
     def read_prices(self) -> List[dict]:
         self._init_sqlite_if_needed()

@@ -8,6 +8,9 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime
 from twilio.rest import Client
 from config.unified_config_manager import UnifiedConfigManager
+from config.config_constants import DB_PATH, CONFIG_PATH
+from pathlib import Path
+from utils.operations_logger import OperationsLogger
 
 # Minimal Logging Configuration
 logger = logging.getLogger("AlertManagerLogger")
@@ -32,6 +35,8 @@ def trigger_twilio_flow(custom_message: str, twilio_config: dict) -> str:
     from_phone = twilio_config.get("from_phone")
     if not all([account_sid, auth_token, flow_sid, to_phone, from_phone]):
         raise ValueError("Missing Twilio configuration variables.")
+
+
     client = Client(account_sid, auth_token)
     execution = client.studio.v2.flows(flow_sid).executions.create(
         to=to_phone,
@@ -74,7 +79,7 @@ class AlertManager:
         "SOL": "Solana"
     }
 
-    def __init__(self, db_path: str = "mother_brain.db", poll_interval: int = 60, config_path: str = "sonic_config.json"):
+    def __init__(self, db_path: str = str(DB_PATH), poll_interval: int = 60, config_path: str = str(CONFIG_PATH)):
         self.db_path = db_path
         self.poll_interval = poll_interval
         self.config_path = config_path
@@ -116,11 +121,13 @@ class AlertManager:
     def check_alerts(self, source: Optional[str] = None):
         if not self.monitor_enabled:
             logger.info("Alert monitoring disabled.")
-            return
+            #return
 
         aggregated_alerts: List[str] = []
         positions = self.data_locker.read_positions()
         logger.info("Checking %d positions for alerts.", len(positions))
+        logger.debug("Positions data: %s", json.dumps(positions[:5], indent=2) if len(positions) > 5 else json.dumps(positions, indent=2))
+
         for pos in positions:
             profit_alert = self.check_profit(pos)
             if profit_alert:
@@ -138,7 +145,7 @@ class AlertManager:
         aggregated_alerts.extend(price_alerts)
 
         from utils.operations_logger import OperationsLogger
-        op_logger = OperationsLogger()
+        op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
         now = datetime.now()
         raw_timestamp = now.strftime("%m-%d-%y : %I:%M:%S %p")
         month, day, year = raw_timestamp.split(" : ")[0].split("-")
@@ -151,47 +158,69 @@ class AlertManager:
 
         if aggregated_alerts:
             op_message = f"❌ {len(aggregated_alerts)} alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
+            op_logger.log(op_message, source=source, operation_type="Alert Triggered")
         else:
             op_message = f"✅ No alerts triggered\n[Source: {source if source else 'Unknown'}] - {timestamp_str}"
             op_logger.log(op_message, source=source)
-
-        if aggregated_alerts:
-            source_info = f" (source: {source})" if source else ""
-            message = f"{len(aggregated_alerts)} alerts triggered{source_info}:\n" + "\n".join(aggregated_alerts)
-            self.send_call(message, "aggregated-alert")
-        else:
-            logger.info("No alerts triggered.")
 
     def check_travel_percent_liquid(self, pos: Dict[str, Any]) -> str:
         asset_code = pos.get("asset_type", "???").upper()
         asset_full = self.ASSET_FULL_NAMES.get(asset_code, asset_code)
         position_type = pos.get("position_type", "").capitalize()
         position_id = pos.get("position_id") or pos.get("id") or "unknown"
+
         try:
             current_val = float(pos.get("current_travel_percent", 0.0))
-        except Exception:
+        except Exception as e:
             logger.error("%s %s (ID: %s): Error converting travel percent.", asset_full, position_type, position_id)
+            print(f"[ERROR] {asset_full} {position_type} (ID: {position_id}): Error converting travel percent: {e}")
             return ""
+
+        logger.debug("Checking travel percent for %s %s (ID: %s): current_travel_percent = %s",
+                     asset_full, position_type, position_id, current_val)
+        print(
+            f"[DEBUG] Checking travel percent for {asset_full} {position_type} (ID: {position_id}): current_travel_percent = {current_val}")
 
         if current_val >= 0:
+            logger.debug("%s %s (ID: %s): Travel percent is non-negative (%s), no alert needed.",
+                         asset_full, position_type, position_id, current_val)
+            print(
+                f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Travel percent is non-negative ({current_val}), no alert needed.")
             return ""
 
+        # Get the travel percent liquid configuration and print it for debugging.
         tpli_config = self.config.get("alert_ranges", {}).get("travel_percent_liquid_ranges", {})
-        if not tpli_config.get("enabled", False):
+        print(f"[DEBUG] Loaded travel_percent_liquid_ranges config: {tpli_config}")
+
+        # If 'enabled' is missing, we'll assume alerts should be enabled if thresholds are provided.
+        if not tpli_config.get("enabled", True):
+            logger.debug("Travel percent alert not enabled in config for %s %s (ID: %s).",
+                         asset_full, position_type, position_id)
+            print(
+                f"[DEBUG] Travel percent alert not enabled in config for {asset_full} {position_type} (ID: {position_id}).")
             return ""
+
+        # Handle empty string thresholds by substituting defaults.
+        def parse_threshold(value, default):
+            return float(value) if value not in (None, "") else default
 
         try:
-            low = float(tpli_config.get("low", -25.0))
-            medium = float(tpli_config.get("medium", -50.0))
-            high = float(tpli_config.get("high", -75.0))
-        except Exception:
-            logger.error("%s %s (ID: %s): Error parsing travel percent thresholds.", asset_full, position_type, position_id)
+            low = parse_threshold(tpli_config.get("low"), -25.0)
+            medium = parse_threshold(tpli_config.get("medium"), -50.0)
+            high = parse_threshold(tpli_config.get("high"), -75.0)
+        except Exception as e:
+            logger.error("%s %s (ID: %s): Error parsing travel percent thresholds.", asset_full, position_type,
+                         position_id)
+            print(
+                f"[ERROR] {asset_full} {position_type} (ID: {position_id}): Error parsing travel percent thresholds: {e}")
             return ""
 
         logger.debug(
-            f"[Travel Percent Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
-            f"Actual Travel% = {current_val:.2f}, Low = {low:.2f}, Medium = {medium:.2f}, High = {high:.2f}"
+            "[Travel Percent Alert Debug] %s %s (ID: %s): Actual Travel%% = %.2f, Thresholds - Low: %.2f, Medium: %.2f, High: %.2f",
+            asset_full, position_type, position_id, current_val, low, medium, high
         )
+        print(
+            f"[DEBUG] [Travel Percent Alert Debug] {asset_full} {position_type} (ID: {position_id}): Actual Travel% = {current_val:.2f}, Thresholds - Low: {low:.2f}, Medium: {medium:.2f}, High: {high:.2f}")
 
         alert_level = ""
         if current_val <= high:
@@ -201,23 +230,29 @@ class AlertManager:
         elif current_val <= low:
             alert_level = "LOW"
         else:
+            logger.debug("%s %s (ID: %s): No travel percent alert level triggered.", asset_full, position_type,
+                         position_id)
+            print(f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): No travel percent alert level triggered.")
             return ""
 
         key = f"{asset_full}-{position_type}-{position_id}-travel-{alert_level}"
         now = time.time()
         last_time = self.last_triggered.get(key, 0)
         if now - last_time < self.cooldown:
+            logger.debug("%s %s (ID: %s): Alert for key '%s' suppressed due to cooldown.", asset_full, position_type,
+                         position_id, key)
+            print(
+                f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Alert for key '{key}' suppressed due to cooldown.")
             return ""
+
         self.last_triggered[key] = now
         wallet_name = pos.get("wallet_name", "Unknown")
         msg = f"Travel Percent Liquid ALERT: {asset_full} {position_type} (Wallet: {wallet_name}) - Travel% = {current_val:.2f}%, Level = {alert_level}"
+        logger.debug("Triggered travel percent alert: %s", msg)
+        print(f"[DEBUG] Triggered travel percent alert: {msg}")
         return msg
 
     def check_swing_alert(self, pos: Dict[str, Any]) -> str:
-        """
-        Checks if the position's liquidation distance exceeds the hardcoded swing threshold.
-        If any error arises (which shouldn't happen now), trigger a call-out.
-        """
         asset = pos.get("asset_type", "???").upper()
         asset_full = self.ASSET_FULL_NAMES.get(asset, asset)
         position_type = pos.get("position_type", "").capitalize()
@@ -227,12 +262,10 @@ class AlertManager:
         except Exception:
             logger.error("%s %s (ID: %s): Error converting liquidation distance.", asset_full, position_type, position_id)
             return ""
-        # Use hardcoded swing thresholds—completely bypassing any config reference.
         hardcoded_swing_thresholds = {"BTC": 6.24, "ETH": 8.0, "SOL": 13.0}
         swing_threshold = hardcoded_swing_thresholds.get(asset, 0)
         logger.debug(
-            f"[Swing Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
-            f"Actual Value = {current_value:.2f} vs Hardcoded Swing Threshold = {swing_threshold:.2f}"
+            f"[Swing Alert Debug] {asset_full} {position_type} (ID: {position_id}): Actual Value = {current_value:.2f} vs Hardcoded Swing Threshold = {swing_threshold:.2f}"
         )
         if current_value >= swing_threshold:
             key = f"swing-{asset_full}-{position_type}-{position_id}"
@@ -255,13 +288,12 @@ class AlertManager:
             logger.error("%s %s (ID: %s): Error converting liquidation distance.", asset_full, position_type, position_id)
             return ""
         try:
-            blast_threshold = 11.2 # TODO float(self.config.get("alert_ranges", {}).get("one_day_blast_radius", {}).get(asset, 0))
+            blast_threshold = 11.2
         except Exception as e:
             logger.error("Error parsing blast threshold for %s: %s", asset_full, e)
             return ""
         logger.debug(
-            f"[Blast Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
-            f"Actual Value = {current_value:.2f} vs Blast Threshold = {blast_threshold:.2f}"
+            f"[Blast Alert Debug] {asset_full} {position_type} (ID: {position_id}): Actual Value = {current_value:.2f} vs Blast Threshold = {blast_threshold:.2f}"
         )
         if current_value >= blast_threshold:
             key = f"blast-{asset_full}-{position_type}-{position_id}"
@@ -297,8 +329,7 @@ class AlertManager:
             logger.error("%s %s (ID: %s): Error parsing profit thresholds.", asset_full, position_type, position_id)
             return ""
         logger.debug(
-            f"[Profit Alert Debug] {asset_full} {position_type} (ID: {position_id}): "
-            f"Profit = {profit_val:.2f}, Thresholds: Low = {low_thresh:.2f}, Medium = {med_thresh:.2f}, High = {high_thresh:.2f}"
+            f"[Profit Alert Debug] {asset_full} {position_type} (ID: {position_id}): Profit = {profit_val:.2f}, Thresholds: Low = {low_thresh:.2f}, Medium = {med_thresh:.2f}, High = {high_thresh:.2f}"
         )
         if profit_val < low_thresh:
             return ""
@@ -378,10 +409,18 @@ class AlertManager:
         last_call_time = self.last_call_triggered.get(key, 0)
         if now - last_call_time < self.call_refractory_period:
             logger.info("Call alert '%s' suppressed.", key)
+            # Log an "Alert Silenced" event when the call is suppressed.
+            from utils.operations_logger import OperationsLogger
+            op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+            op_logger.log(f"Alert Silenced: {key}", source="AlertManager", operation_type="Alert Silenced")
             return
         try:
             trigger_twilio_flow(body, self.twilio_config)
             self.last_call_triggered[key] = now
+            # Log a "Notification Sent" event after a successful notification.
+            from utils.operations_logger import OperationsLogger
+            op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+            op_logger.log(f"Notification Sent: {key}", source="AlertManager", operation_type="Notification Sent")
         except Exception as e:
             logger.error("Error sending call for '%s'.", key, exc_info=True)
 
@@ -401,9 +440,9 @@ class AlertManager:
 
 # Create a global AlertManager instance for use in other modules.
 manager = AlertManager(
-    db_path=os.path.abspath("mother_brain.db"),
+    db_path=str(DB_PATH),
     poll_interval=60,
-    config_path="sonic_config.json"
+    config_path=str(CONFIG_PATH)
 )
 
 if __name__ == "__main__":

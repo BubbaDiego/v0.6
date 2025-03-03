@@ -1,13 +1,18 @@
 import os
+from pathlib import Path
 
-# Go one level up from the current file (assuming this file is in the 'config' folder)
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DB_PATH = os.path.join(BASE_DIR, "data", "mother_brain.db")
-CONFIG_PATH = os.path.join(BASE_DIR, "sonic_config.json")
+# Determine BASE_DIR from an environment variable, or default to one level up from this file
+BASE_DIR = Path(os.getenv("BASE_DIR", Path(__file__).resolve().parent.parent))
 
-# If you want a full OS path (like c:\v0.5\static\images\space_wall.jpg)
-# but in practice, for a Flask static folder, a relative path is enough.
+# Use environment variables for file names, with defaults provided
+DB_FILENAME = os.getenv("DB_FILENAME", "mother_brain.db")
+CONFIG_FILENAME = os.getenv("CONFIG_FILENAME", "sonic_config.json")
 
+# Construct the full paths using pathlib for cross-platform compatibility
+DB_PATH = BASE_DIR / "data" / DB_FILENAME
+CONFIG_PATH = BASE_DIR / CONFIG_FILENAME
+
+# Image asset paths
 SPACE_WALL_IMAGE = "images/space_wall2.jpg"
 
 BTC_LOGO_IMAGE = "images/btc_logo.png"

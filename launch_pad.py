@@ -92,7 +92,14 @@ app.register_blueprint(simulator_bp, url_prefix="/simulator")
 
 # Call the OperationsLogger on startup with the source "System Start-up"
 
-op_logger = OperationsLogger()
+#op_logger = OperationsLogger()
+##   "Launch Pad - Started",
+  #  source="System Start-up",
+  #  operation_type="Start Launch Pad"
+#)
+
+from utils.operations_logger import OperationsLogger
+op_logger = OperationsLogger()#log_filename=os.path.join(os.getcwd()))
 op_logger.log(
     "Launch Pad - Started",
     source="System Start-up",
@@ -469,10 +476,15 @@ from flask import jsonify, request
 @app.route('/test_twilio', methods=["POST"])
 def test_twilio():
     from twilio_message_api import trigger_twilio_flow
+    from utils.operations_logger import OperationsLogger
+    import os
     try:
         # Get the test message from the POST data; use a default if not provided.
         message = request.form.get("message", "Test message from system config")
         execution_sid = trigger_twilio_flow(message)
+        # Log the "Notification Sent" event.
+        op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
+        op_logger.log(f"Notification Sent: Test message", source="Test Twilio", operation_type="Notification Sent")
         return jsonify({"success": True, "sid": execution_sid})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500

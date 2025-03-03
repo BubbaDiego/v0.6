@@ -2,6 +2,8 @@ import os
 import json
 import logging
 from flask import Blueprint, request, jsonify, render_template
+from config.config_constants import CONFIG_PATH
+from pathlib import Path
 
 # -------------------------------
 # Logger Setup
@@ -14,7 +16,6 @@ if not logger.handlers:
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     ch.setFormatter(formatter)
     logger.addHandler(ch)
-
 
 # -------------------------------
 # Deep Merge Function
@@ -31,7 +32,6 @@ def deep_merge(source: dict, updates: dict) -> dict:
             logger.debug("Updating key: %s with value: %s", key, value)
             source[key] = value
     return source
-
 
 # -------------------------------
 # SonicConfigManager Class
@@ -64,16 +64,14 @@ class SonicConfigManager:
         self.save_config(config)
         logger.info("Alert configuration updated successfully.")
 
-
 # -------------------------------
 # Blueprint Setup and Helpers
 # -------------------------------
 alerts_bp = Blueprint('alerts_bp', __name__, url_prefix='/alerts')
 
-# Set the configuration file path (adjust as needed)
-CONFIG_PATH = os.path.join(os.getcwd(), "sonic_config.json")
+# Use the robust CONFIG_PATH from config_constants
+CONFIG_PATH = str(CONFIG_PATH)
 config_mgr = SonicConfigManager(CONFIG_PATH)
-
 
 def convert_types_in_dict(d):
     """
@@ -101,7 +99,6 @@ def convert_types_in_dict(d):
                 return d
     else:
         return d
-
 
 def parse_nested_form(form: dict) -> dict:
     """
@@ -158,7 +155,6 @@ def parse_nested_form(form: dict) -> dict:
                 current = current[key]
     return updated
 
-
 def format_alert_config_table(alert_ranges: dict) -> str:
     """
     Returns an HTML table string summarizing the alert ranges.
@@ -180,7 +176,6 @@ def format_alert_config_table(alert_ranges: dict) -> str:
     html += "</table>"
     return html
 
-
 # -------------------------------
 # Routes
 # -------------------------------
@@ -198,19 +193,16 @@ def config():
         logger.error("Error loading config: %s", str(e))
         return "Error loading config", 500
 
-
 @alerts_bp.route('/update_config', methods=['POST'], endpoint="update_alert_config")
 def update_alert_config():
     logger.debug("Entered update_alert_config endpoint")
     try:
-        # Use flat=False so that if multiple values exist, we can pick the checkbox's value.
         flat_form = request.form.to_dict(flat=False)
         logger.debug("POST Data Received:\n%s", json.dumps(flat_form, indent=2))
 
         nested_update = parse_nested_form(flat_form)
         logger.debug("Parsed Nested Form Data (raw):\n%s", json.dumps(nested_update, indent=2))
 
-        # Convert types for proper booleans and numbers.
         nested_update = convert_types_in_dict(nested_update)
         logger.debug("Parsed Nested Form Data (converted):\n%s", json.dumps(nested_update, indent=2))
 
@@ -226,7 +218,6 @@ def update_alert_config():
     except Exception as e:
         logger.error("Error updating alert config: %s", str(e))
         return jsonify({"success": False, "error": str(e)}), 500
-
 
 # -------------------------------
 # For running this file directly (for testing)

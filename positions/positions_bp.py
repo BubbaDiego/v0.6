@@ -573,81 +573,123 @@ def update_prices_wrapper():
         return DummyErrorResponse()
 
 @positions_bp.route("/update_jupiter", methods=["GET", "POST"])
+@positions_bp.route("/update_jupiter", methods=["GET", "POST"])
 def update_jupiter():
-    # Retrieve the optional 'source' parameter from query or form data; default to "API"
     source = request.args.get("source") or request.form.get("source") or "API"
     logger.debug(f"Update Jupiter called with source: {source}")
+    print(f"[DEBUG] Update Jupiter route triggered with source: {source}")
 
-    # Step 1: Delete existing Jupiter positions.
-    logger.debug(">>> Deleting existing Jupiter positions...")
-    PositionService.delete_all_jupiter_positions(DB_PATH)
-    logger.debug(">>> Deletion of Jupiter positions completed.")
-
-    # Step 2: Update Jupiter positions.
-    logger.debug(">>> Updating Jupiter positions via PositionService...")
-    update_result = PositionService.update_jupiter_positions(DB_PATH)
-    logger.debug(f">>> Update result: {update_result}")
-    if "error" in update_result:
-        logger.error(">>> Error during Jupiter positions update: " + str(update_result))
-        return jsonify(update_result), 500
-
-    # Step 3: Update prices and check alerts.
-    logger.debug(">>> Triggering price update...")
-    prices_resp = update_prices_wrapper()
-    logger.debug(f">>> Prices update response: {prices_resp.status_code} - {prices_resp.get_json()}")
-    if prices_resp.status_code != 200:
-        logger.error(f">>> Price update failed with status code: {prices_resp.status_code}")
-        return prices_resp
-    logger.debug(">>> Performing manual alert check via alert_manager.check_alerts()...")
-    alert_manager.check_alerts()
-    logger.debug(">>> Manual alert check completed.")
-
-    # Step 4: Update last update timestamps.
-    now = datetime.now()
-    logger.debug(f">>> Current timestamp: {now.isoformat()}")
-    dl = DataLocker.get_instance(DB_PATH)
-    dl.set_last_update_times(
-        positions_dt=now,
-        positions_source=source,
-        prices_dt=now,
-        prices_source=source
-    )
-    logger.debug(">>> Last update timestamps set successfully.")
-
-    # Step 5: Record positions snapshot.
     try:
-        logger.debug(">>> Recording positions snapshot...")
+        logger.debug("Step 1: Deleting existing Jupiter positions...")
+        PositionService.delete_all_jupiter_positions(DB_PATH)
+        logger.debug("Step 1 complete: Jupiter positions deleted.")
+        print("[DEBUG] Deleted Jupiter positions.")
+    except Exception as e:
+        logger.error(f"Error deleting Jupiter positions: {e}", exc_info=True)
+        print(f"[ERROR] Error deleting Jupiter positions: {e}")
+
+    try:
+        logger.debug("Step 2: Updating Jupiter positions via PositionService...")
+        update_result = PositionService.update_jupiter_positions(DB_PATH)
+        logger.debug(f"Step 2 complete: Update result: {update_result}")
+        print(f"[DEBUG] Jupiter positions update result: {update_result}")
+        if "error" in update_result:
+            logger.error("Error during Jupiter positions update: " + str(update_result))
+            print("[ERROR] Error during Jupiter positions update:", update_result)
+            return jsonify(update_result), 500
+    except Exception as e:
+        logger.error(f"Exception during Jupiter positions update: {e}", exc_info=True)
+        print(f"[ERROR] Exception during Jupiter positions update: {e}")
+        return jsonify({"error": str(e)}), 500
+
+    try:
+        logger.debug("Step 3: Triggering price update...")
+        prices_resp = update_prices_wrapper()
+        logger.debug(f"Prices update response: {prices_resp.status_code} - {prices_resp.get_json()}")
+        print(f"[DEBUG] Prices update response: {prices_resp.status_code} - {prices_resp.get_json()}")
+        if prices_resp.status_code != 200:
+            logger.error(f"Price update failed with status code: {prices_resp.status_code}")
+            print(f"[ERROR] Price update failed with status code: {prices_resp.status_code}")
+            return prices_resp
+    except Exception as e:
+        logger.error(f"Exception during price update: {e}", exc_info=True)
+        print(f"[ERROR] Exception during price update: {e}")
+        return jsonify({"error": str(e)}), 500
+
+    try:
+        logger.debug("Step 4: Performing manual alert check via alert_manager.check_alerts()...")
+        print("[DEBUG] About to call alert_manager.check_alerts()")
+        alert_manager.check_alerts()
+        logger.debug("Manual alert check completed.")
+        print("[DEBUG] Manual alert check completed.")
+    except Exception as e:
+        logger.error(f"Exception during alert check: {e}", exc_info=True)
+        print(f"[ERROR] Exception during alert check: {e}")
+
+    try:
+        logger.debug("Step 5: Updating last update timestamps...")
+        now = datetime.now()
+        logger.debug(f"Current timestamp: {now.isoformat()}")
+        dl = DataLocker.get_instance(DB_PATH)
+        dl.set_last_update_times(
+            positions_dt=now,
+            positions_source=source,
+            prices_dt=now,
+            prices_source=source
+        )
+        logger.debug("Last update timestamps set successfully.")
+        print("[DEBUG] Last update timestamps set.")
+    except Exception as e:
+        logger.error(f"Exception setting last update timestamps: {e}", exc_info=True)
+        print(f"[ERROR] Exception setting last update timestamps: {e}")
+
+    try:
+        logger.debug("Step 6: Recording positions snapshot...")
         PositionService.record_positions_snapshot(DB_PATH)
-        logger.debug(">>> Positions snapshot recorded successfully.")
+        logger.debug("Positions snapshot recorded successfully.")
+        print("[DEBUG] Positions snapshot recorded.")
     except Exception as snap_err:
-        logger.error(f">>> Error recording positions snapshot: {snap_err}", exc_info=True)
+        logger.error(f"Error recording positions snapshot: {snap_err}", exc_info=True)
+        print(f"[ERROR] Error recording positions snapshot: {snap_err}")
 
-    # Step 6: Emit SocketIO event.
-    logger.debug(">>> Emitting SocketIO event for data update...")
-    socketio_inst = get_socketio()
-    if socketio_inst:
-        socketio_inst.emit('data_updated', {
-            'message': f"Jupiter positions + Prices updated successfully by {source}!",
-            'last_update_time_positions': now.isoformat(),
-            'last_update_time_prices': now.isoformat()
-        })
-        logger.debug(">>> SocketIO event emitted successfully.")
-    else:
-        logger.warning("SocketIO instance not found; skipping event emission.")
-
-    # Step 7: Print and log updated totals.
-    updated_totals = dl.get_balance_vars()
-    pst_timestamp = _convert_iso_to_pst(now.isoformat())
-    print(f"Jupiter Update Complete: Totals = {updated_totals} at {pst_timestamp}")
-    logger.debug(f">>> Jupiter Update Complete: Totals = {updated_totals} at {pst_timestamp}")
-
-    # Step 8: Log the operation using the external OperationsLogger with the source argument.
     try:
+        logger.debug("Step 7: Emitting SocketIO event for data update...")
+        socketio_inst = get_socketio()
+        if socketio_inst:
+            socketio_inst.emit('data_updated', {
+                'message': f"Jupiter positions + Prices updated successfully by {source}!",
+                'last_update_time_positions': now.isoformat(),
+                'last_update_time_prices': now.isoformat()
+            })
+            logger.debug("SocketIO event emitted successfully.")
+            print("[DEBUG] SocketIO event emitted.")
+        else:
+            logger.warning("SocketIO instance not found; skipping event emission.")
+            print("[WARNING] SocketIO instance not found; skipping event emission.")
+    except Exception as e:
+        logger.error(f"Exception emitting SocketIO event: {e}", exc_info=True)
+        print(f"[ERROR] Exception emitting SocketIO event: {e}")
+
+    try:
+        logger.debug("Step 8: Logging updated totals...")
+        updated_totals = dl.get_balance_vars()
+        pst_timestamp = _convert_iso_to_pst(now.isoformat())
+        print(f"[DEBUG] Jupiter Update Complete: Totals = {updated_totals} at {pst_timestamp}")
+        logger.debug(f"Jupiter Update Complete: Totals = {updated_totals} at {pst_timestamp}")
+    except Exception as e:
+        logger.error(f"Exception logging updated totals: {e}", exc_info=True)
+        print(f"[ERROR] Exception logging updated totals: {e}")
+
+    try:
+        logger.debug("Step 9: Logging operation with OperationsLogger...")
         from utils.operations_logger import OperationsLogger
         op_logger = OperationsLogger()
-        op_logger.log(f"Jupiter Update Complete:", source=source)
+        op_logger.log("Jupiter Update Complete:", source=source)
+        logger.debug("Operation logged successfully.")
+        print("[DEBUG] Operation logged successfully.")
     except Exception as e:
-        logger.error("Error logging operation: %s", e)
+        logger.error("Error logging operation: %s", e, exc_info=True)
+        print(f"[ERROR] Error logging operation: {e}")
 
     response_data = {
         "message": f"Jupiter positions + Prices updated successfully by {source}!",
@@ -655,8 +697,10 @@ def update_jupiter():
         "last_update_time_positions": now.isoformat(),
         "last_update_time_prices": now.isoformat()
     }
-    logger.debug(">>> update_jupiter route completed successfully.")
+    logger.debug("update_jupiter route completed successfully.")
+    print("[DEBUG] update_jupiter route completed successfully.")
     return jsonify(response_data), 200
+
 
 
 

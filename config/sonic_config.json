@@ -155,15 +155,15 @@
       }
     },
     "travel_percent_liquid_ranges": {
-      "enabled": false,
-      "low": "",
-      "medium": "",
+      "enabled": true,
+      "low": "-11",
+      "medium": "-25",
       "medium_notifications": {
-        "call": false,
+        "call": true,
         "sms": false,
         "email": false
       },
-      "high": "",
+      "high": "-75",
       "high_notifications": {
         "call": false,
         "sms": false,

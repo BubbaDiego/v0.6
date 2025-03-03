@@ -24,6 +24,9 @@ from data.data_locker import DataLocker
 from positions.position_service import PositionService
 from utils.calc_services import CalcServices
 
+# Import the OperationsViewer from operations_logger.py (ensure it's updated as above)
+from utils.operations_logger import OperationsViewer
+
 logger = logging.getLogger("DashboardBlueprint")
 logger.setLevel(logging.CRITICAL)
 
@@ -175,25 +178,28 @@ def dashboard():
             last_update_time_only = "N/A"
             last_update_date_only = "N/A"
 
-        # -------------------------
-        # Parse JSON for Operation Log
-        # -------------------------
+        # Build Live System Feed using the OperationsViewer (which now returns entries in reverse order)
+        try:
+            viewer = OperationsViewer("operations_log.txt")
+            system_feed_entries = viewer.get_all_display_strings()
+        except Exception as e:
+            system_feed_entries = '<div class="alert alert-secondary p-1 mb-1" role="alert">No feed data available</div>'
+
+        # Parse JSON for Operation Log (last 5 lines)
         ops_log_entries = []
         try:
-            with open("operations_log.txt", "r") as f:
+            with open("operations_log.txt", "r", encoding="utf-8") as f:
                 lines = [line.strip() for line in f if line.strip()]
-                # We'll take the last 5 lines
                 for line in lines[-5:]:
                     try:
                         parsed_line = json.loads(line)
                         ops_log_entries.append(parsed_line)
                     except json.JSONDecodeError:
-                        # If a line isn't valid JSON, store it as a raw string
                         ops_log_entries.append({"raw": line})
         except Exception:
             pass
 
-        # Alerts can stay as raw lines or parse them if needed.
+        # Alerts from DataLocker.
         alert_entries = dl.get_alerts() or []
 
         return render_template(
@@ -213,6 +219,7 @@ def dashboard():
             last_update_time_only=last_update_time_only,
             last_update_date_only=last_update_date_only,
             last_update_positions_source=last_update_positions_source,
+            system_feed_entries=system_feed_entries,
             ops_log_entries=ops_log_entries,
             alert_entries=alert_entries
         )
@@ -235,6 +242,7 @@ def dashboard():
             last_update_time_only="N/A",
             last_update_date_only="N/A",
             last_update_positions_source="N/A",
+            system_feed_entries='<div class="alert alert-secondary p-1 mb-1" role="alert">No feed data available</div>',
             ops_log_entries=[],
             alert_entries=[]
         )
@@ -283,7 +291,6 @@ def api_size_balance():
         for pos in positions:
             wallet = pos.get("wallet", "ObiVault")
             asset = pos.get("asset_type", "BTC").upper()
-            # We only want certain assets, as an example:
             if asset not in ["BTC", "ETH", "SOL"]:
                 continue
             if wallet not in ["ObiVault", "R2Vault"]:
