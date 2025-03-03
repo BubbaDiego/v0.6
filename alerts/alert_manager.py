@@ -85,6 +85,7 @@ class AlertManager:
         self.last_profit: Dict[str, str] = {}
         self.last_triggered: Dict[str, float] = {}
         self.last_call_triggered: Dict[str, float] = {}
+        self.suppressed_count = 0  # Counter for suppressed alerts in this cycle
 
         from data.data_locker import DataLocker
         from utils.calc_services import CalcServices
@@ -129,6 +130,8 @@ class AlertManager:
             logger.info("Alert monitoring disabled.")
             return
 
+        # Reset suppressed counter for this cycle.
+        self.suppressed_count = 0
         aggregated_alerts: List[str] = []
         positions = self.data_locker.read_positions()
         logger.info("Checking %d positions for alerts.", len(positions))
@@ -155,6 +158,9 @@ class AlertManager:
         if aggregated_alerts:
             op_message = f"{len(aggregated_alerts)} alerts triggered"
             op_logger.log(op_message, source=source, operation_type="Alert Triggered")
+        elif self.suppressed_count > 0:
+            op_message = f"{self.suppressed_count} alerts suppressed"
+            op_logger.log(op_message, source=source, operation_type="Alert Silenced")
         else:
             op_message = "✅ No alerts found"
             op_logger.log(op_message, source=source, operation_type="No Alerts Found")
@@ -227,6 +233,7 @@ class AlertManager:
         if now - last_time < self.cooldown:
             logger.debug("%s %s (ID: %s): Alert for key '%s' suppressed due to cooldown.", asset_full, position_type, position_id, key)
             print(f"[DEBUG] {asset_full} {position_type} (ID: {position_id}): Alert for key '{key}' suppressed due to cooldown.")
+            self.suppressed_count += 1
             return ""
         self.last_triggered[key] = now
         wallet_name = pos.get("wallet_name", "Unknown")
@@ -332,6 +339,7 @@ class AlertManager:
         last_time = self.last_triggered.get(profit_key, 0)
         if now - last_time < self.cooldown:
             self.last_profit[profit_key] = current_level
+            self.suppressed_count += 1
             return ""
         self.last_triggered[profit_key] = now
         msg = f"Profit ALERT: {asset_full} {position_type} profit of {profit_val:.2f} (Level: {current_level.upper()})"
@@ -372,6 +380,7 @@ class AlertManager:
         last_time = self.last_triggered.get(key, 0)
         if now - last_time < self.cooldown:
             logger.info("%s: Price alert suppressed.", asset_full)
+            self.suppressed_count += 1
             return ""
         self.last_triggered[key] = now
         cond = alert.get("condition", "ABOVE").upper()

@@ -467,7 +467,7 @@ def update_theme_context():
 @app.route('/test_twilio', methods=["POST"])
 def test_twilio():
     from twilio_message_api import trigger_twilio_flow
-    from utils.operations_logger import OperationsLogger
+    from utils.operations_manager import OperationsLogger
 
     op_logger = OperationsLogger(log_filename=os.path.join(os.getcwd(), "operations_log.txt"))
 
@@ -505,7 +505,7 @@ if __name__ == "__main__":
         from utils.operations_logger import OperationsLogger
 
         op_logger = OperationsLogger(use_color=False)
-        op_logger.log("Launch Pad - Started", source="System")
+        op_logger.log("Launch Pad - Started MANUAL", source="System")
 
     if monitor:
         import subprocess
