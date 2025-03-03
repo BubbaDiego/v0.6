@@ -36,7 +36,7 @@ def main():
         call_update_jupiter()
 
         # Log the operation with the loop count, source set to "monitor", and operation type "Jupiter Updated"
-        op_logger.log(f"Monitor Loop # {loop_counter}", source="monitor", operation_type="Monitor Loop")
+        op_logger.log(f"Monitor Loop # {loop_counter}", source="system", operation_type="Monitor Loop")
 
         time.sleep(SLEEP_INTERVAL)
 

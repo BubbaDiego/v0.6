@@ -574,6 +574,9 @@ def update_prices_wrapper():
 @positions_bp.route("/update_jupiter", methods=["GET", "POST"])
 def update_jupiter():
     source = request.args.get("source") or request.form.get("source") or "API"
+    # If the source isn't "user", override it to "monitor"
+    if source != "user":
+        source = "monitor"
     logger.debug(f"Update Jupiter called with source: {source}")
     print(f"[DEBUG] Update Jupiter route triggered with source: {source}")
 
@@ -683,12 +686,6 @@ def update_jupiter():
 
     try:
         logger.debug("Step 9: Logging operation with OperationsLogger...")
-        #from utils.operations_manager import OperationsLogger
-       # op_logger = OperationsLogger()
-       # op_logger.log("Jupiter Update Complete", source=source, operation_type="Jupiter Updated")
-
-        #op_logger.log(f"Testing Twilio Failed", source="system test", operation_type="Notification Sent")
-
         logger.debug("Operation logged successfully.")
         print("[DEBUG] Operation logged successfully.")
     except Exception as e:
@@ -704,7 +701,6 @@ def update_jupiter():
     logger.debug("update_jupiter route completed successfully.")
     print("[DEBUG] update_jupiter route completed successfully.")
     return jsonify(response_data), 200
-
 
 
 
